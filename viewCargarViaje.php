@@ -366,6 +366,67 @@
                             </div>
 
 
+                            <div>
+                                <hr class="sidebar-divider mt-4">
+                                <h3>Carga</h3>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control" id="tipoCarga" name="tipoCarga">
+                                    <option selected >Seleccionar tipo de carga</option>
+                                    <option value="araña">Araña</option>
+                                    <option value="jaula">Jaula</option>
+                                    <option value="tanque">Tanque</option>
+                                    <option value="granel">Granel</option>
+                                    <option value="carcarrier">CarCarrier</option>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="pesoCarga"
+                                       name="pesoCarga"    placeholder="Peso neto de la carga">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hazardCarga">Hazard</label> <br>
+                                <input  type="radio" name="hazardCarga" id="si"> Si
+
+                                <input  type="radio" name="hazardCarga" id="no"> No
+
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control" id="imoCarga" name="imoCarga">
+                                    <option selected >Seleccionar IMO Class</option>
+                                    <option value="1">Class 1</option>
+                                    <option value="2">Class 2</option>
+                                    <option value="3">Class 3</option>
+                                    <option value="41">Class 4.1</option>
+                                    <option value="42">Class 4.2</option>
+                                    <option value="43">Class 4.3</option>
+                                    <option value="51">Class 5.1</option>
+                                    <option value="52">Class 5.2</option>
+                                    <option value="61">Class 6.1</option>
+                                    <option value="62">Class 6.2</option>
+                                    <option value="7">Class 7</option>
+                                    <option value="8">Class 8</option>
+                                    <option value="9">Class 9</option>
+
+                            </div>
+
+                            <div class="">
+
+                                <label for="reeferCarga">Reefer</label> <br>
+                                <input  type="radio" name="reeferCarga" id="si"> Si
+
+                                <input  type="radio" name="reeferCarga" id="no"> No
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="temperaturaCarga"
+                                       name="temperaturaCarga"    placeholder="Temperatura de la carga">
+                            </div>
+
                         </form>
 
                     </div>
