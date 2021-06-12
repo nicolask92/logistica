@@ -427,6 +427,35 @@
                                        name="temperaturaCarga"    placeholder="Temperatura de la carga">
                             </div>
 
+                            <div>
+                                <hr class="sidebar-divider mt-4">
+                                <h3>Chofer</h3>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control" id="choferViaje" name="choferViaje">
+                                    <option selected >Seleccionar Chofer</option>
+                                    <option value="1">chofer 1</option>
+                                    <option value="2">chofer 2</option>
+                                    <option value="3">chofer 3</option>
+                                    <option value="4">chofer 4</option>
+                                    <option value="5">chofer 5</option>
+                                    <option value="6">chofer 6</option>
+                                    <option value="7">chofer 7</option>
+
+
+                            </div>
+
+
+                                <button type="submit" class="btn btn-primary btn-icon-split btn-lg">Cargar Viaje</button>
+
+
+                            <div>
+                                <hr class="sidebar-divider mt-4">
+                                <h3>Chofer</h3>
+                            </div>
+
+
                         </form>
 
                     </div>
