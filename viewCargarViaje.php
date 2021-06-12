@@ -379,6 +379,7 @@
                                     <option value="tanque">Tanque</option>
                                     <option value="granel">Granel</option>
                                     <option value="carcarrier">CarCarrier</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -410,10 +411,10 @@
                                     <option value="7">Class 7</option>
                                     <option value="8">Class 8</option>
                                     <option value="9">Class 9</option>
-
+                                </select>
                             </div>
 
-                            <div class="">
+                            <div class="form-group">
 
                                 <label for="reeferCarga">Reefer</label> <br>
                                 <input  type="radio" name="reeferCarga" id="si"> Si
@@ -442,18 +443,19 @@
                                     <option value="5">chofer 5</option>
                                     <option value="6">chofer 6</option>
                                     <option value="7">chofer 7</option>
-
+                                </select>
 
                             </div>
 
-
-                                <button type="submit" class="btn btn-primary btn-icon-split btn-lg">Cargar Viaje</button>
-
-
-                            <div>
+                            <div class="form-group">
                                 <hr class="sidebar-divider mt-4">
-                                <h3>Chofer</h3>
                             </div>
+
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-dark">Cargar Viaje</button>
+                            </div>
+
 
 
                         </form>
