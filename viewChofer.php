@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-1">
-                                    <input type="text" class="form-control" name="importe" id="importe"
+                                    <input type="text" class="form-control" name="importe_pago" id="importe"
                                         placeholder="Importe">
                                 </div>
                             </div>
