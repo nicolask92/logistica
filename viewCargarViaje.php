@@ -72,7 +72,7 @@
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
-                        <div class="achicar"">
+                        <div class="achicar">
                             <H3>Cliente</H3>
 
                             <form class="" action="">
@@ -86,8 +86,6 @@
                                             name="apellidoCliente" placeholder="Apellido">
                                     </div>
                                 </div>
-
-                            </div>
 
                             <div class="form-group">
                                 <input type="Number" class="form-control" id="cuitCliente"
