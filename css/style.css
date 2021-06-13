@@ -1,5 +1,9 @@
 .achicar{
-
+    border: thin solid #000;
     width: 80%;
     margin: auto;
+}
+.item{
+    border: thin solid #ccc;
+    margin: 1rem;
 }
