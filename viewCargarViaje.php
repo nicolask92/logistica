@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-<?php include_once('header.php') ?>
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
-
-                    <div class="achicar"">
-                        <H3>Cliente</H3>
-
-                        <form class="" action="">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control" name="nombreCliente"
-                                           id="nombreCliente" placeholder="Nombre">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="apellidoCliente"
-                                           name="apellidoCliente" placeholder="Apellido">
-=======
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -106,7 +85,7 @@
                                         <input type="text" class="form-control" id="apellidoCliente"
                                             name="apellidoCliente" placeholder="Apellido">
                                     </div>
->>>>>>> d5e67a3012603388f95ba6c61f76bfc7d7508cc5
+
                                 </div>
 
                             <div class="form-group">
@@ -193,11 +172,6 @@
                                        name="pesoCarga"    placeholder="Peso neto de la carga">
                             </div>
 
-<<<<<<< HEAD
-            </div>
-            <!-- End of Main Content -->
-<?php include_once('footer.php') ?>
-=======
                             <div class="form-group">
                                 <label for="hazardCarga">Hazard</label> <br>
                                 <input  type="radio" name="hazardCarga" id="si"> Si
@@ -308,4 +282,4 @@
 
     </body>
 </html>
->>>>>>> d5e67a3012603388f95ba6c61f76bfc7d7508cc5
+
