@@ -85,6 +85,7 @@
                                         <input type="text" class="form-control" id="apellidoCliente"
                                             name="apellidoCliente" placeholder="Apellido">
                                     </div>
+
                                 </div>
 
                             <div class="form-group">
@@ -281,3 +282,4 @@
 
     </body>
 </html>
+
