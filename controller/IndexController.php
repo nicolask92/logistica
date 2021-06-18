@@ -11,6 +11,6 @@ class IndexController
 
     public function execute()
     {
-        echo $this->render->render("view/index.php");
+        echo $this->render->render("view/home.php");
     }
 }
