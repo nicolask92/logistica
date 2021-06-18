@@ -29,7 +29,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link text-center" href="viewCargarViaje.php">
+                <a class="nav-link text-center" href="cargarViajeView.php">
                     <span>Cargar Viaje</span></a>
             </li>
             <!-- Divider -->

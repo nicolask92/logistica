@@ -10,6 +10,7 @@ include_once("controller/SongController.php");
 include_once("controller/TourController.php");
 include_once("controller/QuieroSerParteController.php");
 include_once("controller/IndexController.php");
+include_once("controller/CargarViajeController.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -60,6 +61,10 @@ class Configuration{
     public function getIndexController(){
         return new IndexController($this->getRender());
     }
+
+     public function getCargarViajeController(){
+            return new CargarViajeController($this->getRender());
+        }
 
     public function getRouter(){
         return new Router($this);
