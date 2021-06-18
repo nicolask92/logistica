@@ -1,6 +1,6 @@
 <?php
 include_once("helper/Configuration.php");
-
+session_destroy();
 session_start();
 $configuration = new Configuration();
 
