@@ -15,7 +15,7 @@
             <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
                     <div class="sidebar-brand-icon">
                         <img src="img/logo_seven.png" class="img-fluid d-md-none d-lg-none d-sm-inline">
                     </div>
@@ -27,7 +27,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link text-center" href="index.php">
+                    <a class="nav-link text-center" href="home.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
