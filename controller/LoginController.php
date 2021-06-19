@@ -21,7 +21,7 @@ class LoginController
 
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $data["usuario"] = $this->loginModel->buscarUsuario($email , $password);
-        echo $this->render->render("view/pruebaView.php", $data);
+        $this->loginModel->buscarUsuario($email , $password);
+
     }
 }
