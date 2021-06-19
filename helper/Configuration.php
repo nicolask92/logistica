@@ -5,12 +5,14 @@ include_once("helper/UrlHelper.php");
 
 include_once("model/TourModel.php");
 include_once("model/SongModel.php");
+include_once("model/LoginModel.php");
 
 include_once("controller/SongController.php");
 include_once("controller/TourController.php");
 include_once("controller/QuieroSerParteController.php");
 include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
+include_once("controller/LoginController.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -40,6 +42,11 @@ class Configuration{
         return new SongModel($database);
     }
 
+    public function getLogearseModel(){
+        $database = $this->getDatabase();
+        return new LoginModel($database);
+    }
+
     public function getRender(){
         return new Render('view/partial');
     }
@@ -62,9 +69,14 @@ class Configuration{
         return new IndexController($this->getRender());
     }
 
-     public function getCargarViajeController(){
+    public function getCargarViajeController(){
             return new CargarViajeController($this->getRender());
-        }
+    }
+
+    public function getLoginController(){
+           $loginModel = $this->getLogearseModel();
+           return new LoginController($loginModel, $this->getRender());
+    }
 
     public function getRouter(){
         return new Router($this);

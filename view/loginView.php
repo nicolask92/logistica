@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="view/css/login.css">
 </head>
 <body>
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -16,15 +16,15 @@
         <div class="card login-card">
             <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="img/login.jpg" alt="login" class="login-card-img">
+                    <img src="view/img/login.jpg" alt="login" class="login-card-img">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper center">
-                            <img src="img/logo_logistica.png" alt="logo" class="">
+                            <img src="view/img/logo_logistica.png" alt="logo" class="">
                         </div>
                         <p class="login-card-description">Iniciar sesión en su cuenta</p>
-                        <form action="#!">
+                        <form  method="post"  enctype="multipart/form-data" action="/login/procesarLogin">
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email">
@@ -33,7 +33,7 @@
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="***********">
                             </div>
-                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Ingresar">
+                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Ingresar">
                         </form>
                         <a href="#!" class="forgot-password-link">¿Se te olvidó tu contraseña?</a>
                         <p class="login-card-footer-text">¿No tienes una cuenta? <a href="#!" class="text-reset">REGISTRARSE AQUÍ</a></p>
