@@ -13,9 +13,20 @@ class LoginModel
 
     public function buscarUsuario ($email , $password){
 
-        $sql = "SELECT * FROM usuario WHERE email=" .$email. " AND contraseña=" .$password ;
+        $sql = "SELECT * FROM usuario WHERE email ='" . $email . "' AND contraseña = '" . $password . "'";
 
-        return $this->database->query($sql);
+        $resultado = $this->database->execute($sql);
+
+        if ($resultado->num_rows > 0) {
+
+            header("Location: http://localhost/index");
+
+        } else{
+
+            header("Location: http://localhost/login");
+
+        }
+
     }
 
 }
