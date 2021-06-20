@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="view/css/login.css">
+    <link rel="stylesheet" href="/view/css/login.css">
 </head>
 <body>
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -16,12 +16,12 @@
         <div class="card login-card">
             <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="view/img/login.jpg" alt="login" class="login-card-img">
+                    <img src="/view/img/login.jpg" alt="login" class="login-card-img">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper center">
-                            <img src="view/img/logo_logistica.png" alt="logo" class="">
+                            <img src="/view/img/logo_logistica.png" alt="logo" class="">
                         </div>
                         <p class="login-card-description">Iniciar sesión en su cuenta</p>
                         <form  method="post"  enctype="multipart/form-data" action="/login/procesarLogin">
@@ -33,6 +33,11 @@
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="***********">
                             </div>
+                            {{#error}}
+                                <div class="alert alert-danger" role="alert">
+                                    Datos invalidos.
+                                </div>
+                            {{/error}}
                             <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Ingresar">
                         </form>
                         <a href="#!" class="forgot-password-link">¿Se te olvidó tu contraseña?</a>

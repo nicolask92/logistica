@@ -9,8 +9,7 @@ class IndexController
         $this->render = $render;
     }
 
-    public function execute()
-    {
+    public function execute() {
         echo $this->render->render("view/home.php");
     }
 }
