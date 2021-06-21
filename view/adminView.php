@@ -16,15 +16,15 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800 text-center">Asignacion de Roles.</h1>
-                        <div class="alert {{tipo}}" role="alert">
-                              {{mensaje}}
+                        <div class="alert " role="alert">
+
                         </div>
                         <div class="achicar">
                           <!-- DataTales Example -->
                           <div class="card shadow mb-4">
 
                               <div class="card-header py-3">
-                                  <h6 class="m-0 font-weight-bold text-primary">Pendientes</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Usuarios Activos</h6>
                               </div>
                               <div class="card-body">
                                   <div class="table-responsive">
@@ -32,20 +32,20 @@
                                           <thead>
                                           <tr>
                                               <th>Usuario</th>
-                                              <th>Legajo</th>
-                                              <th>DNI</th>
-                                              <th>Mail</th>
+                                              <th>Email</th>
+                                              <th>Contraseña</th>
                                               <th>Asinacion de Rol</th>
                                           </tr>
                                           </thead>
                                           <tbody>
+                                            {{# users }}
                                           <tr>
-                                            <th>@cachito</th>
-                                            <th>1234</th>
-                                            <th>32492384</th>
-                                            <th>cachito@g7.com</th>
-                                            <th> <a href="">Asignar Rol</a> </th>
+                                            <th>{{usuario}}</th>
+                                            <th>{{email}}</th>
+                                            <th>{{contraseña}}</th>
+                                            <th> <a href="">Asignar Rol</a></th>
                                           </tr>
+                                          {{/ users }}
                                           </tbody>
                                       </table>
                                   </div>

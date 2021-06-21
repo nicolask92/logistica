@@ -1,6 +1,7 @@
 {{> header }}
 <div id="content-wrapper" class="d-flex flex-column">
 
+
     <!-- Main Content -->
     <div id="content">
 
@@ -79,7 +80,7 @@
                                 <td>650km</td>
                                 <td>50L</td>
                                 <td>20L</td>
-                                <td><a href="">Ver mapa</a></td>
+                                <td><a href="admin">Ver mapa</a></td>
                             </tr>
                             </tbody>
                         </table>

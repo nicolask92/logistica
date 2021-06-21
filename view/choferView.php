@@ -1,53 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <?php
-        require_once('common/_header.php')
-        ?>
-    </head>
-
-    <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
-                <div class="sidebar-brand-icon">
-                    <img src="img/logo_seven.png" class="img-fluid d-md-none d-lg-none d-sm-inline">
-                </div>
-                <div class="sidebar-brand-text mx-3"><img SRC="img/logo_logistica.png" class="img-fluid"></div>
-            </a>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link text-center" href="home.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link text-center" href="cargarViajeView.php">
-                    <span>Cargar Viaje</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
-        <!-- End of Sidebar -->
-        <!-- Content Wrapper -->
+{{> header }}
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <?php
-                    require_once("common/barraTop.mustache");
-                ?>
+                {{> barraTop }}
                 <!-- End of Topbar -->
 
                 <div class="container-fluid">
@@ -137,33 +93,4 @@
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-                <?php
-                require_once('common/_footer.php')
-                ?>
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-        <!-- Logout Modal-->
-        <?php
-        require_once('common/modalSalir.mustache')
-        ?>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-    </body>
-</html>
+{{> footer }}

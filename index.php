@@ -5,9 +5,8 @@ session_start();
 $configuration = new Configuration();
 
 $urlHelper = $configuration->getUrlHelper();
-$module = $urlHelper->getModuleFromRequestOr("index");
+$module = $urlHelper->getModuleFromRequestOr("login");
 $action = $urlHelper->getActionFromRequestOr("execute");
-
 
 $router = $configuration->getRouter();
 $router->executeActionFromModule($action, $module);
