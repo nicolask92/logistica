@@ -31,10 +31,8 @@ class LoginModel
             WHERE id =" . $id;
 
         $resultado = $this->database->execute($sqlAdmin);
-        var_dump($resultado->fetch_all());
-        die;
-        if ($resultado->num_rows > 0) {
 
+        if ($resultado->num_rows > 0) {
             return "admin";
         }
 
