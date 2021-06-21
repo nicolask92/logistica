@@ -33,7 +33,7 @@ class LoginController
         $email = $_POST["email"];
         $password = $_POST["password"];
         $usuario = $this->loginModel->buscarUsuario($email , $password);
-
+        
         if ($usuario->num_rows > 0) {
             $usuarioComoArray = $usuario->fetch_array();
             $rolUsuario = $this->loginModel->buscarRolPorIdUsuario($usuarioComoArray['id']);
