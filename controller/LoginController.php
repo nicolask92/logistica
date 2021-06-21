@@ -37,6 +37,7 @@ class LoginController
         if ($usuario->num_rows > 0) {
             $usuarioComoArray = $usuario->fetch_array();
             $rolUsuario = $this->loginModel->buscarRolPorIdUsuario($usuarioComoArray['id']);
+
             $indexController = new IndexController($this->render);
             $sm = new SessionManager();
             $sm->iniciarSesion($usuarioComoArray['usuario'], $rolUsuario);

@@ -4,7 +4,7 @@ class SessionManager {
 
     private $accessControl = [
         "admin" => ['home', 'login','admin'],
-        "supervisor" => ['home'],
+        "supervisor" => ['home', 'cargarViaje'],
         "chofer" => ['home', 'verViaje'],
         "mecanico" => ['home'],
         "sinRol" => ['home']
@@ -38,8 +38,7 @@ class SessionManager {
             } else {
                 return in_array($modulo, $this->accessControl[$_SESSION['rol']]);
             }
-        }
-        else {
+        } else {
             return false;
         }
     }

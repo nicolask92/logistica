@@ -38,8 +38,8 @@ class LoginModel
 
         $sqlSupervisor = "
             SELECT *
-            FROM supervisor
-            WHERE id =" . $id;
+            FROM supervisor join empleado on supervisor.legajo = empleado.legajo
+            WHERE usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlSupervisor);
 
