@@ -13,7 +13,8 @@ include_once("controller/QuieroSerParteController.php");
 include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
 include_once("controller/LoginController.php");
-
+include_once("controller/MecanicoController.php");
+include_once("controller/RegistroController.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -76,6 +77,14 @@ class Configuration{
     public function getLoginController(){
            $loginModel = $this->getLogearseModel();
            return new LoginController($loginModel, $this->getRender());
+    }
+
+    public function getMecanicoController(){
+        return new MecanicoController($this->getRender());
+    }
+
+    public function getRegistroController(){
+        return new RegistroController($this->getRender());
     }
 
     public function getRouter(){
