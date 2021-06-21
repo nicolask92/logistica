@@ -59,10 +59,9 @@ class Configuration{
 
      public function getAdminController()
      {
-            $adminModel = $this->getAdminModel();
-            return new AdminController($adminModel, $this->getRender());
+        $adminModel = $this->getAdminModel();
+        return new AdminController($adminModel, $this->getRender());
      }
-
 
     public function getRouter(){
         return new Router($this);
