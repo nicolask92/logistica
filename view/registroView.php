@@ -23,8 +23,16 @@
                         <div class="brand-wrapper center">
                             <img src="/view/img/logo_logistica.png" alt="logo" class="">
                         </div>
-                        <p class="login-card-description">Iniciar sesión en su cuenta</p>
-                        <form  method="post"  enctype="multipart/form-data" action="/login/procesarLogin">
+                        <p class="login-card-description">Registro</p>
+                        <form  method="post"  enctype="multipart/form-data" action="/Registro/procesarRegistro">
+                        <div class="form-group">
+                                <label for="nombre" class="sr-only">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaNac" class="sr-only">Fecha de nacimiento</label>
+                                <input type="date" name="fechaNac" id="fechaNac" class="form-control">
+                            </div>
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email">
@@ -38,10 +46,9 @@
                                     Datos invalidos.
                                 </div>
                             {{/error}}
-                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Ingresar">
+                            <input name="registrarse" id="registrarse" class="btn btn-block login-btn mb-4" type="submit" value="Registrarse">
                         </form>
-                        <a href="#!" class="forgot-password-link">¿Se te olvidó tu contraseña?</a>
-                        <p class="login-card-footer-text">¿No tienes una cuenta? <a href="#!" class="text-reset">REGISTRARSE AQUÍ</a></p>
+            
                         <nav class="login-card-footer-nav">
                             <a href="#!">Condiciones de uso.</a>
                             <a href="#!">Política de privacidad</a>
