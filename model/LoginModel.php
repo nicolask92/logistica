@@ -11,7 +11,7 @@ class LoginModel
         $this->database = $database;
     }
 
-    public function buscarUsuario ($email , $password) {
+    public function buscarUsuario($email , $password) {
 
         $sql = "
             SELECT *
@@ -23,7 +23,7 @@ class LoginModel
         return $resultado;
     }
 
-    public function buscarRolPorIdUsuario ($id) {
+    public function buscarRolPorIdUsuario($id) {
 
         $sqlAdmin = "
             SELECT *
@@ -33,7 +33,7 @@ class LoginModel
         $resultado = $this->database->execute($sqlAdmin);
 
         if ($resultado->num_rows > 0) {
-            return "administrador";
+            return "admin";
         }
 
         $sqlSupervisor = "

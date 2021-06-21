@@ -43,7 +43,7 @@
                                             <th>{{usuario}}</th>
                                             <th>{{email}}</th>
                                             <th>{{contraseña}}</th>
-                                            <th> <a href="">Asignar Rol</a></th>
+                                            <th> <a href="">Editar Usuario</a> </th>
                                           </tr>
                                           {{/ users }}
                                           </tbody>

@@ -1,5 +1,7 @@
 <?php
 
+include_once 'helper/SessionManager.php';
+
 class Render{
     private $mustache;
 
@@ -12,6 +14,10 @@ class Render{
     }
 
     public function render($contentFile , $data = array() ){
+        $sm = new SessionManager();
+        if ($sm->chequearSesion()) {
+            $data[$_SESSION['rol']] = true;
+        }
         $contentAsString =  file_get_contents($contentFile);
         return  $this->mustache->render($contentAsString, $data);
     }
