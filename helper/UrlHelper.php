@@ -15,6 +15,6 @@ class UrlHelper {
     }
 
     public function getActionFromRequestOr($default){
-        return isset($_GET["action"]) ? $_GET["action"] : $default;
+        return (isset($_GET["action"])) ? $_GET["action"] : $default;
     }
 }

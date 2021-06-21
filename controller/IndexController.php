@@ -4,12 +4,16 @@ class IndexController
 {
     private $render;
 
+
     public function __construct($render)
     {
         $this->render = $render;
     }
 
-    public function execute() {
-        echo $this->render->render("view/home.php");
+    public function execute()
+    {
+      echo $this->render->render("view/homeView.php");
     }
+
+
 }
