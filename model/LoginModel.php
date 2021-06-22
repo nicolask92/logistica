@@ -27,7 +27,7 @@ class LoginModel
 
         $sqlAdmin = "
             SELECT *
-            FROM administrador
+            FROM administrador join empleado on administrador.legajo = empleado.legajo
             WHERE id =" . $id;
 
         $resultado = $this->database->execute($sqlAdmin);
@@ -49,7 +49,7 @@ class LoginModel
 
         $sqlChofer = "
             SELECT *
-            FROM chofer
+            FROM chofer join empleado on chofer.legajo = empleado.legajo
             WHERE id =" . $id;
 
         $resultado = $this->database->execute($sqlChofer);
@@ -60,7 +60,7 @@ class LoginModel
 
         $sqlMecanico = "
             SELECT *
-            FROM chofer
+            FROM mecanico join empleado on mecanico.legajo = empleado.legajo
             WHERE id =" . $id;
 
         $resultado = $this->database->execute($sqlMecanico);
@@ -73,5 +73,3 @@ class LoginModel
     }
 
 }
-
-
