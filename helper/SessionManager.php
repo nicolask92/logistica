@@ -27,8 +27,12 @@ class SessionManager {
     }
 
     public function chequearSesion($modulo = null) {
-        $tieneAcceso = $this->tieneAccesoAlModulo($modulo);
-        return isset($_SESSION['usuario']) && $tieneAcceso;
+        if ($modulo == 'registro' && !isset($_SESSION['usuario'])) {
+            return true;
+        } else {
+            $tieneAcceso = $this->tieneAccesoAlModulo($modulo);
+            return isset($_SESSION['usuario']) && $tieneAcceso;
+        }
     }
 
     private function tieneAccesoAlModulo($modulo) {
