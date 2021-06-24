@@ -3,7 +3,7 @@
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['home', 'admin', 'asignarRoles'],
+        "admin" => ['home', 'usuariosActivos', 'editarUsuario','asignarRoles'],
         "supervisor" => ['home', 'cargarViaje'],
         "chofer" => ['home','chofer'],
         "mecanico" => ['home', 'service'],

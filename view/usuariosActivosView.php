@@ -34,7 +34,7 @@
                                               <th>Usuario</th>
                                               <th>Email</th>
                                               <th>Contraseña</th>
-                                              <th>Asinacion de Rol</th>
+                                              <th>Operacion</th>
                                           </tr>
                                           </thead>
                                           <tbody>
@@ -43,7 +43,7 @@
                                             <th>{{usuario}}</th>
                                             <th>{{email}}</th>
                                             <th>{{contraseña}}</th>
-                                            <th> <a href="">Editar Usuario</a> </th>
+                                            <th> <a href="usuariosActivos/editarUsuario/id={{id}}">Editar Usuario</a> <a href="usuariosActivos/eliminarUsuario/id={{id}}">Eliminar Usuario</a></th>
                                           </tr>
                                           {{/ users }}
                                           </tbody>
@@ -51,7 +51,7 @@
                                   </div>
                               </div>
                           </div>
-
+                        <div><h3><a href="usuariosActivos/asignarRoles">Ver pendientes >></a></h3></div>
                         </div>
 
                     </div>

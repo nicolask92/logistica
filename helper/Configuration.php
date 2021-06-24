@@ -59,11 +59,14 @@ class Configuration{
 
     }
 
-     public function getAdminController()
+     public function getUsuariosActivosController()
      {
         $adminModel = $this->getAdminModel();
-
         return new AdminController($adminModel, $this->getRender());
+     }
+
+     public function getEditarUsuarioController(){
+        return new AdminController($this->getRender());
      }
 
      public function getChoferController()
