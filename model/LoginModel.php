@@ -19,7 +19,6 @@ class LoginModel
             WHERE email ='" . $email . "' AND contraseña = '" . $password . "'";
 
         $resultado = $this->database->execute($sql);
-
         return $resultado;
     }
 
@@ -27,8 +26,8 @@ class LoginModel
 
         $sqlAdmin = "
             SELECT *
-            FROM administrador
-            WHERE id =" . $id;
+            FROM administrador join empleado on empleado.legajo = administrador.legajo
+            WHERE empleado.usuario_id = " .$id;
 
         $resultado = $this->database->execute($sqlAdmin);
 
@@ -39,7 +38,7 @@ class LoginModel
         $sqlSupervisor = "
             SELECT *
             FROM supervisor join empleado on supervisor.legajo = empleado.legajo
-            WHERE usuario_id =" . $id;
+            WHERE empleado.usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlSupervisor);
 
@@ -49,8 +48,8 @@ class LoginModel
 
         $sqlChofer = "
             SELECT *
-            FROM chofer
-            WHERE id =" . $id;
+            FROM chofer join empleado on empleado.legajo = chofer.legajo
+            WHERE empleado.usuario_id = " .$id;
 
         $resultado = $this->database->execute($sqlChofer);
 
@@ -60,8 +59,8 @@ class LoginModel
 
         $sqlMecanico = "
             SELECT *
-            FROM chofer
-            WHERE id =" . $id;
+            FROM mecanico join empleado on empleado.legajo = mecanico.legajo
+            WHERE empleado.usuario_id = " .$id;
 
         $resultado = $this->database->execute($sqlMecanico);
 

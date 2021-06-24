@@ -11,10 +11,11 @@ class Router{
     public function executeActionFromModule($action, $module){
         $controller = $this->getControllerFrom($module);
         $this->executeMethodFromController($controller,$action);
+
     }
 
     private function getControllerFrom($module){
-          $controllerName = "get" . ucfirst($module) . "Controller";
+          $controllerName = "get" . ucfirst($module) . "Controller"; //getModuloController
           $validController = method_exists($this->configuration, $controllerName) ? $controllerName : "getIndexController";
           return call_user_func(array($this->configuration, $validController));
     }

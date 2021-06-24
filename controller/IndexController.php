@@ -12,7 +12,7 @@ class IndexController
 
     public function execute()
     {
-      echo $this->render->render("view/homeView.php");
+        echo $this->render->render("view/homeView.php");
     }
 
 

@@ -6,7 +6,6 @@ class UrlHelper {
     public function getModuleFromRequestOr($default){
         $sm = new SessionManager();
         $isSetModulo = isset($_GET['module']);
-
         if ($isSetModulo && ($sm->chequearSesion($_GET["module"]))) {
             return $_GET["module"];
         } else {

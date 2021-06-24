@@ -10,6 +10,7 @@ include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
 include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
+include_once("controller/ChoferController.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -54,13 +55,20 @@ class Configuration{
 
     public function getLoginController(){
            $loginModel = $this->getLogearseModel();
-           return new LoginController($loginModel, $this->getRender());
+        return new LoginController($loginModel, $this->getRender());
+
     }
 
      public function getAdminController()
      {
         $adminModel = $this->getAdminModel();
+
         return new AdminController($adminModel, $this->getRender());
+     }
+
+     public function getChoferController()
+     {
+         return new ChoferController($this->getRender());
      }
 
     public function getRouter(){
