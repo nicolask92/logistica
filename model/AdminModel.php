@@ -1,10 +1,9 @@
 <?php
-class AdminModel
-{
+class AdminModel{
+    
     private $database;
 
-    public function __construct($database)
-    {
+    public function __construct($database){
         $this->database = $database;
     }
 
