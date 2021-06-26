@@ -3,15 +3,12 @@
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['home', 'reportes', 'asignarRoles'],
+        "admin" => ['home', 'admin', 'editarUsuario','eliminarUsuario'],
         "supervisor" => ['home', 'cargarViaje'],
         "chofer" => ['home', 'verViaje', 'subirDatos'],
         "mecanico" => ['home', 'service'],
         "sinRol" => ['home']
     ];
-
-    public function __construct() {
-    }
 
     function iniciarSesion($usuario, $rol) {
         if (!isset($_SESSION['usuario'])) {

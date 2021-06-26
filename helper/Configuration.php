@@ -37,8 +37,8 @@ class Configuration{
     }
 
     public function getAdminModel(){
-        $database = $this->getDatabase();
-        return new AdminModel($database);
+        $obj_mysqlDatabase = $this->getDatabase();
+        return new AdminModel($obj_mysqlDatabase);
     }
 
     public function getRender(){

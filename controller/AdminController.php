@@ -13,8 +13,14 @@ class AdminController
 
     public function execute()
     {
-        $result = $this->database->get();
+        $result = $this->database->obtenerTodosLosUsuarios();
         $data["users"] = $result;
         echo $this->render->render("view/adminView.php",$data);
+    }
+
+    public function editarUsuario(){
+        $result = $this->database->obtenerUsuarioPorId($_GET["id"]);
+        $data["users"] = $result;
+        echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 }
