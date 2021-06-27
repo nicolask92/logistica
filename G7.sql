@@ -201,7 +201,7 @@ foreign key(id_viaje) references viaje(id_viaje)
 );
 
 INSERT into camiones(marca, modelo, patente, nro_motor, nro_chasis, kilometraje, ultimo_service, id_viaje)
-values('IVECO', 'Cursor', 'AA123CD', 53879558, 'L53879558', 10000),
+values('IVECO', 'Cursor', 'AA123CD', 53879558, 'L53879558', 10000, '2021-01-01'),
       ('IVECO','Cursor','AA124DC', 69904367,'R69904367', 10000, '2021-01-01'),
       ('IVECO','Cursor','AD200XS',	57193968,'R57193968', 10000, '2021-01-01'),
       ('IVECO','Cursor','AA211ZX',	82836641,'N82836641', 10000, '2021-01-01'),
