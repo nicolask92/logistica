@@ -7,9 +7,6 @@
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/G7.sql" beforeDir="false" afterPath="$PROJECT_DIR$/G7.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/cargarViajeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarViajeView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/partial/barraLateral.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/barraLateral.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
