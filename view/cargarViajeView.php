@@ -95,6 +95,41 @@
                                name="combustiblePrevistoViaje"    placeholder="Cumbustible previsto Lts">
                     </div>
 
+                    <div>
+                        <hr class="sidebar-divider mt-4">
+                        <h3>Supervisor</h3>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" id="supervisorViaje" name="supervisorViaje">
+
+                                <option selected >Seleccionar Supervisor</option>
+                                {{#supervisores}}
+                                <option value="{{legajo}}">{{nombre}} {{apellido}} </option>
+                                {{/supervisores}}
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                    <div>
+                        <hr class="sidebar-divider mt-4">
+                        <h3>Camión</h3>
+                    </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" id="camionViaje" name="camionViaje">
+
+                                <option selected >Seleccionar Camión</option>
+                                {{#camiones}}
+                                <option value="{{patente}}">{{marca}}-{{modelo}} </option>
+                                {{/camiones}}
+                            </select>
+
+                        </div>
 
                     <div>
                         <hr class="sidebar-divider mt-4">
@@ -102,13 +137,11 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" id="tipoCarga" name="tipoCarga">
-                            <option selected >Seleccionar tipo de carga</option>
-                            <option value="araña">Araña</option>
-                            <option value="jaula">Jaula</option>
-                            <option value="tanque">Tanque</option>
-                            <option value="granel">Granel</option>
-                            <option value="carcarrier">CarCarrier</option>
+                        <select class="form-control" id="arrastradorViaje" name="arrastardorViaje">
+                            <option selected >Seleccionar Arrastrador</option>
+                            {{#arrastradores}}
+                            <option value="{{patente}}">{{tipo}}-{{patente}}</option>
+                            {{/arrastradores}}
                         </select>
                     </div>
 
@@ -164,10 +197,12 @@
                     </div>
 
                     <div class="form-group">
+
                         <select class="form-control" id="choferViaje" name="choferViaje">
-                            {{#choferes}}
+
                             <option selected >Seleccionar Chofer</option>
-                            <option value="{{legajo}}">{{nombre}}</option>
+                            {{#choferes}}
+                            <option value="{{legajo}}">{{nombre}} {{apellido}}</option>
                             {{/choferes}}
                         </select>
 
