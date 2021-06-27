@@ -49,11 +49,15 @@ class AdminModel{
     }
 
     public function editarUsuario($id = null,$data = array()){
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
         $sql = "UPDATE empleado 
-                SET legajo = '',
-                    dni = ,
-                    fecha_nacimiento = '', 
+                SET legajo =$legajo,
+                    dni = $dni,
+                    fecha_nacimiento = '$fecha_nacimiento', 
                 WHERE usuario_id =" . $id;
+
         return $this->devolverResultadoConsulta($sql);
     }
     
