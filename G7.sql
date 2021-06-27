@@ -15,7 +15,7 @@ CREATE TABLE usuario
  	codigo smallint
 );
 
-INSERT into usuario(nombre, apellido, usuario, contraseña , email)
+INSERT into usuario(nombre, apellido, usuario, contrasenia , email)
 values('admin', 'admin','admin', 'admin', 'admin@g7.com'),
 	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com'),
 	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com'),
