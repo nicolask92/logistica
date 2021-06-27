@@ -13,6 +13,7 @@ include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
 include_once("controller/MecanicoController.php");
 include_once("controller/RegistroController.php");
+include_once("controller/AccessDeniedY404Controller.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -79,6 +80,11 @@ class Configuration{
         $adminModel = $this->getAdminModel();
         return new AdminController($adminModel, $this->getRender());
      }
+
+    public function getAccessDeniedY404Controller()
+    {
+        return new AccessDeniedY404Controller($this->getRender());
+    }
 
     public function getRouter(){
         return new Router($this);

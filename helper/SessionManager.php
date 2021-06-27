@@ -1,5 +1,7 @@
 <?php
 
+include_once("controller/AccessDeniedY404Controller.php");
+
 class SessionManager {
 
     private $accessControl = [
@@ -40,10 +42,36 @@ class SessionManager {
             if ($modulo == null) {
                 return true;
             } else {
-                return in_array($modulo, $this->accessControl[$_SESSION['rol']]);
+                return $this->esUnaVistaValida($modulo);
             }
         } else {
             return false;
         }
+    }
+
+    private function esUnaVistaValida($modulo) {
+        $existeVista = false;
+        $tienePermisoParaLaVista = false;
+        $arrayDeVistas = array_merge(...array_values($this->accessControl));
+
+        foreach($this->accessControl as $rol=>$webs) {
+           foreach ($webs as $web) {
+               $existeVista = in_array($modulo, $arrayDeVistas);
+               if ($existeVista) {
+                   $tienePermisoParaLaVista = in_array($modulo, $this->accessControl[$_SESSION['rol']]);
+               }
+           }
+        }
+        $render = new Render('view/partial');
+        $con = new AccessDeniedY404Controller($render);
+
+        if (!$existeVista) {
+            $con->paginaNoExiste();
+            exit;
+        } else if ($existeVista && !$tienePermisoParaLaVista) {
+            $con->accesoDenegado();
+            exit;
+        }
+        return $existeVista && $tienePermisoParaLaVista;
     }
 }
