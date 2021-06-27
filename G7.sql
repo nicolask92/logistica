@@ -112,49 +112,6 @@ CREATE TABLE viaje
 	foreign key(id_chofer) references chofer(id)
 	);
 
-INSERT into costeo(
-	combustible_previsto,
-    viaticos_previsto,
-    peajes_previsto,
-    pesajes_previsto,
-    extras_previsto,
-    fee_previsto)
-values('200', '5000', '1000', '2000', '500', '10000'); 
-
-
-INSERT into viaje(
-	tipo_carga,
-	fecha_carga,
-	fecha_partida,
-	fecha_arribo,
-    eta,
-    etd,
-	hazard,
-    reefer,
-	origen,
-	destino,
-	km_previsto,
-	km_real,
-    estado,
-    id_costeo,
-	id_supervisor,
-	id_chofer)
-values('Jaula',
-	'1970-01-01 00:00:01',
-	'1970-01-01 00:00:01',
-	'1970-01-01 00:00:01',
-	'1970-01-01 00:00:01',
-	'1970-01-01 00:00:01',
-	1,
-	0,
-	'Buenos Aires',
-	'Cordoba',
-	'600',
-	'600',
-	'FINALIZADO',
-	1,
-	1,
-	1);
 
 CREATE TABLE carga
 (id tinyint primary key auto_increment,
@@ -168,8 +125,6 @@ id_viaje tinyint,
 foreign key(id_viaje) references viaje(id_viaje)
 );
 
-INSERT into carga(refeer, hazard, peso_neto, id_viaje)
-values(1, 0, 10000, 1);
 
 CREATE TABLE cliente
 (id tinyint primary key auto_increment,
@@ -183,8 +138,6 @@ id_viaje tinyint,
 foreign key(id_viaje) references viaje(id_viaje)
 );
 
-INSERT into cliente(telefono, cuit, direccion, email, id_viaje)
-values(1127522545, 20306478901, 'Guemes 1345', 'bartolo67@gmail.com', 1);  
 
 CREATE TABLE camiones
 (
@@ -299,6 +252,3 @@ foreign key(id_camion) references camiones(id),
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id)
 );
-
-INSERT into mantenimiento(tipo, fecha, costo, repuesto_cam, id_camion, id_mecanico)
-values('INTERNO', '1970-01-01 00:00:01', 2000, 'pastillas_nuevas', 1, 1);
