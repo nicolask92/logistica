@@ -165,14 +165,10 @@
 
                     <div class="form-group">
                         <select class="form-control" id="choferViaje" name="choferViaje">
+                            {{#choferes}}
                             <option selected >Seleccionar Chofer</option>
-                            <option value="1">chofer 1</option>
-                            <option value="2">chofer 2</option>
-                            <option value="3">chofer 3</option>
-                            <option value="4">chofer 4</option>
-                            <option value="5">chofer 5</option>
-                            <option value="6">chofer 6</option>
-                            <option value="7">chofer 7</option>
+                            <option value="{{legajo}}">{{nombre}}</option>
+                            {{/choferes}}
                         </select>
 
                     </div>

@@ -17,7 +17,8 @@ INSERT into usuario(nombre, apellido, usuario, contraseña , email)
 values('admin', 'admin','admin', 'admin', 'admin@g7.com'),
 	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com'),
 	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com'),
-	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com');
+	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com'),
+    ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com');
 
 CREATE TABLE empleado
 (legajo tinyint unique primary key,
@@ -31,7 +32,8 @@ INSERT into empleado(legajo, dni, fecha_nacimiento, usuario_id)
 values(001,25634786,'20160104', 1),
       (002,17601423,'20080512', 2),
       (003,30345123,'20171020', 3),
-      (004,23053567,'20160307', 4);
+      (004,23053567,'20160307', 4),
+      (005,38670221,'19940813', 5);
 
 CREATE TABLE administrador
 	(id tinyint primary key auto_increment,
@@ -61,7 +63,8 @@ CREATE TABLE chofer
 	);
 
 INSERT into chofer(tipo_licencia, legajo, patente)
-	values('A', 003, 'amh628');  
+	values('A', 004, 'amh628'),
+          ('A', 005, 'FAC123');
 
 CREATE TABLE mecanico
 	(id tinyint primary key auto_increment,
@@ -70,7 +73,7 @@ CREATE TABLE mecanico
 	);
 
 INSERT into mecanico(legajo)
-	values(004);
+	values(003);
     
 CREATE TABLE costeo(
 	id tinyint primary key auto_increment,
