@@ -39,4 +39,16 @@ class AdminModel{
         $resultado = $this->ejecutarConsulta($sql);
         return $this->convertirArrayAsociativo($resultado);
     }
+
+    public function editarUsuario($id = null){
+        $sql = "UPDATE empleado SET campos WHERE usuario_id =" . $id;
+        $resultado = $this->ejecutarConsulta($sql);
+        return $this->convertirArrayAsociativo($resultado);
+    }
+    
+    public function eliminarUsuario($id = null){
+        $sql = "DELETE FROM empleado WHERE usuario_id =" . $id;
+        $resultado = $this->ejecutarConsulta($sql);
+        return $this->convertirArrayAsociativo($resultado);
+    }
 }
