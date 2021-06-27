@@ -20,12 +20,17 @@ class AdminController
 
     public function editarUsuario(){
         $result = $this->database->obtenerUsuarioPorId($_GET["id"]);
-        
+        $data["id"] = $_GET["id"];
         $data["user"] = $result["usuario"];
         $data["legajo"] = $result["legajo"];
         $data["dni"] = $result["dni"];
         $data["nac"] = $result["fecha_nacimiento"];
         $data["email"] = $result["email"];
         echo $this->render->render("view/editarUsuarioView.php",$data);
+    }
+
+    public function procesarFormulario(){
+        $this->database->editarUsuario($_POST);
+        return $this->execute();
     }
 }

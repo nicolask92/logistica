@@ -108,17 +108,20 @@ class AdminModel{
         return "sinRol";
     }
 
-    public function editarUsuario($id = null,$data = array()){
+    public function editarUsuario($data = array()){
         foreach ($data as $key => $value) {
             $$key = $value;
         }
         $sql = "UPDATE empleado 
-                SET legajo =$legajo,
-                    dni = $dni,
-                    fecha_nacimiento = '$fecha_nacimiento', 
-                WHERE usuario_id =" . $id;
-
-        return $this->devolverResultadoConsulta($sql);
+                JOIN usuario 
+                ON empleado.usuario_id = usuario.id 
+                SET empleado.legajo = '$legajo' , 
+                    empleado.dni = '$dni',
+                    empleado.fecha_nacimiento = '$nacimiento',
+                    usuario.email = '$email'
+                WHERE empleado.usuario_id ='$id_usuario'";
+        $this->ejecutarConsulta($sql);
+               
     }
     
     public function eliminarUsuario($id = null){

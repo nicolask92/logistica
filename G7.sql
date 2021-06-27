@@ -34,7 +34,7 @@ values(001,25634786,'20160104', 1),
 CREATE TABLE administrador
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade
+	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
 	);
 
 INSERT into administrador(id,legajo)
@@ -43,7 +43,7 @@ values(1,001);
 CREATE TABLE supervisor
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade
+	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
 	);
 
 INSERT into supervisor(id,legajo)
@@ -55,7 +55,7 @@ CREATE TABLE chofer
 	legajo tinyint,
 	patente varchar(10),
     estado enum('DISPONIBLE', 'EN_VIAJE'),
-    foreign key(legajo) references empleado(legajo) on delete cascade
+    foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
 	);
 
 INSERT into chofer(id,tipo_licencia, legajo, patente)
@@ -64,7 +64,7 @@ INSERT into chofer(id,tipo_licencia, legajo, patente)
 CREATE TABLE mecanico
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade
+	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
 	);
 
 INSERT into mecanico(id,legajo)
