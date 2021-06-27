@@ -190,7 +190,6 @@ nro_chasis int(15) unique,
 tipo varchar(150),
 patente varchar(6) not null unique,
 id_viaje TINYINT,
-foreign key(patente) references camiones(patente),
 FOREIGN KEY (id_viaje) REFERENCES viaje(id_viaje)
 );
 
