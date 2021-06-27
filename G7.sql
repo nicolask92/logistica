@@ -142,7 +142,7 @@ foreign key(id_viaje) references viaje(id_viaje)
 CREATE TABLE camiones
 (
 id tinyint primary key auto_increment,
-patente varchar(6) not null unique,
+patente varchar(7) not null unique,
 marca varchar(15),
 modelo varchar(15),
 nro_motor int(15) unique,
@@ -188,7 +188,7 @@ CREATE TABLE arrastrador
 (id tinyint primary key auto_increment,
 nro_chasis int(15) unique,
 tipo varchar(150),
-patente varchar(6) not null unique,
+patente varchar(7) not null unique,
 id_viaje TINYINT,
 FOREIGN KEY (id_viaje) REFERENCES viaje(id_viaje)
 );
@@ -230,9 +230,9 @@ values('Araña','AA100AS',585822),
       ('Granel','AD778AD',873758),
       ('Granel','AA800AG',820810),
 
-      ('CarCarrier','AD101AZ',730027),
-      ('CarCarrier','AD102AQ',730502),
-      ('CarCarrier','AD103ER',730978),
+      ('CarCarrier','AD100AZ',730027),
+      ('CarCarrier','AD100AQ',730502),
+      ('CarCarrier','AD100ER',730978),
       ('CarCarrier','AD101EF',731453),
       ('CarCarrier','AD102HG',731929),
       ('CarCarrier','AD103LO',732404),
