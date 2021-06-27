@@ -70,8 +70,8 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="fechaViaje"
-                               name="fechaViaje" aria-describedby="fecha">
+                        <input type="date" class="form-control" id="fechaCargaViaje"
+                               name="fechaCargaViaje" aria-describedby="fecha">
                         <small id="fecha" class="text-muted">
                             Fecha de carga.
                         </small>
@@ -82,6 +82,14 @@
                                name="etaViaje" aria-describedby="eta">
                         <small id="eta" class="text-muted">
                             Fecha estimada de llegada.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="etdViaje"
+                        name="etdViaje" aria-describedby="etd">
+                        <small id="etd" class="text-muted">
+                        Fecha estimada de salida.
                         </small>
                     </div>
 
@@ -125,7 +133,7 @@
 
                                 <option selected >Seleccionar Camión</option>
                                 {{#camiones}}
-                                <option value="{{patente}}">{{marca}}-{{modelo}} </option>
+                                <option value="{{id}}">{{marca}}-{{modelo}} </option>
                                 {{/camiones}}
                             </select>
 
@@ -140,7 +148,7 @@
                         <select class="form-control" id="arrastradorViaje" name="arrastardorViaje">
                             <option selected >Seleccionar Arrastrador</option>
                             {{#arrastradores}}
-                            <option value="{{patente}}">{{tipo}}-{{patente}}</option>
+                            <option value="{{id}}">{{tipo}}-{{patente}}</option>
                             {{/arrastradores}}
                         </select>
                     </div>
