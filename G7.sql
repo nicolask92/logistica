@@ -6,16 +6,18 @@ use G7;
 
 CREATE TABLE usuario 
 ( id INT PRIMARY KEY auto_increment,
+    nombre varchar(50),
+    apellido varchar(50),
 	usuario varchar(50) unique,
 	contraseña varchar (30),
     email varchar(100) not null
 );
 
-INSERT into usuario(usuario, contraseña, email)
-values('admin', 'admin', 'admin@g7.com'),
-	('supervisor', 'supervisor', 'supervisor@g7.com'),
-	('mecanico', 'mecanico', 'mecanico@g7.com'),
-	('chofer', 'chofer', 'chofer@g7.com');
+INSERT into usuario(nombre, apellido, usuario, contraseña , email)
+values('admin', 'admin','admin', 'admin', 'admin@g7.com'),
+	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com'),
+	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com'),
+	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com');
 
 CREATE TABLE empleado
 (legajo tinyint unique primary key,
