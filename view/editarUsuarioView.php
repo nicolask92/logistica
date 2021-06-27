@@ -9,34 +9,39 @@
         <!-- Topbar -->
         {{> barraTop }}
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800 text-center">Usuario @{{user}}</h1>
+            <h1 class="h3 mb-4 text-gray-800 text-center">Usuario {{user}}</h1>
             <div class="achicar">
                 <form class="" action="">
                     <div class="form-group row">
                         <div class="col-sm-12">
+                            LEGAJO:
                             <input type="text" class="form-control" id="apellidoCliente" name="apellidoCliente"
-                                placeholder="Legajo">
+                                placeholder="{{legajo}}">
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <input type="Number" class="form-control" id="cuitCliente" name="cuitCliente" placeholder="DNI">
+                        DNI:
+                        <input type="Number" class="form-control" id="cuitCliente" name="cuitCliente"
+                            placeholder="{{dni}}">
                     </div>
 
                     <div class="form-group">
+                        FECHA DE NACIMIENTO:
                         <input type="text" class="form-control" id="domicilioCliente" name="domicilioCliente"
-                            placeholder="Fecha de Nacimiento">
+                            placeholder="{{nac}}">
                     </div>
 
                     <div class="form-group">
+                        EMAIL:
                         <input type="email" class="form-control" id="emailCliente" name="emailCliente"
-                            placeholder="Email">
+                            placeholder="{{email}}">
                     </div>
+
                     <div class="form-group">
                         <select class="form-control" id="choferViaje" name="choferViaje">
                             <option selected>Seleccionar Rol</option>
@@ -47,7 +52,7 @@
                         </select>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <a class="btn btn-danger" href="/admin">Cancelar</a>
                         <button type="submit" class="btn btn-dark ml-3">Aceptar</button>
                     </div>
                 </form>
@@ -55,7 +60,6 @@
 
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- End of Main Content -->
 

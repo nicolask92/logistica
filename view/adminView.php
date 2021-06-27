@@ -26,10 +26,11 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Rol</th>
+                                        <th>Usuario</th>
                                         <th>Email</th>
                                         <th>Legajo</th>
                                         <th>DNI</th>
+                                        <th>ROL</th>
                                         <th>Operaciones</th>
                                     </tr>
                                 </thead>
@@ -40,6 +41,7 @@
                                         <th>{{email}}</th>
                                         <th>{{legajo}}</th>
                                         <th>{{dni}}</th>
+                                        <th>{{rol}}</th>
                                         <th> <a class="btn btn-success" href="admin/editarUsuario/id={{id}}">Editar</a>
                                             <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Borrar</a>
                                         </th>
@@ -53,7 +55,7 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Pendientes</h3>
+                    <h3 class="m-0 font-weight-bold text-primary">Pendientes</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -89,9 +91,9 @@
                 </div>
             </div>
         </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
-</div>
-<!-- End of Main Content -->
+    </div>
+    <!-- End of Main Content -->
 
-{{> footer }}
+    {{> footer }}

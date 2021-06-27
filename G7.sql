@@ -32,25 +32,25 @@ values(001,25634786,'20160104', 1),
       (004,23053567,'20160307', 4);
 
 CREATE TABLE administrador
-	(id tinyint primary key auto_increment,
+	(id tinyint primary key,
 	legajo tinyint,
 	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
-INSERT into administrador(legajo)
-values(001); 
+INSERT into administrador(id,legajo)
+values(1,001); 
 
 CREATE TABLE supervisor
-	(id tinyint primary key auto_increment,
+	(id tinyint primary key,
 	legajo tinyint,
 	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
-INSERT into supervisor(legajo)
-	values(002);
+INSERT into supervisor(id,legajo)
+	values(2,002);
 
 CREATE TABLE chofer
-(id tinyint primary key auto_increment,
+(id tinyint primary key ,
 	tipo_licencia varchar(10),
 	legajo tinyint,
 	patente varchar(10),
@@ -58,17 +58,17 @@ CREATE TABLE chofer
     foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
-INSERT into chofer(tipo_licencia, legajo, patente)
-	values('A', 004, 'amh628');  
+INSERT into chofer(id,tipo_licencia, legajo, patente)
+	values(4,'A', 004, 'amh628');  
 
 CREATE TABLE mecanico
-	(id tinyint primary key auto_increment,
+	(id tinyint primary key,
 	legajo tinyint,
 	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
-INSERT into mecanico(legajo)
-	values(003);
+INSERT into mecanico(id,legajo)
+	values(3,003);
     
 CREATE TABLE costeo(
 	id tinyint primary key auto_increment,
@@ -153,8 +153,8 @@ values('Jaula',
 	'600',
 	'FINALIZADO',
 	1,
-	1,
-	1);
+	2,
+	4);
 
 CREATE TABLE carga
 (id tinyint primary key auto_increment,
@@ -224,7 +224,7 @@ foreign key(id_mecanico) references mecanico(id) on delete cascade
 );
 
 INSERT into mantenimiento(tipo, fecha, costo, repuesto_cam, id_camion, id_mecanico)
-values('INTERNO', '1970-01-01 00:00:01', 2000, 'pastillas_nuevas', 1, 1);
+values('INTERNO', '1970-01-01 00:00:01', 2000, 'pastillas_nuevas', 1, 3);
 
 
 
