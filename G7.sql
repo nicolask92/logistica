@@ -85,8 +85,6 @@ CREATE TABLE camiones
     nro_chasis varchar(15) unique,
     kilometraje int(15),
     ultimo_service datetime,
-    id_viaje tinyint,
-    foreign key(id_viaje) references viaje(id)
 );
 
 INSERT into camiones(marca, modelo, patente, nro_motor, nro_chasis, kilometraje, ultimo_service)
@@ -125,8 +123,6 @@ CREATE TABLE arrastrador
  nro_chasis int(15) unique,
  tipo varchar(150),
  patente varchar(7) not null unique,
- id_viaje TINYINT,
- FOREIGN KEY (id_viaje) REFERENCES viaje(id)
 );
 
 INSERT into arrastrador( tipo, patente, nro_chasis)
