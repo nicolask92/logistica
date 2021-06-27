@@ -193,7 +193,7 @@ CREATE TABLE costeo(
     id_viaje tinyint,
     fecha_llegada_previsto datetime,
     fecha_llegada_real datetime,
-    fecha_salida_previsto datatime,
+    fecha_salida_previsto datetime,
     fecha_salida_real datetime,
     combustible_previsto int(10),
     combustible_real int(10),
