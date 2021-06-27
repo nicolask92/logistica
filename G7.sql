@@ -74,12 +74,34 @@ CREATE TABLE mecanico
 
 INSERT into mecanico(legajo)
 	values(003);
-    
+
+CREATE TABLE viaje
+	(id tinyint primary key auto_increment,
+    origen varchar(100),
+    destino varchar(100),
+	fecha_carga datetime,
+	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
+    id_supervisor tinyint,
+	foreign key(id_supervisor) references supervisor(id),
+	id_chofer tinyint,
+	foreign key(id_chofer) references chofer(id),
+	id_camion tinyint,
+	foreign key(id_camion) references camiones(id),
+	id_arrastrador tinyint,
+	foreign key(id_arrastrador) references arrastrador(id)
+	);
+
 CREATE TABLE costeo(
-	id tinyint primary key auto_increment,
+    id tinyint primary key auto_increment,
     id_viaje tinyint,
-	combustible_previsto int(10),
-	combustible_real int(10),
+    fecha_llegada_previsto datetime,
+    fecha_llegada_real datetime,
+    fecha_salida_previsto datatime,
+    fecha_salida_real datetime,
+    combustible_previsto int(10),
+    combustible_real int(10),
+    kilometros_real int(10),
+    kilometros_previsto int(10),
     viaticos_previsto int(10),
     viaticos_real int(10),
     peajes_previsto int(10),
@@ -89,45 +111,21 @@ CREATE TABLE costeo(
     extras_previsto int(10),
     extras_real int(10),
     fee_previsto int(10),
-	fee_real int(10)
+    fee_real int(10),
+    foreign key(id_viaje) references viaje(id)
 );
-
-CREATE TABLE viaje
-	(id_viaje tinyint primary key auto_increment,
-	tipo_carga varchar(15),
-	fecha_carga datetime,
-	fecha_partida datetime,
-	fecha_arribo datetime,
-    eta datetime,
-    etd datetime,
-	hazard boolean,
-	imo_class varchar(100),
-    reefer boolean,
-    temperatura int(10),
-	origen varchar(100),
-	destino varchar(100),
-	km_previsto int(10),
-	km_real int(10),
-    estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
-    id_costeo tinyint,
-	foreign key(id_costeo) references costeo(id),
-	id_supervisor tinyint,
-	foreign key(id_supervisor) references supervisor(id),
-	id_chofer tinyint,
-	foreign key(id_chofer) references chofer(id)
-	);
 
 
 CREATE TABLE carga
 (id tinyint primary key auto_increment,
-tipo_carga varchar(15),
-refeer boolean,
-temperatura int(5),
-hazard boolean,
-imo varchar(15),
-peso_neto varchar(15),
-id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+ tipo_carga varchar(15),
+ hazard boolean,
+ imo_class varchar(100),
+ reefer boolean,
+ temperatura int(10),
+ peso_neto varchar(15),
+ id_viaje tinyint,
+ foreign key(id_viaje) references viaje(id)
 );
 
 
@@ -140,7 +138,7 @@ cuit bigint,
 direccion varchar(15),
 email varchar(150) not null,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+foreign key(id_viaje) references viaje(id)
 );
 
 
@@ -155,7 +153,7 @@ nro_chasis varchar(15) unique,
 kilometraje int(15),
 ultimo_service datetime,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+foreign key(id_viaje) references viaje(id)
 );
 
 INSERT into camiones(marca, modelo, patente, nro_motor, nro_chasis, kilometraje, ultimo_service)
@@ -195,7 +193,7 @@ nro_chasis int(15) unique,
 tipo varchar(150),
 patente varchar(7) not null unique,
 id_viaje TINYINT,
-FOREIGN KEY (id_viaje) REFERENCES viaje(id_viaje)
+FOREIGN KEY (id_viaje) REFERENCES viaje(id)
 );
 
 INSERT into arrastrador( tipo, patente, nro_chasis)
