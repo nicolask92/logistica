@@ -18,7 +18,7 @@ class AdminModel{
     }
 
     private function convertirArrayAsociativo($resultado_consulta){
-        if($this->existeMasDeUnaFila($resultado_consulta)){
+        if($this->existeMasDeUnRegistro($resultado_consulta)){
             $data = array();
             while ($rows = $resultado_consulta->fetch_assoc()) {
                 $data[] = $rows;
@@ -27,7 +27,7 @@ class AdminModel{
         }
     }
 
-    private function existeMasDeUnaFila($resultado_consulta){
+    private function existeMasDeUnRegistro($resultado_consulta){
         if ($resultado_consulta->num_rows > 0) {
             return true;
         }
