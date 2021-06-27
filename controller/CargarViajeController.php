@@ -26,15 +26,18 @@ class CargarViajeController
         $origen = $_POST["origenViaje"];
         $destino= $_POST["destinoViaje"];
         $fecha_carga= $_POST["fechaCarga"];
+        var_dump($fecha_carga);
         $id_supervisor= $_POST["supervisorViaje"];
-        $legajo_chofer= $_POST["choferViaje"];
+        $id_chofer= $_POST["choferViaje"];
         $id_camion= $_POST["camionViaje"];
-        $id_arrastrador= $_POST["arrastradorViaje"];
-        $destino= $_POST[""];
-        $destino= $_POST[""];
-        $destino= $_POST[""];
-        $destino= $_POST[""];
-        $destino= $_POST[""];
+        $id_arrastrador = $_POST["arrastradorViaje"];
+
+        $this->cargarViajeModel->insertViaje($origen, $destino, $fecha_carga, $id_supervisor,
+                                                        $id_chofer,$id_camion,$id_arrastrador);
+
 
     }
+
+
+
 }

@@ -173,7 +173,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" id="arrastradorViaje" name="arrastardorViaje">
+                        <select class="form-control" id="arrastradorViaje" name="arrastradorViaje">
                             <option selected >Seleccionar Arrastrador</option>
                             {{#arrastradores}}
                             <option value="{{id}}">{{tipo}}-{{patente}}</option>
@@ -188,9 +188,9 @@
 
                     <div class="form-group">
                         <label for="hazardCarga">Hazard</label> <br>
-                        <input  type="radio" name="hazardCarga" id="si"> Si
+                        <input  type="radio" name="hazardCarga" id="true" value="TRUE"> Si
 
-                        <input  type="radio" name="hazardCarga" id="no"> No
+                        <input  type="radio" name="hazardCarga" id="false" value="FALSE"> No
 
                     </div>
 
@@ -216,9 +216,9 @@
                     <div class="form-group">
 
                         <label for="reeferCarga">Reefer</label> <br>
-                        <input  type="radio" name="reeferCarga" id="si"> Si
+                        <input  type="radio" name="reeferCarga" id="TRUE" value="TRUE"> Si
 
-                        <input  type="radio" name="reeferCarga" id="no"> No
+                        <input  type="radio" name="reeferCarga" id="FALSE" value="FALSE"> No
 
                     </div>
 
@@ -238,7 +238,7 @@
 
                             <option selected >Seleccionar Chofer</option>
                             {{#choferes}}
-                            <option value="{{legajo}}">{{nombre}} {{apellido}}</option>
+                            <option value="{{id}}">{{nombre}} {{apellido}}</option>
                             {{/choferes}}
                         </select>
 
