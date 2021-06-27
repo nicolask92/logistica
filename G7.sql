@@ -84,7 +84,7 @@ CREATE TABLE camiones
     nro_motor int(15) unique,
     nro_chasis varchar(15) unique,
     kilometraje int(15),
-    ultimo_service datetime,
+    ultimo_service datetime
 );
 
 INSERT into camiones(marca, modelo, patente, nro_motor, nro_chasis, kilometraje, ultimo_service)
@@ -122,7 +122,7 @@ CREATE TABLE arrastrador
 (id tinyint primary key auto_increment,
  nro_chasis int(15) unique,
  tipo varchar(150),
- patente varchar(7) not null unique,
+ patente varchar(7) not null unique
 );
 
 INSERT into arrastrador( tipo, patente, nro_chasis)
