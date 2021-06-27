@@ -10,7 +10,9 @@ CREATE TABLE usuario
     apellido varchar(50),
 	usuario varchar(50) unique,
 	contraseña varchar (30),
-    email varchar(100) not null
+    email varchar(100) not null,
+ 	estado boolean,
+ 	codigo smallint
 );
 
 INSERT into usuario(nombre, apellido, usuario, contraseña , email)
@@ -21,7 +23,7 @@ values('admin', 'admin','admin', 'admin', 'admin@g7.com'),
     ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com');
 
 CREATE TABLE empleado
-(legajo tinyint unique primary key,
+(legajo tinyint primary key,
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
