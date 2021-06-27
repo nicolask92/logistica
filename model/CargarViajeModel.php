@@ -25,7 +25,7 @@ class CargarViajeModel
 
     public function buscarCamiones(){
 
-        $sql = "SELECT patente, marca, modelo FROM camiones";
+        $sql = "SELECT id, marca, modelo FROM camiones";
 
         $resultado = $this->database->execute($sql);
 
@@ -36,7 +36,7 @@ class CargarViajeModel
     public function buscarArrastradores()
     {
 
-        $sql = "SELECT patente, tipo FROM arrastrador";
+        $sql = "SELECT id, tipo, patente FROM arrastrador";
 
         $resultado = $this->database->execute($sql);
 

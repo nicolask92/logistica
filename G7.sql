@@ -75,85 +75,16 @@ CREATE TABLE mecanico
 INSERT into mecanico(legajo)
 	values(003);
 
-CREATE TABLE viaje
-	(id tinyint primary key auto_increment,
-    origen varchar(100),
-    destino varchar(100),
-	fecha_carga datetime,
-	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
-    id_supervisor tinyint,
-	foreign key(id_supervisor) references supervisor(id),
-	id_chofer tinyint,
-	foreign key(id_chofer) references chofer(id),
-	id_camion tinyint,
-	foreign key(id_camion) references camiones(id),
-	id_arrastrador tinyint,
-	foreign key(id_arrastrador) references arrastrador(id)
-	);
-
-CREATE TABLE costeo(
-    id tinyint primary key auto_increment,
-    id_viaje tinyint,
-    fecha_llegada_previsto datetime,
-    fecha_llegada_real datetime,
-    fecha_salida_previsto datatime,
-    fecha_salida_real datetime,
-    combustible_previsto int(10),
-    combustible_real int(10),
-    kilometros_real int(10),
-    kilometros_previsto int(10),
-    viaticos_previsto int(10),
-    viaticos_real int(10),
-    peajes_previsto int(10),
-    peajes_real int(10),
-    pesajes_previsto int(10),
-    pesajes_real int(10),
-    extras_previsto int(10),
-    extras_real int(10),
-    fee_previsto int(10),
-    fee_real int(10),
-    foreign key(id_viaje) references viaje(id)
-);
-
-
-CREATE TABLE carga
-(id tinyint primary key auto_increment,
- tipo_carga varchar(15),
- hazard boolean,
- imo_class varchar(100),
- reefer boolean,
- temperatura int(10),
- peso_neto varchar(15),
- id_viaje tinyint,
- foreign key(id_viaje) references viaje(id)
-);
-
-
-CREATE TABLE cliente
-(id tinyint primary key auto_increment,
-nombre varchar(15),
-apellido varchar(15),
-telefono int(15),
-cuit bigint,
-direccion varchar(15),
-email varchar(150) not null,
-id_viaje tinyint,
-foreign key(id_viaje) references viaje(id)
-);
-
-
 CREATE TABLE camiones
 (
-id tinyint primary key auto_increment,
-patente varchar(7) not null unique,
-marca varchar(15),
-modelo varchar(15),
-nro_motor int(15) unique,
-nro_chasis varchar(15) unique,
-kilometraje int(15),
-ultimo_service datetime,
-id_viaje tinyint,
-foreign key(id_viaje) references viaje(id)
+    id tinyint primary key auto_increment,
+    patente varchar(7) not null unique,
+    marca varchar(15),
+    modelo varchar(15),
+    nro_motor int(15) unique,
+    nro_chasis varchar(15) unique,
+    kilometraje int(15),
+    ultimo_service datetime
 );
 
 INSERT into camiones(marca, modelo, patente, nro_motor, nro_chasis, kilometraje, ultimo_service)
@@ -189,11 +120,9 @@ values('IVECO', 'Cursor', 'AA123CD', 53879558, 'L53879558', 10000, '2021-01-01')
 
 CREATE TABLE arrastrador
 (id tinyint primary key auto_increment,
-nro_chasis int(15) unique,
-tipo varchar(150),
-patente varchar(7) not null unique,
-id_viaje TINYINT,
-FOREIGN KEY (id_viaje) REFERENCES viaje(id)
+ nro_chasis int(15) unique,
+ tipo varchar(150),
+ patente varchar(7) not null unique
 );
 
 INSERT into arrastrador( tipo, patente, nro_chasis)
@@ -241,6 +170,73 @@ values('Araña','AA100AS',585822),
       ('CarCarrier','AD103LO',732404),
       ('CarCarrier','AD104WE',732880),
       ('CarCarrier','AD105ZP',733355);
+
+
+CREATE TABLE viaje
+	(id tinyint primary key auto_increment,
+    origen varchar(100),
+    destino varchar(100),
+	fecha_carga datetime,
+	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
+    id_supervisor tinyint,
+	foreign key(id_supervisor) references supervisor(id),
+	id_chofer tinyint,
+	foreign key(id_chofer) references chofer(id),
+	id_camion tinyint,
+	foreign key(id_camion) references camiones(id),
+	id_arrastrador tinyint,
+	foreign key(id_arrastrador) references arrastrador(id)
+	);
+
+CREATE TABLE costeo(
+    id tinyint primary key auto_increment,
+    id_viaje tinyint,
+    fecha_llegada_previsto datetime,
+    fecha_llegada_real datetime,
+    fecha_salida_previsto datetime,
+    fecha_salida_real datetime,
+    combustible_previsto int(10),
+    combustible_real int(10),
+    kilometros_real int(10),
+    kilometros_previsto int(10),
+    viaticos_previsto int(10),
+    viaticos_real int(10),
+    peajes_previsto int(10),
+    peajes_real int(10),
+    pesajes_previsto int(10),
+    pesajes_real int(10),
+    extras_previsto int(10),
+    extras_real int(10),
+    fee_previsto int(10),
+    fee_real int(10),
+    foreign key(id_viaje) references viaje(id)
+);
+
+
+CREATE TABLE carga
+(id tinyint primary key auto_increment,
+ tipo_carga varchar(15),
+ hazard boolean,
+ imo_class varchar(100),
+ reefer boolean,
+ temperatura int(10),
+ peso_neto varchar(15),
+ id_viaje tinyint,
+ foreign key(id_viaje) references viaje(id)
+);
+
+
+CREATE TABLE cliente
+(id tinyint primary key auto_increment,
+nombre varchar(15),
+apellido varchar(15),
+telefono int(15),
+cuit bigint,
+direccion varchar(15),
+email varchar(150) not null,
+id_viaje tinyint,
+foreign key(id_viaje) references viaje(id)
+);
 
 
 CREATE TABLE mantenimiento
