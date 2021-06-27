@@ -21,5 +21,20 @@ class CargarViajeController
         echo $this->render->render("view/cargarViajeView.php", $data);
     }
 
+    public function procesarCargaViaje(){
 
+        $origen = $_POST["origenViaje"];
+        $destino= $_POST["destinoViaje"];
+        $fecha_carga= $_POST["fechaCarga"];
+        $id_supervisor= $_POST["supervisorViaje"];
+        $legajo_chofer= $_POST["choferViaje"];
+        $id_camion= $_POST["camionViaje"];
+        $id_arrastrador= $_POST["arrastradorViaje"];
+        $destino= $_POST[""];
+        $destino= $_POST[""];
+        $destino= $_POST[""];
+        $destino= $_POST[""];
+        $destino= $_POST[""];
+
+    }
 }
