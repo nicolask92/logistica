@@ -41,7 +41,7 @@
                             <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Ingresar">
                         </form>
                         <a href="#!" class="forgot-password-link">¿Se te olvidó tu contraseña?</a>
-                        <p class="login-card-footer-text">¿No tienes una cuenta? <a href="#!" class="text-reset">REGISTRARSE AQUÍ</a></p>
+                        <p class="login-card-footer-text">¿No tienes una cuenta? <a href="/registro" class="text-reset">REGISTRARSE AQUÍ</a></p>
                         <nav class="login-card-footer-nav">
                             <a href="#!">Condiciones de uso.</a>
                             <a href="#!">Política de privacidad</a>

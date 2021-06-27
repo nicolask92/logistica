@@ -3,10 +3,10 @@
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['home', 'login'],
-        "supervisor" => ['home'],
-        "chofer" => ['home', 'verViaje'],
-        "mecanico" => ['home'],
+        "admin" => ['home', 'reportes', 'asignarRoles'],
+        "supervisor" => ['home', 'cargarViaje'],
+        "chofer" => ['home', 'verViaje', 'subirDatos'],
+        "mecanico" => ['home', 'service'],
         "sinRol" => ['home']
     ];
 
@@ -27,8 +27,12 @@ class SessionManager {
     }
 
     public function chequearSesion($modulo = null) {
-        $tieneAcceso = $this->tieneAccesoAlModulo($modulo);
-        return isset($_SESSION['usuario']) && $tieneAcceso;
+        if ($modulo == 'registro' && !isset($_SESSION['usuario'])) {
+            return true;
+        } else {
+            $tieneAcceso = $this->tieneAccesoAlModulo($modulo);
+            return isset($_SESSION['usuario']) && $tieneAcceso;
+        }
     }
 
     private function tieneAccesoAlModulo($modulo) {
@@ -38,8 +42,7 @@ class SessionManager {
             } else {
                 return in_array($modulo, $this->accessControl[$_SESSION['rol']]);
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
