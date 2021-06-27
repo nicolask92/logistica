@@ -5,7 +5,7 @@ include_once("helper/UrlHelper.php");
 
 include_once("model/LoginModel.php");
 include_once("model/AdminModel.php");
-include_once("model/CargarModel.php");
+include_once("model/CargarViajeModel.php");
 
 include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
@@ -56,7 +56,7 @@ class Configuration{
     }
 
     public function getCargarViajeController(){
-            $cargarViajeModel = this->getCargarViajeModel();
+            $cargarViajeModel = $this->getCargarViajeModel();
             return new CargarViajeController($cargarViajeModel, $this->getRender());
     }
 
