@@ -9,7 +9,7 @@ CREATE TABLE usuario
     nombre varchar(50),
     apellido varchar(50),
 	usuario varchar(50) unique,
-	contraseña varchar (30),
+	contrasenia varchar (30),
     email varchar(100) not null,
  	estado boolean,
  	codigo smallint
