@@ -61,7 +61,7 @@
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="origenViaje"
-                               name="origenViaje"    placeholder="Dirección oringen">
+                               name="origenViaje"    placeholder="Dirección origen">
                     </div>
 
                     <div class="form-group">
