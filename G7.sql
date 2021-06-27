@@ -22,7 +22,7 @@ CREATE TABLE empleado
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
-foreign key(usuario_id) references usuario(id)
+foreign key(usuario_id) references usuario(id) on delete cascade
 );
 
 INSERT into empleado(legajo, dni, fecha_nacimiento, usuario_id)
@@ -34,7 +34,7 @@ values(001,25634786,'20160104', 1),
 CREATE TABLE administrador
 	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo)
+	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
 INSERT into administrador(legajo)
@@ -43,7 +43,7 @@ values(001);
 CREATE TABLE supervisor
 	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo)
+	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
 INSERT into supervisor(legajo)
@@ -53,22 +53,22 @@ CREATE TABLE chofer
 (id tinyint primary key auto_increment,
 	tipo_licencia varchar(10),
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo),
 	patente varchar(10),
-    estado enum('DISPONIBLE', 'EN_VIAJE')
+    estado enum('DISPONIBLE', 'EN_VIAJE'),
+    foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
 INSERT into chofer(tipo_licencia, legajo, patente)
-	values('A', 003, 'amh628');  
+	values('A', 004, 'amh628');  
 
 CREATE TABLE mecanico
 	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo)
+	foreign key(legajo) references empleado(legajo) on delete cascade
 	);
 
 INSERT into mecanico(legajo)
-	values(004);
+	values(003);
     
 CREATE TABLE costeo(
 	id tinyint primary key auto_increment,
@@ -105,11 +105,11 @@ CREATE TABLE viaje
 	km_real int(10),
     estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
     id_costeo tinyint,
-	foreign key(id_costeo) references costeo(id),
+	foreign key(id_costeo) references costeo(id) on delete cascade,
 	id_supervisor tinyint,
-	foreign key(id_supervisor) references supervisor(id),
+	foreign key(id_supervisor) references supervisor(id) on delete cascade,
 	id_chofer tinyint,
-	foreign key(id_chofer) references chofer(id)
+	foreign key(id_chofer) references chofer(id) on delete cascade
 	);
 
 INSERT into costeo(
@@ -162,7 +162,7 @@ refeer boolean,
 hazard boolean,
 peso_neto varchar(15),
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+foreign key(id_viaje) references viaje(id_viaje) on delete cascade
 );
 
 INSERT into carga(refeer, hazard, peso_neto, id_viaje)
@@ -175,11 +175,11 @@ cuit bigint,
 direccion varchar(15),
 email varchar(150) not null,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+foreign key(id_viaje) references viaje(id_viaje) on delete cascade
 );
 
 INSERT into cliente(telefono, cuit, direccion, email, id_viaje)
-values(1127522545, 20306478901, 'Guemes 1345', 'bartolo67@gmail.com', 1);  
+values(1127522545, 20306478901, 'Guemes 1345', 'bartolo67@gmail.com', 1);
 
 CREATE TABLE camiones
 (
@@ -192,7 +192,7 @@ ultimo_service datetime,
 nro_chasis int(15) unique,
 nro_motor int(15) unique,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id_viaje)
+foreign key(id_viaje) references viaje(id_viaje) on delete cascade
 );
 
 INSERT into camiones(patente, marca, modelo, kilometraje, ultimo_service, nro_chasis, nro_motor, id_viaje)
@@ -204,8 +204,8 @@ nro_chasis int(15) unique,
 tipo varchar(150),
 patente varchar(6) not null unique,
 id_viaje TINYINT,
-foreign key(patente) references camiones(patente),
-FOREIGN KEY (id_viaje) REFERENCES viaje(id_viaje)
+foreign key(patente) references camiones(patente) on delete cascade,
+FOREIGN KEY (id_viaje) REFERENCES viaje(id_viaje) on delete cascade
 );
 
 INSERT into arrastrador(nro_chasis, tipo, patente)
@@ -218,10 +218,13 @@ costo int(15),
 tipo enum('INTERNO', 'EXTERNO'),
 repuesto_cam varchar(150),
 id_camion tinyint,
-foreign key(id_camion) references camiones(id),
+foreign key(id_camion) references camiones(id) on delete cascade,
 id_mecanico tinyint,
-foreign key(id_mecanico) references mecanico(id)
+foreign key(id_mecanico) references mecanico(id) on delete cascade
 );
 
 INSERT into mantenimiento(tipo, fecha, costo, repuesto_cam, id_camion, id_mecanico)
 values('INTERNO', '1970-01-01 00:00:01', 2000, 'pastillas_nuevas', 1, 1);
+
+
+

@@ -8,7 +8,13 @@ class AdminModel{
     }
 
     public function obtenerTodosLosUsuarios(){
-        $sql = "SELECT * FROM usuario";
+        $sql = "SELECT * FROM usuario 
+                INNER JOIN empleado
+                ON usuario.id = empleado.usuario_id";
+        return $this->devolverResultadoConsulta($sql);
+    }
+
+    private function devolverResultadoConsulta($sql){
         $resultado = $this->ejecutarConsulta($sql);
         return $this->convertirArrayAsociativo($resultado);
     }
@@ -35,20 +41,24 @@ class AdminModel{
     }
 
     public function obtenerUsuarioPorId($id){
-        $sql = "SELECT * FROM usuario WHERE id = " . $id;
-        $resultado = $this->ejecutarConsulta($sql);
-        return $this->convertirArrayAsociativo($resultado);
+        $sql = "SELECT * FROM usuario 
+                INNER JOIN empleado
+                ON usuario.id = empleado.usuario_id
+                WHERE usuario.id =" . $id;
+        return $this->devolverResultadoConsulta($sql);
     }
 
-    public function editarUsuario($id = null){
-        $sql = "UPDATE empleado SET campos WHERE usuario_id =" . $id;
-        $resultado = $this->ejecutarConsulta($sql);
-        return $this->convertirArrayAsociativo($resultado);
+    public function editarUsuario($id = null,$data = array()){
+        $sql = "UPDATE empleado 
+                SET legajo = '',
+                    dni = ,
+                    fecha_nacimiento = '', 
+                WHERE usuario_id =" . $id;
+        return $this->devolverResultadoConsulta($sql);
     }
     
     public function eliminarUsuario($id = null){
-        $sql = "DELETE FROM empleado WHERE usuario_id =" . $id;
-        $resultado = $this->ejecutarConsulta($sql);
-        return $this->convertirArrayAsociativo($resultado);
-    }
+            $sql = "DELETE FROM usuario WHERE id =" . $id;
+            return $this->devolverResultadoConsulta();
+        }
 }
