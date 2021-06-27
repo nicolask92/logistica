@@ -158,8 +158,11 @@ values('Jaula',
 
 CREATE TABLE carga
 (id tinyint primary key auto_increment,
+tipo_carga varchar(15),
 refeer boolean,
+temperatura int(5),
 hazard boolean,
+imo varchar(15),
 peso_neto varchar(15),
 id_viaje tinyint,
 foreign key(id_viaje) references viaje(id_viaje)
@@ -170,6 +173,8 @@ values(1, 0, 10000, 1);
 
 CREATE TABLE cliente
 (id tinyint primary key auto_increment,
+nombre varchar(15),
+apellido varchar(15),
 telefono int(15),
 cuit bigint,
 direccion varchar(15),
