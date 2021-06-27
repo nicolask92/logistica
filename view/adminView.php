@@ -26,9 +26,10 @@
                                 cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
+                                        <th>Rol</th>
                                         <th>Email</th>
-                                        <th>Contraseña</th>
+                                        <th>Legajo</th>
+                                        <th>DNI</th>
                                         <th>Operaciones</th>
                                     </tr>
                                 </thead>
@@ -37,7 +38,8 @@
                                     <tr>
                                         <th>{{usuario}}</th>
                                         <th>{{email}}</th>
-                                        <th>{{contraseña}}</th>
+                                        <th>{{legajo}}</th>
+                                        <th>{{dni}}</th>
                                         <th> <a class="btn btn-success" href="admin/editarUsuario/id={{id}}">Editar</a>
                                             <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Borrar</a>
                                         </th>

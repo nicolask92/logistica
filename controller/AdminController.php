@@ -20,7 +20,7 @@ class AdminController
 
     public function editarUsuario(){
         $result = $this->database->obtenerUsuarioPorId($_GET["id"]);
-        $data["users"] = $result;
+        $data["user"] = $result;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 }

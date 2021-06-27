@@ -41,11 +41,51 @@ class AdminModel{
     }
 
     public function obtenerUsuarioPorId($id){
-        $sql = "SELECT * FROM usuario 
-                INNER JOIN empleado
-                ON usuario.id = empleado.usuario_id
-                WHERE usuario.id =" . $id;
-        return $this->devolverResultadoConsulta($sql);
+        $sqlAdmin = "
+            SELECT *
+            FROM administrador join empleado on administrador.legajo = empleado.legajo
+            WHERE empleado.usuario_id =" . $id;
+
+        $resultado = $this->database->execute($sqlAdmin);
+
+        if ($resultado->num_rows > 0) {
+            return "admin";
+        }
+
+        $sqlSupervisor = "
+            SELECT *
+            FROM supervisor join empleado on supervisor.legajo = empleado.legajo
+            WHERE empleado.usuario_id =" . $id;
+
+        $resultado = $this->database->execute($sqlSupervisor);
+
+        if ($resultado->num_rows > 0) {
+            return "supervisor";
+        }
+
+        $sqlChofer = "
+            SELECT *
+            FROM chofer join empleado on chofer.legajo = empleado.legajo
+            WHERE empleado.usuario_id =" . $id;
+
+        $resultado = $this->database->execute($sqlChofer);
+
+        if ($resultado->num_rows > 0) {
+            return "chofer";
+        }
+
+        $sqlMecanico = "
+            SELECT *
+            FROM mecanico join empleado on mecanico.legajo = empleado.legajo
+            WHERE empleado.usuario_id =" . $id;
+
+        $resultado = $this->database->execute($sqlMecanico);
+
+        if ($resultado->num_rows > 0) {
+            return "mecanico";
+        }
+
+        return "sinRol";
     }
 
     public function editarUsuario($id = null,$data = array()){
