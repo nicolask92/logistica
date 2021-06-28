@@ -126,7 +126,7 @@ class AdminModel{
     
     public function eliminarUsuario($id = null){
             $sql = "DELETE FROM usuario WHERE id =" . $id;
-            return $this->devolverResultadoConsulta();
+            $this->database->execute($sql);
         }
 
 

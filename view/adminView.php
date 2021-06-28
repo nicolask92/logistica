@@ -43,8 +43,9 @@
                                         <th>{{legajo}}</th>
                                         <th>{{dni}}</th>
                                         <th>{{rol}}</th>
-                                        <th> <a class="btn btn-success" href="admin/editarUsuario/id={{id}}">Editar</a>
-                                            <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Borrar</a>
+                                        <th> <a class="btn btn-primary" href="admin/editarUsuario/id={{id}}">Editar</a>
+                                            <a class="btn btn-danger" data-toggle="modal"
+                                                data-target="#delete{{usuario}}Modal" href="">Borrar</a>
                                         </th>
                                     </tr>
 
@@ -72,21 +73,27 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {{# usuarios_pendientes}}
                                 <tr>
-                                    <th>usuario nuevo</th>
-                                    <th>usuarionuevo@g7.com</th>
-                                    <th>1234</th>
+                                    <th>{{usuario}}</th>
+                                    <th>{{email}}</th>
+                                    <th>{{legajo}}</th>
+                                    <th>{{dni}}</th>
                                     <th>
-                                        <select class="btn btn-secondary">
-                                            <option selected>Asignar Rol...</option>
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Supervisor</option>
-                                            <option value="3">Mecanico</option>
-                                            <option value="4">Chofer</option>
-                                        </select>
-                                        <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Rechazar</a>
+                                        <form action="admin/procesarFormulario" method="post" enctype="multipart/form-data">
+                                            <select class="btn btn-primary" name="tipoRol">
+                                                <option selected>Asignar Rol...</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Supervisor</option>
+                                                <option value="3">Mecanico</option>
+                                                <option value="4">Chofer</option>
+                                            </select>
+                                            <input  type="submit"  name="btn-aceptar" class="btn btn-success" value="Aceptar"></input>
+                                            <input  type="submit"  name="btn-rechazar" class="btn btn-danger" value="Rechazar"></input>
+                                        </form>
                                     </th>
                                 </tr>
+                                {{/ usuarios_pendientes}}
                             </tbody>
                         </table>
                     </div>

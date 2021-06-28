@@ -31,4 +31,9 @@ class AdminController
         $this->database->editarUsuario($_POST);
         return $this->execute();
     }
+
+    public function eliminarUsuario(){
+        $this->database->eliminarUsuario($_GET["id"]);
+        return $this->execute();
+    }
 }
