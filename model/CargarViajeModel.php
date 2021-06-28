@@ -12,7 +12,7 @@ class CargarViajeModel
 
     public function buscarChoferes(){
 
-        $sql = "SELECT * 
+        $sql = "SELECT chofer.id , usuario.nombre, usuario.apellido 
                 FROM usuario 
                 JOIN empleado ON empleado.usuario_id = usuario.id
                 JOIN chofer ON empleado.legajo = chofer.legajo";
@@ -22,6 +22,20 @@ class CargarViajeModel
         return $resultado;
 
     }
+
+    public function buscarSupervisores(){
+
+        $sql = "SELECT supervisor.id , usuario.nombre, usuario.apellido 
+                FROM usuario 
+                JOIN empleado ON empleado.usuario_id = usuario.id
+                JOIN supervisor ON empleado.legajo = supervisor.legajo";
+
+        $resultado = $this->database->execute($sql);
+
+        return $resultado;
+
+    }
+
 
     public function buscarCamiones(){
 
@@ -44,25 +58,13 @@ class CargarViajeModel
 
     }
 
-    public function buscarSupervisores(){
 
-        $sql = "SELECT * 
-                FROM usuario 
-                JOIN empleado ON empleado.usuario_id = usuario.id
-                JOIN supervisor ON empleado.legajo = supervisor.legajo";
+    public function insertViaje($origen, $destino, $fecha_carga, $estado, $id_supervisor, $id_chofer,$id_camion,$id_arrastrador){
 
-        $resultado = $this->database->execute($sql);
+        $sql = "INSERT INTO viaje (origen, destino, fecha_carga, estado, id_supervisor, id_chofer,id_camion, id_arrastrador) 
+                VALUES ('$origen', '$destino', '$fecha_carga','$estado','$id_supervisor', '$id_chofer','$id_camion','$id_arrastrador')";
 
-        return $resultado;
-
-    }
-
-    public function insertViaje($origen, $destino, $fecha_carga, $id_supervisor, $id_chofer,$id_camion,$id_arrastrador){
-
-        $sql = "INSERT INTO viaje (origen, destino, fecha_carga, id_supervisor, id_chofer,id_camion, id_arrastrador) 
-                VALUES ('$origen', '$destino', '$fecha_carga','$id_supervisor', '$id_chofer','$id_camion','$id_arrastrador')";
-
-        $this->database->execute($sql);
+       $this->database->execute($sql);
 
     }
 
@@ -106,9 +108,9 @@ class CargarViajeModel
 
         $sql ="SELECT tipo FROM arrastrador WHERE id=". $id_arrastrador;
 
-        $resultado = $this->database->execute($sql);
+        $resultado = $this->database->query($sql);
 
-        return $resultado["tipo"];
+        return $resultado;
 
     }
 
@@ -117,7 +119,9 @@ class CargarViajeModel
         $sql ="INSERT INTO `carga`(`tipo_carga`, `hazard`, `imo_class`, `reefer`, `temperatura`, `peso_neto`, `id_viaje`) 
             VALUES ('$tipo_carga','$hazard','$imo','$reefer','$temperatura','$peso_neto','$id_viaje')";
 
-        $this->database->execute($sql);
+        $resultado =$this->database->execute($sql);
+
+
 
     }
 

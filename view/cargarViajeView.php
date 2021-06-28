@@ -142,7 +142,7 @@
 
                                 <option selected >Seleccionar Supervisor</option>
                                 {{#supervisores}}
-                                <option value="{{legajo}}">{{nombre}} {{apellido}} </option>
+                                <option value="{{id}}">{{nombre}} {{apellido}} </option>
                                 {{/supervisores}}
                             </select>
 
@@ -188,15 +188,15 @@
 
                     <div class="form-group">
                         <label for="hazardCarga">Hazard</label> <br>
-                        <input  type="radio" name="hazardCarga" id="true" value="TRUE"> Si
+                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="1"> Si
 
-                        <input  type="radio" name="hazardCarga" id="false" value="FALSE"> No
+                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="0"> No
 
                     </div>
 
                     <div class="form-group">
                         <select class="form-control" id="imoCarga" name="imoCarga">
-                            <option selected >Seleccionar IMO Class</option>
+                            <option value="" selected >Seleccionar IMO Class</option>
                             <option value="1">Class 1</option>
                             <option value="2">Class 2</option>
                             <option value="3">Class 3</option>
@@ -216,9 +216,9 @@
                     <div class="form-group">
 
                         <label for="reeferCarga">Reefer</label> <br>
-                        <input  type="radio" name="reeferCarga" id="TRUE" value="TRUE"> Si
+                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="1"> Si
 
-                        <input  type="radio" name="reeferCarga" id="FALSE" value="FALSE"> No
+                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="0"> No
 
                     </div>
 
