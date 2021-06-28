@@ -38,10 +38,17 @@
                                     Datos invalidos.
                                 </div>
                             {{/error}}
+
+                            {{#cuentaActivada}}
+                                <div class="alert alert-primary" role="alert">
+                                    Tu cuenta se activo correctamente! Ahora puedes entrar.
+                                </div>
+                            {{/cuentaActivada}}
                             <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Ingresar">
                         </form>
                         <a href="#!" class="forgot-password-link">¿Se te olvidó tu contraseña?</a>
                         <p class="login-card-footer-text">¿No tienes una cuenta? <a href="/registro" class="text-reset">REGISTRARSE AQUÍ</a></p>
+                        <a href="/registro/codigo" class="text-reset">ACTIVA TU CUENTA AQUÍ</a>
                         <nav class="login-card-footer-nav">
                             <a href="#!">Condiciones de uso.</a>
                             <a href="#!">Política de privacidad</a>

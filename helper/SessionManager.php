@@ -1,13 +1,15 @@
 <?php
 
+include_once("controller/AccessDeniedY404Controller.php");
+
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['home', 'admin', 'editarUsuario','eliminarUsuario'],
-        "supervisor" => ['home', 'cargarViaje'],
-        "chofer" => ['home', 'verViaje', 'subirDatos'],
-        "mecanico" => ['home', 'service'],
-        "sinRol" => ['home']
+        "admin" => ['login', 'registro', 'home', 'reportes', 'admin','editarUsuario','eliminarUsuario'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
+        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos'],
+        "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
+        "sinRol" => ['login', 'registro', 'home']
     ];
 
     function iniciarSesion($usuario, $rol) {
@@ -37,10 +39,31 @@ class SessionManager {
             if ($modulo == null) {
                 return true;
             } else {
-                return in_array($modulo, $this->accessControl[$_SESSION['rol']]);
+                return $this->esUnaVistaValida($modulo);
             }
         } else {
             return false;
         }
+    }
+
+    private function esUnaVistaValida($modulo) {
+		$arrayDeVistas = array_merge(...array_values($this->accessControl));
+
+		$existeVista = in_array($modulo, $arrayDeVistas);
+		if ($existeVista) {
+			$tienePermisoParaLaVista = in_array($modulo, $this->accessControl[$_SESSION['rol']]);
+		}
+
+        $render = new Render('view/partial');
+        $con = new AccessDeniedY404Controller($render);
+
+        if (!$existeVista) {
+            $con->paginaNoExiste();
+            exit;
+        } else if (!$tienePermisoParaLaVista) {
+            $con->accesoDenegado();
+            exit;
+        }
+        return $existeVista && $tienePermisoParaLaVista;
     }
 }

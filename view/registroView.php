@@ -24,18 +24,24 @@
                                 <img src="/view/img/logo_logistica.png" alt="logo" class="">
                             </div>
                             <p class="login-card-description">Registro</p>
-                            <form  method="post"  enctype="multipart/form-data" action="/Registro/procesarRegistro">
-                            <div class="form-group">
+                            <form  method="post"  enctype="multipart/form-data" action="/registro/procesarRegistro">
+                                <div class="form-group">
                                     <label for="nombre" class="sr-only">Nombre</label>
-                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+                                    <input type="text" name="nombre" id="nombre" value="{{nombre}}" class="form-control" placeholder="Nombre">
                                 </div>
                                 <div class="form-group">
-                                    <label for="fechaNac" class="sr-only">Fecha de nacimiento</label>
-                                    <input type="date" name="fechaNac" id="fechaNac" class="form-control">
+                                    <label for="apellido" class="sr-only">Apellido</label>
+                                    <input type="text" name="apellido" id="apellido" value="{{apellido}}" class="form-control" placeholder="Apellido">
                                 </div>
+                                <!-- TODO Ver si lo habilitamos
+                                <div class="form-group date">
+                                    <label for="datepicker" class="sr-only">Fecha de nacimiento</label>
+                                    <input data-provide="datepicker" id="datepicker" value="{{fechaDeNacimiento}}" type="text" name="fechaNac" class="form-control" placeholder="Fecha Nacimiento">
+                                </div>
+                                -->
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" id="email" value="{{email}}" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="password" class="sr-only">Password</label>
@@ -43,7 +49,14 @@
                                 </div>
                                 {{#error}}
                                     <div class="alert alert-danger" role="alert">
-                                        Datos invalidos.
+                                        Hay errores:
+                                        <ul>
+                                            {{#errorNombre}}<li>Nombre invalido</li>{{/errorNombre}}
+                                            {{#errorApellido}}<li>Apellido invalido</li>{{/errorApellido}}
+                                            {{#errorEmail}}<li>Email invalido</li>{{/errorEmail}}
+                                            {{#errorFechaNac}}<li>Fecha invalido</li>{{/errorFechaNac}}
+                                            {{#errorContrasenia}}<li>Constraseña invalido</li>{{/errorContrasenia}}
+                                        </ul>
                                     </div>
                                 {{/error}}
                                 <input name="registrarse" id="registrarse" class="btn btn-block login-btn mb-4" type="submit" value="Registrarse">
@@ -63,5 +76,14 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
     </body>
 </html>

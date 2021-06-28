@@ -20,7 +20,7 @@
                 <div class="achicar">
                     <H3>Cliente</H3>
 
-                    <form class="" action="">
+                    <form method="post"  enctype="multipart/form-data" action="cargarViaje/procesarCargaViaje">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input type="text" class="form-control" name="nombreCliente"
@@ -61,7 +61,7 @@
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="origenViaje"
-                               name="origenViaje"    placeholder="Dirección oringen">
+                               name="origenViaje"    placeholder="Dirección origen">
                     </div>
 
                     <div class="form-group">
@@ -70,31 +70,102 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="fechaViaje"
-                               name="fechaViaje" aria-describedby="fecha">
+                        <input type="date" class="form-control" id="fechaCarga"
+                               name="fechaCarga" aria-describedby="fecha">
                         <small id="fecha" class="text-muted">
                             Fecha de carga.
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="etaViaje"
-                               name="etaViaje" aria-describedby="eta">
+                        <input type="date" class="form-control" id="eta"
+                               name="eta" aria-describedby="eta">
                         <small id="eta" class="text-muted">
                             Fecha estimada de llegada.
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control" id="kmPrevistosViaje"
-                               name="kmPrevistosViaje"    placeholder="Kilometros previstos">
+                        <input type="date" class="form-control" id="etd"
+                        name="etd" aria-describedby="etd">
+                        <small id="etd" class="text-muted">
+                        Fecha estimada de salida.
+                        </small>
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control" id="combustiblePrevistoViaje"
-                               name="combustiblePrevistoViaje"    placeholder="Cumbustible previsto Lts">
+                        <input type="number" class="form-control" id="kmPrevisto"
+                               name="kmPrevisto"    placeholder="Kilometros previstos">
                     </div>
 
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="combustiblePrevisto"
+                               name="combustiblePrevisto"    placeholder="Cumbustible previsto Lts">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="viaticosPrevisto"
+                        name="viaticosPrevisto"    placeholder="Viáticos Previstos">
+                        </div>
+                    <div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="peajesPrevisto"
+                        name="peajesPrevisto"    placeholder="Peajes Previstos">
+                    </div>
+
+                    <div class="form-group">
+                       <input type="text" class="form-control" id="pesajesPrevisto"
+                       name="pesajesPrevisto"    placeholder="Pesajes Previstos">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="extrasPrevisto"
+                        name="extrasPrevisto"    placeholder="Extras Previstos">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="feePrevisto"
+                        name="feePrevisto"    placeholder="Fee Previsto">
+                    </div>
+
+
+                        <div>
+
+                        <hr class="sidebar-divider mt-4">
+                        <h3>Supervisor</h3>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" id="supervisorViaje" name="supervisorViaje">
+
+                                <option selected >Seleccionar Supervisor</option>
+                                {{#supervisores}}
+                                <option value="{{legajo}}">{{nombre}} {{apellido}} </option>
+                                {{/supervisores}}
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                    <div>
+                        <hr class="sidebar-divider mt-4">
+                        <h3>Camión</h3>
+                    </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" id="camionViaje" name="camionViaje">
+
+                                <option selected >Seleccionar Camión</option>
+                                {{#camiones}}
+                                <option value="{{id}}">{{marca}}-{{modelo}} </option>
+                                {{/camiones}}
+                            </select>
+
+                        </div>
 
                     <div>
                         <hr class="sidebar-divider mt-4">
@@ -102,13 +173,11 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" id="tipoCarga" name="tipoCarga">
-                            <option selected >Seleccionar tipo de carga</option>
-                            <option value="araña">Araña</option>
-                            <option value="jaula">Jaula</option>
-                            <option value="tanque">Tanque</option>
-                            <option value="granel">Granel</option>
-                            <option value="carcarrier">CarCarrier</option>
+                        <select class="form-control" id="arrastradorViaje" name="arrastradorViaje">
+                            <option selected >Seleccionar Arrastrador</option>
+                            {{#arrastradores}}
+                            <option value="{{id}}">{{tipo}}-{{patente}}</option>
+                            {{/arrastradores}}
                         </select>
                     </div>
 
@@ -119,9 +188,9 @@
 
                     <div class="form-group">
                         <label for="hazardCarga">Hazard</label> <br>
-                        <input  type="radio" name="hazardCarga" id="si"> Si
+                        <input  type="radio" name="hazardCarga" id="true" value="TRUE"> Si
 
-                        <input  type="radio" name="hazardCarga" id="no"> No
+                        <input  type="radio" name="hazardCarga" id="false" value="FALSE"> No
 
                     </div>
 
@@ -147,9 +216,9 @@
                     <div class="form-group">
 
                         <label for="reeferCarga">Reefer</label> <br>
-                        <input  type="radio" name="reeferCarga" id="si"> Si
+                        <input  type="radio" name="reeferCarga" id="TRUE" value="TRUE"> Si
 
-                        <input  type="radio" name="reeferCarga" id="no"> No
+                        <input  type="radio" name="reeferCarga" id="FALSE" value="FALSE"> No
 
                     </div>
 
@@ -164,15 +233,13 @@
                     </div>
 
                     <div class="form-group">
+
                         <select class="form-control" id="choferViaje" name="choferViaje">
+
                             <option selected >Seleccionar Chofer</option>
-                            <option value="1">chofer 1</option>
-                            <option value="2">chofer 2</option>
-                            <option value="3">chofer 3</option>
-                            <option value="4">chofer 4</option>
-                            <option value="5">chofer 5</option>
-                            <option value="6">chofer 6</option>
-                            <option value="7">chofer 7</option>
+                            {{#choferes}}
+                            <option value="{{id}}">{{nombre}} {{apellido}}</option>
+                            {{/choferes}}
                         </select>
 
                     </div>
@@ -198,4 +265,4 @@
         </div>
         <!-- End of Main Content -->
 
-        {{> footer }}
+{{> footer }}
