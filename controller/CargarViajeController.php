@@ -75,6 +75,7 @@ class CargarViajeController
         $this->cargarViajeModel->insertCarga($tipo_carga["tipo"], $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje["id"]);
 
         header('Location: /cargarViaje');
+
     }
 
 
