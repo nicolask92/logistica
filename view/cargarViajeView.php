@@ -14,8 +14,9 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
+                <!-- Page Heading -->
+
+                <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
                 <div class="achicar">
                     <H3>Cliente</H3>
@@ -177,7 +178,7 @@
 
                                 <option selected >Seleccionar Supervisor</option>
                                 {{#supervisores}}
-                                <option value="{{legajo}}">{{nombre}} {{apellido}} </option>
+                                <option value="{{id}}">{{nombre}} {{apellido}} </option>
                                 {{/supervisores}}
                             </select>
 
@@ -234,6 +235,7 @@
                     <div class="form-group">
                         <label for="hazardCarga">Hazard</label> <br>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <input  type="radio" name="hazardCarga" id="true" value="TRUE"> Si
 
                         <input  type="radio" name="hazardCarga" id="false" value="FALSE"> No
@@ -242,12 +244,21 @@
 
                         <input type="radio" name="hazardCarga" id="no"> No
 >>>>>>> DesarrolloFormularioEditar
+=======
+                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="1"> Si
+
+                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="0"> No
+>>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
 
                     </div>
 
                     <div class="form-group">
                         <select class="form-control" id="imoCarga" name="imoCarga">
+<<<<<<< HEAD
                             <option selected>Seleccionar IMO Class</option>
+=======
+                            <option value="" selected >Seleccionar IMO Class</option>
+>>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
                             <option value="1">Class 1</option>
                             <option value="2">Class 2</option>
                             <option value="3">Class 3</option>
@@ -268,6 +279,7 @@
 
                         <label for="reeferCarga">Reefer</label> <br>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <input  type="radio" name="reeferCarga" id="TRUE" value="TRUE"> Si
 
                         <input  type="radio" name="reeferCarga" id="FALSE" value="FALSE"> No
@@ -276,6 +288,11 @@
 
                         <input type="radio" name="reeferCarga" id="no"> No
 >>>>>>> DesarrolloFormularioEditar
+=======
+                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="1"> Si
+
+                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="0"> No
+>>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
 
                     </div>
 

@@ -29,12 +29,17 @@ class CargarViajeController
         $id_supervisor= $_POST["supervisorViaje"];
         $legajo_chofer= $_POST["choferViaje"];
         $id_camion= $_POST["camionViaje"];
+
         $id_arrastrador = $_POST["arrastradorViaje"];
 
-        $this->cargarViajeModel->insertViaje($origen, $destino, $fecha_carga, $id_supervisor,
+        $estado = "PENDIENTE";
+
+        $this->cargarViajeModel->insertViaje($origen, $destino, $fecha_carga,$estado, $id_supervisor,
                                                         $legajo_chofer,$id_camion,$id_arrastrador);
 
+
         $id_viaje = $this->cargarViajeModel->ultimoId();
+
         $nombre_cliente = $_POST["nombreCliente"];
         $apellido_cliente = $_POST["apellidoCliente"];
         $cuit_cliente = $_POST["cuitCliente"];
@@ -43,7 +48,7 @@ class CargarViajeController
         $email_cliente = $_POST["emailCliente"];
 
         $this->cargarViajeModel->insertCliente($nombre_cliente, $apellido_cliente, $cuit_cliente, $domicilio_cliente,
-                                                $tel_cliente, $email_cliente, $id_viaje);
+                                                $tel_cliente, $email_cliente, $id_viaje["id"]);
 
         $eta=$_POST["eta"];
         $etd=$_POST["etd"];
@@ -55,8 +60,9 @@ class CargarViajeController
         $extras_p=$_POST["extrasPrevisto"];
         $fee_p=$_POST["feePrevisto"];
 
-        $this->cargarViajeModel->insertCosteoPrevisto($id_viaje,$eta, $etd, $combustible_p, $km_p,$viaticos_p,$peajes_p,
+        $this->cargarViajeModel->insertCosteoPrevisto($id_viaje["id"],$eta, $etd, $combustible_p, $km_p,$viaticos_p,$peajes_p,
                                                         $pesajes_p, $extras_p, $fee_p);
+
 
         $tipo_carga = $this->cargarViajeModel->getTipoCarga($id_arrastrador);
 
@@ -66,10 +72,12 @@ class CargarViajeController
         $temperatura = $_POST["temperaturaCarga"];
         $peso_neto = $_POST["pesoCarga"];
 
-        $this->cargarViajeModel->insertCarga($tipo_carga, $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje);
+        $this->cargarViajeModel->insertCarga($tipo_carga["tipo"], $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje["id"]);
 
+        header('Location: /cargarViaje');
 
     }
+
 
 
 
