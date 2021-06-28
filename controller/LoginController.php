@@ -15,17 +15,19 @@ class LoginController
     }
 
     public function execute($error = false) {
+    	$data = null;
         $sm = new SessionManager();
         if ($sm->chequearSesion()) {
             $indexController = new IndexController($this->render);
             $indexController->execute();
         } else {
+        	if(isset($_GET['cuentaActivada'])) {
+        		$data['cuentaActivada'] = true;
+        	}
             if ($error == true) {
                 $data['error'] = true;
-                echo $this->render->render("view/loginView.php", $data);
-            } else {
-                echo $this->render->render("view/loginView.php");
             }
+	        echo $this->render->render("view/loginView.php", $data);
         }
     }
 
@@ -50,6 +52,6 @@ class LoginController
     public function cerrarSesion() {
         $sm = new SessionManager();
         $sm->cerrarSesion();
-        echo $this->render->render("view/loginView.php");
+	    header('location: /login');
     }
 }

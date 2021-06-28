@@ -5,11 +5,11 @@ include_once("controller/AccessDeniedY404Controller.php");
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['login', 'home', 'reportes', 'asignarRoles'],
-        "supervisor" => ['login', 'home', 'cargarViaje'],
-        "chofer" => ['login', 'home', 'verViaje', 'subirDatos'],
-        "mecanico" => ['login', 'home', 'service'],
-        "sinRol" => ['login', 'home']
+        "admin" => ['login', 'registro', 'home', 'reportes', 'asignarRoles'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
+        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos'],
+        "mecanico" => ['login', 'registro','home', 'service'],
+        "sinRol" => ['login', 'registro', 'home']
     ];
 
     public function __construct() {

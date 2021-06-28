@@ -16,7 +16,7 @@ class LoginModel
         $sql = "
             SELECT *
             FROM usuario
-            WHERE email ='" . $email . "' AND contraseña = '" . $password . "'";
+            WHERE email ='" . $email . "' AND contrasenia = '" . $password . "' AND estado = true";
 
         $resultado = $this->database->execute($sql);
 
