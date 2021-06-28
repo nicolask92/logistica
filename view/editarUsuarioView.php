@@ -18,28 +18,28 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             LEGAJO:
-                            <input type="text" class="form-control" id="legajo" name="legajo"
-                                placeholder="{{legajo}}" value={{legajo}}>
+                            <input type="text" class="form-control" id="legajo" name="legajo" placeholder="{{legajo}}"
+                                value={{legajo}}>
                         </div>
 
                     </div>
 
                     <div class="form-group">
                         DNI:
-                        <input type="Number" class="form-control" id="dni" name="dni"
-                            placeholder="{{dni}}" value="{{dni}}">
+                        <input type="Number" class="form-control" id="dni" name="dni" placeholder="{{dni}}"
+                            value="{{dni}}">
                     </div>
 
                     <div class="form-group">
                         FECHA DE NACIMIENTO:
-                        <input type="text" class="form-control" id="nacimiento" name="nacimiento"
-                            placeholder="{{nac}}" value={{nac}}>
+                        <input type="text" class="form-control" id="nacimiento" name="nacimiento" placeholder="{{nac}}"
+                            value={{nac}}>
                     </div>
 
                     <div class="form-group">
                         EMAIL:
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="{{email}}" value={{email}}>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="{{email}}"
+                            value={{email}}>
                     </div>
 
                     <div class="form-group">

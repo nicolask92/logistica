@@ -32,7 +32,7 @@ class LoginModel
         $resultado = $this->database->execute($sqlAdmin);
 
         if ($resultado->num_rows > 0) {
-            return "Administrativo";
+            return "admin";
         }
 
         $sqlSupervisor = "
@@ -43,7 +43,7 @@ class LoginModel
         $resultado = $this->database->execute($sqlSupervisor);
 
         if ($resultado->num_rows > 0) {
-            return "Supervisor";
+            return "supervisor";
         }
 
         $sqlChofer = "
@@ -54,7 +54,7 @@ class LoginModel
         $resultado = $this->database->execute($sqlChofer);
 
         if ($resultado->num_rows > 0) {
-            return "Chofer";
+            return "chofer";
         }
 
         $sqlMecanico = "
@@ -65,7 +65,7 @@ class LoginModel
         $resultado = $this->database->execute($sqlMecanico);
 
         if ($resultado->num_rows > 0) {
-            return "Mecanico";
+            return "mecanico";
         }
 
         return "sinRol";

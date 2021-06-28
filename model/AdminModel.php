@@ -128,4 +128,53 @@ class AdminModel{
             $sql = "DELETE FROM usuario WHERE id =" . $id;
             return $this->devolverResultadoConsulta();
         }
+
+
+    public function buscarRolPorIdUsuario($id) {
+            $sqlAdmin = "
+                SELECT *
+                FROM administrador join empleado on administrador.legajo = empleado.legajo
+                WHERE administrador.id =" . $id;
+    
+            $resultado = $this->database->execute($sqlAdmin);
+    
+            if ($resultado->num_rows > 0) {
+                return "admin";
+            }
+    
+            $sqlSupervisor = "
+                SELECT *
+                FROM supervisor join empleado on supervisor.legajo = empleado.legajo
+                WHERE supervisor.id =" . $id;
+    
+            $resultado = $this->database->execute($sqlSupervisor);
+    
+            if ($resultado->num_rows > 0) {
+                return "supervisor";
+            }
+    
+            $sqlChofer = "
+                SELECT *
+                FROM chofer join empleado on chofer.legajo = empleado.legajo
+                WHERE chofer.id =" . $id;
+    
+            $resultado = $this->database->execute($sqlChofer);
+    
+            if ($resultado->num_rows > 0) {
+                return "chofer";
+            }
+    
+            $sqlMecanico = "
+                SELECT *
+                FROM mecanico join empleado on mecanico.legajo = empleado.legajo
+                WHERE mecanico.id =" . $id;
+    
+            $resultado = $this->database->execute($sqlMecanico);
+    
+            if ($resultado->num_rows > 0) {
+                return "mecanico";
+            }
+    
+            return "sinRol";
+        }
 }

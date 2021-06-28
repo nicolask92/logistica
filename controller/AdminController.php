@@ -5,16 +5,14 @@ class AdminController
     private $render;
     private $database;
 
-    public function __construct($database, $render)
-    {
+    public function __construct($database, $render){
         $this->render = $render;
         $this->database = $database;
     }
 
-    public function execute()
-    {
+    public function execute(){  
         $result = $this->database->obtenerTodosLosUsuarios();
-        $data["users"] = $result;
+        $data["users"] = $result;         
         echo $this->render->render("view/adminView.php",$data);
     }
 

@@ -36,6 +36,7 @@
                                 </thead>
                                 <tbody>
                                     {{# users }}
+
                                     <tr>
                                         <th>{{usuario}}</th>
                                         <th>{{email}}</th>
@@ -46,6 +47,7 @@
                                             <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Borrar</a>
                                         </th>
                                     </tr>
+
                                     {{/ users }}
                                 </tbody>
                             </table>
