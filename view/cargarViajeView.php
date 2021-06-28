@@ -15,13 +15,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-
-                {{^viajeCargado}}
-                <div class="alert alert-success" role="alert">
-                    Se cargo viaje correctamente!
-                </div>
-                {{/viajeCargado}}
-
+                
                 <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
                 <div class="achicar">

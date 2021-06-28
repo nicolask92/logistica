@@ -64,8 +64,6 @@ class CargarViajeController
                                                         $pesajes_p, $extras_p, $fee_p);
 
 
-
-
         $tipo_carga = $this->cargarViajeModel->getTipoCarga($id_arrastrador);
 
         $hazard = $_POST["hazardCarga"];
@@ -75,8 +73,8 @@ class CargarViajeController
         $peso_neto = $_POST["pesoCarga"];
 
         $this->cargarViajeModel->insertCarga($tipo_carga["tipo"], $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje["id"]);
-        
-        header('Location: /cargarViaje?viajeCargado=true');
+
+        header('Location: /cargarViaje');
     }
 
 
