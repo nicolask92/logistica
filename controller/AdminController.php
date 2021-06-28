@@ -5,9 +5,9 @@ class AdminController
     private $render;
     private $database;
 
-    public function __construct($database, $render){
+    public function __construct($adminModel, $render){
         $this->render = $render;
-        $this->database = $database;
+        $this->database = $adminModel;
     }
 
     public function execute(){  
@@ -29,11 +29,11 @@ class AdminController
 
     public function procesarFormulario(){
         $this->database->editarUsuario($_POST);
-        return $this->execute();
+        header("location: /admin");
     }
 
     public function eliminarUsuario(){
         $this->database->eliminarUsuario($_GET["id"]);
-        return $this->execute();
+        header("location: /admin");
     }
 }
