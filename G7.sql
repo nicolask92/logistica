@@ -9,19 +9,21 @@ CREATE TABLE usuario
     nombre varchar(50),
     apellido varchar(50),
 	usuario varchar(50) unique,
-	contraseña varchar (30),
-    email varchar(100) not null
+	contrasenia varchar (30),
+    email varchar(100) not null,
+ 	estado boolean,
+ 	codigo smallint
 );
 
-INSERT into usuario(nombre, apellido, usuario, contraseña , email)
-values('admin', 'admin','admin', 'admin', 'admin@g7.com'),
-	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com'),
-	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com'),
-	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com'),
-    ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com');
+INSERT into usuario(nombre, apellido, usuario, contrasenia , email, estado)
+values('admin', 'admin','admin', 'admin', 'admin@g7.com', true),
+	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com', true),
+	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com', true),
+	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com', true),
+    ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com', true);
 
 CREATE TABLE empleado
-(legajo tinyint unique primary key,
+(legajo tinyint primary key,
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,

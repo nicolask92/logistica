@@ -265,4 +265,4 @@
         </div>
         <!-- End of Main Content -->
 
-        {{> footer }}
+{{> footer }}
