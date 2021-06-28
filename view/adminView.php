@@ -73,12 +73,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {{# usuarios_pendientes}}
+                            
                                 <tr>
-                                    <th>{{usuario}}</th>
-                                    <th>{{email}}</th>
-                                    <th>{{legajo}}</th>
-                                    <th>{{dni}}</th>
+                                    <th>usuario</th>
+                                    <th>email</th>
+                                    <th>legajo</th>
+                                    <th>dni</th>
                                     <th>
                                         <form action="admin/procesarFormulario" method="post" enctype="multipart/form-data">
                                             <select class="btn btn-primary" name="tipoRol">
@@ -93,7 +93,7 @@
                                         </form>
                                     </th>
                                 </tr>
-                                {{/ usuarios_pendientes}}
+                            
                             </tbody>
                         </table>
                     </div>

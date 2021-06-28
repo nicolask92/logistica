@@ -1,3 +1,4 @@
+
 drop schema if exists G7;
 create database G7;
 
@@ -27,7 +28,7 @@ CREATE TABLE empleado
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
-foreign key(usuario_id) references usuario(id) on delete cascade
+foreign key(usuario_id) references usuario(id)
 );
 
 INSERT into empleado(legajo, dni, fecha_nacimiento, usuario_id)
@@ -38,30 +39,30 @@ values(001,25634786,'20160104', 1),
       (005,38670221,'19940813', 5);
 
 CREATE TABLE administrador
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
+	foreign key(legajo) references empleado(legajo)
 	);
 
-INSERT into administrador(id,legajo)
-values(1,001); 
+INSERT into administrador(legajo)
+values(001); 
 
 CREATE TABLE supervisor
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
+	foreign key(legajo) references empleado(legajo)
 	);
 
-INSERT into supervisor(id,legajo)
-	values(2,002);
+INSERT into supervisor(legajo)
+	values(002);
 
 CREATE TABLE chofer
-(id tinyint primary key ,
+(id tinyint primary key auto_increment,
 	tipo_licencia varchar(10),
 	legajo tinyint,
+	foreign key(legajo) references empleado(legajo),
 	patente varchar(10),
-    estado enum('DISPONIBLE', 'EN_VIAJE'),
-    foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
+    estado enum('DISPONIBLE', 'EN_VIAJE')
 	);
 
 INSERT into chofer(tipo_licencia, legajo, patente)
@@ -69,9 +70,9 @@ INSERT into chofer(tipo_licencia, legajo, patente)
           ('A', 005, 'FAC123');
 
 CREATE TABLE mecanico
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on delete cascade on update cascade
+	foreign key(legajo) references empleado(legajo)
 	);
 
 INSERT into mecanico(legajo)
@@ -248,7 +249,7 @@ costo int(15),
 tipo enum('INTERNO', 'EXTERNO'),
 repuesto_cam varchar(150),
 id_camion tinyint,
-foreign key(id_camion) references camiones(id) on delete cascade,
+foreign key(id_camion) references camiones(id),
 id_mecanico tinyint,
-foreign key(id_mecanico) references mecanico(id) on delete cascade
+foreign key(id_mecanico) references mecanico(id)
 );
