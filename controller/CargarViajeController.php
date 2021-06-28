@@ -76,6 +76,9 @@ class CargarViajeController
 
         header('Location: /cargarViaje');
 
+    }
+
+
 
 
 }
