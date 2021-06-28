@@ -45,7 +45,6 @@ class SessionManager {
             return false;
         }
     }
-<<<<<<< HEAD
 
     private function esUnaVistaValida($modulo) {
 		$arrayDeVistas = array_merge(...array_values($this->accessControl));
@@ -68,6 +67,3 @@ class SessionManager {
         return $existeVista && $tienePermisoParaLaVista;
     }
 }
-=======
-}
->>>>>>> DesarrolloFormularioEditar
