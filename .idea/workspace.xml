@@ -7,6 +7,8 @@
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/CargarViajeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CargarViajeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/CargarViajeModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/CargarViajeModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/cargarViajeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarViajeView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,13 +40,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/view/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programas\xampp\htdocs\view\js" />
       <recent name="E:\xampp2\htdocs\model" />
       <recent name="E:\xampp2\htdocs\view" />
     </key>
