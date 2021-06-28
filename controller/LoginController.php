@@ -40,10 +40,9 @@ class LoginController
             $usuarioComoArray = $usuario->fetch_array();
             $rolUsuario = $this->loginModel->buscarRolPorIdUsuario($usuarioComoArray['id']);
 
-            $indexController = new IndexController($this->render);
             $sm = new SessionManager();
             $sm->iniciarSesion($usuarioComoArray['usuario'], $rolUsuario);
-            $indexController->execute();
+            header('location: /');
         } else {
             $this->execute(true);
         }

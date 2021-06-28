@@ -8,7 +8,7 @@ class SessionManager {
         "admin" => ['login', 'registro', 'home', 'reportes', 'asignarRoles'],
         "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
         "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos'],
-        "mecanico" => ['login', 'registro','home', 'service'],
+        "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
         "sinRol" => ['login', 'registro', 'home']
     ];
 
@@ -50,25 +50,20 @@ class SessionManager {
     }
 
     private function esUnaVistaValida($modulo) {
-        $existeVista = false;
-        $tienePermisoParaLaVista = false;
-        $arrayDeVistas = array_merge(...array_values($this->accessControl));
+		$arrayDeVistas = array_merge(...array_values($this->accessControl));
 
-        foreach($this->accessControl as $rol=>$webs) {
-           foreach ($webs as $web) {
-               $existeVista = in_array($modulo, $arrayDeVistas);
-               if ($existeVista) {
-                   $tienePermisoParaLaVista = in_array($modulo, $this->accessControl[$_SESSION['rol']]);
-               }
-           }
-        }
+		$existeVista = in_array($modulo, $arrayDeVistas);
+		if ($existeVista) {
+			$tienePermisoParaLaVista = in_array($modulo, $this->accessControl[$_SESSION['rol']]);
+		}
+
         $render = new Render('view/partial');
         $con = new AccessDeniedY404Controller($render);
 
         if (!$existeVista) {
             $con->paginaNoExiste();
             exit;
-        } else if ($existeVista && !$tienePermisoParaLaVista) {
+        } else if (!$tienePermisoParaLaVista) {
             $con->accesoDenegado();
             exit;
         }

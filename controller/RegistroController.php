@@ -1,5 +1,7 @@
 <?php
 
+include_once 'helper/SessionManager.php';
+
 class RegistroController
 {
     private $render;
@@ -13,7 +15,12 @@ class RegistroController
 
     public function execute()
     {
-        echo $this->render->render("view/registroView.php");
+	    $sm = new SessionManager();
+	    if ($sm->chequearSesion()) {
+		    header('location: /');
+	    } else {
+		    echo $this->render->render("view/registroView.php");
+	    }
     }
 
     public function procesarRegistro()
