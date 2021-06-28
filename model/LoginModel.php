@@ -24,11 +24,10 @@ class LoginModel
     }
 
     public function buscarRolPorIdUsuario($id) {
-
         $sqlAdmin = "
             SELECT *
             FROM administrador join empleado on administrador.legajo = empleado.legajo
-            WHERE id =" . $id;
+            WHERE administrador.id =" . $id;
 
         $resultado = $this->database->execute($sqlAdmin);
 
@@ -39,7 +38,7 @@ class LoginModel
         $sqlSupervisor = "
             SELECT *
             FROM supervisor join empleado on supervisor.legajo = empleado.legajo
-            WHERE usuario_id =" . $id;
+            WHERE supervisor.id =" . $id;
 
         $resultado = $this->database->execute($sqlSupervisor);
 
@@ -50,7 +49,7 @@ class LoginModel
         $sqlChofer = "
             SELECT *
             FROM chofer join empleado on chofer.legajo = empleado.legajo
-            WHERE id =" . $id;
+            WHERE chofer.id =" . $id;
 
         $resultado = $this->database->execute($sqlChofer);
 
@@ -61,7 +60,7 @@ class LoginModel
         $sqlMecanico = "
             SELECT *
             FROM mecanico join empleado on mecanico.legajo = empleado.legajo
-            WHERE id =" . $id;
+            WHERE mecanico.id =" . $id;
 
         $resultado = $this->database->execute($sqlMecanico);
 

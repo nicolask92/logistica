@@ -13,17 +13,12 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800 text-center">Asignacion de Roles.</h1>
-            <div class="alert " role="alert">
-
-            </div>
             <div class="achicar">
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Usuarios Activos</h6>
+                        <h3 class="m-0 font-weight-bold text-primary">Activos</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -33,20 +28,27 @@
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Email</th>
-                                        <th>Contraseña</th>
+                                        <th>Legajo</th>
+                                        <th>DNI</th>
+                                        <th>ROL</th>
                                         <th>Operaciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{# users }}
+
                                     <tr>
                                         <th>{{usuario}}</th>
                                         <th>{{email}}</th>
-                                        <th>{{contraseña}}</th>
-                                        <th> <a class="btn btn-success" href="admin/editarUsuario/id={{id}}">Editar</a>
-                                            <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Borrar</a>
+                                        <th>{{legajo}}</th>
+                                        <th>{{dni}}</th>
+                                        <th>{{rol}}</th>
+                                        <th> <a class="btn btn-primary" href="admin/editarUsuario/id={{id}}">Editar</a>
+                                            <a class="btn btn-danger" data-toggle="modal"
+                                                data-target="#delete{{usuario}}Modal" href="">Borrar</a>
                                         </th>
                                     </tr>
+
                                     {{/ users }}
                                 </tbody>
                             </table>
@@ -56,7 +58,7 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Usuarios Pendientes</h6>
+                    <h3 class="m-0 font-weight-bold text-primary">Pendientes</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -71,30 +73,36 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {{# usuarios_pendientes}}
                                 <tr>
-                                    <th>usuario nuevo</th>
-                                    <th>usuarionuevo@g7.com</th>
-                                    <th>1234</th>
+                                    <th>{{usuario}}</th>
+                                    <th>{{email}}</th>
+                                    <th>{{legajo}}</th>
+                                    <th>{{dni}}</th>
                                     <th>
-                                        <select class="btn btn-secondary">
-                                            <option selected>Asignar Rol...</option>
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Supervisor</option>
-                                            <option value="3">Mecanico</option>
-                                            <option value="4">Chofer</option>
-                                        </select>
-                                        <a class="btn btn-danger" href="admin/editarUsuario/id={{id}}">Rechazar</a>
+                                        <form action="admin/procesarFormulario" method="post" enctype="multipart/form-data">
+                                            <select class="btn btn-primary" name="tipoRol">
+                                                <option selected>Asignar Rol...</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Supervisor</option>
+                                                <option value="3">Mecanico</option>
+                                                <option value="4">Chofer</option>
+                                            </select>
+                                            <input  type="submit"  name="btn-aceptar" class="btn btn-success" value="Aceptar"></input>
+                                            <input  type="submit"  name="btn-rechazar" class="btn btn-danger" value="Rechazar"></input>
+                                        </form>
                                     </th>
                                 </tr>
+                                {{/ usuarios_pendientes}}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
-</div>
-<!-- End of Main Content -->
+    </div>
+    <!-- End of Main Content -->
 
-{{> footer }}
+    {{> footer }}
