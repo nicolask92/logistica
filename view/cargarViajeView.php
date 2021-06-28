@@ -72,13 +72,8 @@
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <input type="text" class="form-control" id="origenViaje"
                                name="origenViaje"    placeholder="Dirección origen">
-=======
-                        <input type="text" class="form-control" id="origenViaje" name="origenViaje"
-                            placeholder="Dirección oringen">
->>>>>>> DesarrolloFormularioEditar
                     </div>
 
                     <div class="form-group">
@@ -87,32 +82,22 @@
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <input type="date" class="form-control" id="fechaCarga"
                                name="fechaCarga" aria-describedby="fecha">
-=======
-                        <input type="date" class="form-control" id="fechaViaje" name="fechaViaje"
-                            aria-describedby="fecha">
->>>>>>> DesarrolloFormularioEditar
                         <small id="fecha" class="text-muted">
                             Fecha de carga.
                         </small>
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <input type="date" class="form-control" id="eta"
                                name="eta" aria-describedby="eta">
-=======
-                        <input type="date" class="form-control" id="etaViaje" name="etaViaje" aria-describedby="eta">
->>>>>>> DesarrolloFormularioEditar
                         <small id="eta" class="text-muted">
                             Fecha estimada de llegada.
                         </small>
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <input type="date" class="form-control" id="etd"
                         name="etd" aria-describedby="etd">
                         <small id="etd" class="text-muted">
@@ -123,15 +108,6 @@
                     <div class="form-group">
                         <input type="number" class="form-control" id="kmPrevisto"
                                name="kmPrevisto"    placeholder="Kilometros previstos">
-=======
-                        <input type="number" class="form-control" id="kmPrevistosViaje" name="kmPrevistosViaje"
-                            placeholder="Kilometros previstos">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="combustiblePrevistoViaje"
-                            name="combustiblePrevistoViaje" placeholder="Cumbustible previsto Lts">
->>>>>>> DesarrolloFormularioEditar
                     </div>
 
                     <div class="form-group">
@@ -209,21 +185,11 @@
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <select class="form-control" id="arrastradorViaje" name="arrastradorViaje">
                             <option selected >Seleccionar Arrastrador</option>
                             {{#arrastradores}}
                             <option value="{{id}}">{{tipo}}-{{patente}}</option>
                             {{/arrastradores}}
-=======
-                        <select class="form-control" id="tipoCarga" name="tipoCarga">
-                            <option selected>Seleccionar tipo de carga</option>
-                            <option value="araña">Araña</option>
-                            <option value="jaula">Jaula</option>
-                            <option value="tanque">Tanque</option>
-                            <option value="granel">Granel</option>
-                            <option value="carcarrier">CarCarrier</option>
->>>>>>> DesarrolloFormularioEditar
                         </select>
                     </div>
 
@@ -234,31 +200,17 @@
 
                     <div class="form-group">
                         <label for="hazardCarga">Hazard</label> <br>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                         <input  type="radio" name="hazardCarga" id="true" value="TRUE"> Si
 
                         <input  type="radio" name="hazardCarga" id="false" value="FALSE"> No
-=======
-                        <input type="radio" name="hazardCarga" id="si"> Si
 
-                        <input type="radio" name="hazardCarga" id="no"> No
->>>>>>> DesarrolloFormularioEditar
-=======
-                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="1"> Si
-
-                        <input  type="radio" name="hazardCarga" id="hazardCarga" value="0"> No
->>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
 
                     </div>
 
                     <div class="form-group">
                         <select class="form-control" id="imoCarga" name="imoCarga">
-<<<<<<< HEAD
                             <option selected>Seleccionar IMO Class</option>
-=======
-                            <option value="" selected >Seleccionar IMO Class</option>
->>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
                             <option value="1">Class 1</option>
                             <option value="2">Class 2</option>
                             <option value="3">Class 3</option>
@@ -278,21 +230,11 @@
                     <div class="form-group">
 
                         <label for="reeferCarga">Reefer</label> <br>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                         <input  type="radio" name="reeferCarga" id="TRUE" value="TRUE"> Si
 
                         <input  type="radio" name="reeferCarga" id="FALSE" value="FALSE"> No
-=======
-                        <input type="radio" name="reeferCarga" id="si"> Si
 
-                        <input type="radio" name="reeferCarga" id="no"> No
->>>>>>> DesarrolloFormularioEditar
-=======
-                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="1"> Si
-
-                        <input  type="radio" name="reeferCarga" id="reeferCarga" value="0"> No
->>>>>>> 71fc9a3d035e1b9a016ea1b9e345a3985453efa6
 
                     </div>
 
@@ -309,22 +251,11 @@
                     <div class="form-group">
 
                         <select class="form-control" id="choferViaje" name="choferViaje">
-<<<<<<< HEAD
 
                             <option selected >Seleccionar Chofer</option>
                             {{#choferes}}
                             <option value="{{id}}">{{nombre}} {{apellido}}</option>
                             {{/choferes}}
-=======
-                            <option selected>Seleccionar Chofer</option>
-                            <option value="1">chofer 1</option>
-                            <option value="2">chofer 2</option>
-                            <option value="3">chofer 3</option>
-                            <option value="4">chofer 4</option>
-                            <option value="5">chofer 5</option>
-                            <option value="6">chofer 6</option>
-                            <option value="7">chofer 7</option>
->>>>>>> DesarrolloFormularioEditar
                         </select>
 
                     </div>
@@ -350,8 +281,4 @@
     </div>
     <!-- End of Main Content -->
 
-<<<<<<< HEAD
 {{> footer }}
-=======
-    {{> footer }}
->>>>>>> DesarrolloFormularioEditar
