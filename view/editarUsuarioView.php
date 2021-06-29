@@ -14,7 +14,7 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-4 text-gray-800 text-center">Usuario {{user}}</h1>
             <div class="achicar">
-                <form method="post" action="/admin/procesarFormulario" enctype="multipart/form-data">
+                <form method="post" action="/usuarios/procesarFormulario" enctype="multipart/form-data">
                     <div class="form-group row">
                         <div class="col-sm-12">
                             LEGAJO:
@@ -52,7 +52,7 @@
                         </select>
                     </div>
                     <div class="form-group text-center">
-                        <a class="btn btn-danger" href="/admin">Cancelar</a>
+                        <a class="btn btn-danger" href="/usuarios">Cancelar</a>
                         <input type="hidden" name="id_usuario" value="{{id}}">
                         <button type="submit" class="btn btn-dark ml-3">Aceptar</button>
                     </div>

@@ -82,7 +82,7 @@ class Configuration{
         return new RegistroController($registerModel, $this->getRender());
     }
 
-     public function getAdminController()
+     public function getUsuariosController()
      {
         $adminModel = $this->getAdminModel();
         return new AdminController($adminModel, $this->getRender());

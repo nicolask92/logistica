@@ -43,7 +43,7 @@
                                         <th>{{legajo}}</th>
                                         <th>{{dni}}</th>
                                         <th>{{rol}}</th>
-                                        <th> <a class="btn btn-primary" href="admin/editarUsuario/id={{id}}">Editar</a>
+                                        <th> <a class="btn btn-primary" href="usuarios/editarUsuario/id={{id}}">Editar</a>
                                             <a class="btn btn-danger" data-toggle="modal"
                                                 data-target="#delete{{usuario}}Modal" href="">Borrar</a>
                                         </th>

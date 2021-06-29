@@ -13,7 +13,7 @@ class AdminController
     public function execute(){  
         $result = $this->database->obtenerTodosLosUsuarios();
         $data["users"] = $result;         
-        echo $this->render->render("view/adminView.php",$data);
+        echo $this->render->render("view/usuariosView.php",$data);
     }
 
     public function editarUsuario(){
@@ -29,11 +29,11 @@ class AdminController
 
     public function procesarFormulario(){
         $this->database->editarUsuario($_POST);
-        header("location: /admin");
+        header("location: /usuarios");
     }
 
     public function eliminarUsuario(){
         $this->database->eliminarUsuario($_GET["id"]);
-        header("location: /admin");
+        header("location: /usuarios");
     }
 }
