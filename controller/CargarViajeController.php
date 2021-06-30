@@ -91,11 +91,8 @@ class CargarViajeController
         }
         if (empty($cuit_cliente)) {
             $errores['errorCuitCliente'] = true;
-        } else {
-            if (!is_numeric($cuit_cliente)) {
-                $errores["errorCuitNumero"] = true;
-            }
         }
+
         if (empty($domicilio_cliente)) {
             $errores['errorDomicilioCliente'] = true;
         }
@@ -113,7 +110,7 @@ class CargarViajeController
                 $errores["camiones"] = $this->cargarViajeModel->buscarCamiones();
                 $errores["arrastradores"] = $this->cargarViajeModel->buscarArrastradores();
                 $errores["supervisores"] = $this->cargarViajeModel->buscarSupervisores();
-                echo $this->render->render("cargarViajeView", $errores);
+                echo $this->render->render("view/cargarViajeView.php", $errores);
             } else {
 
 
@@ -135,8 +132,7 @@ class CargarViajeController
 
                 $this->cargarViajeModel->insertCarga($tipo_carga["tipo"], $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje["id"]);
 
-                header('Location: /cargarViaje');
-
+                header('Location: /cargarViaje?cargado=true');
             }
 
         }

@@ -18,6 +18,15 @@
 
             <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
+
+            {{#cargado}}
+            <div class="alert alert-primary" role="alert">
+                Se cargo Viaje.
+            </div>
+            {{/cargado}}
+
+
+
             <div class="achicar">
                 <H3>Cliente</H3>
 
@@ -44,15 +53,22 @@
                                name="cuitCliente"  placeholder="CUIT">
                     </div>
 
+                    {{#errorCuitCliente}}<p class="text-danger">Ingrese CUIT</p>{{/errorCuitCliente}}
+
                     <div class="form-group">
                         <input type="text" class="form-control" id="domicilioCliente"
                                name="domicilioCliente"    placeholder="Domicilio">
                     </div>
 
+                    {{#errorDomicilioCliente}}<p class="text-danger">Ingrese Domicilio</p>{{/errorDomicilioCliente}}
+
                     <div class="form-group">
                         <input type="tel" class="form-control" id="telefonoCliente"
                                name="telefonoCliente"    placeholder="Teléfono">
                     </div>
+
+                    {{#errorTelCliente}}<p class="text-danger">Ingrese Teléfono</p>{{/errorTelCliente}}
+
 
                     <div class="form-group">
                         <input type="email" class="form-control" id="emailCliente"
