@@ -76,6 +76,8 @@
                                name="origenViaje"    placeholder="Dirección origen">
                     </div>
 
+                    {{#errorOrigen}}<p class="text-danger">Ingrese Origen</p>{{/errorOrigen}}
+
                     <div class="form-group">
                         <input type="text" class="form-control" id="destinoViaje" name="destinoViaje"
                             placeholder="Dirección destino">
