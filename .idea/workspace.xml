@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CargarViajeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CargarViajeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/CargarViajeModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/CargarViajeModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/cargarViajeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarViajeView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
