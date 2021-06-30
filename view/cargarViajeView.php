@@ -26,10 +26,15 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <input type="text" class="form-control" name="nombreCliente"
                                    id="nombreCliente" placeholder="Nombre">
+
+                            {{#errorNombreCliente}}<p class="text-danger">Ingrese nombre</p>{{/errorNombreCliente}}
                         </div>
+
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="apellidoCliente"
                                    name="apellidoCliente" placeholder="Apellido">
+
+                            {{#errorApellidoCliente}}<p class="text-danger">Ingrese apellido</p>{{/errorApellidoCliente}}
                         </div>
 
                     </div>
@@ -65,12 +70,15 @@
                                name="origenViaje"    placeholder="Dirección origen">
                     </div>
 
-                    {{#errorOrigen}}<p class="text-danger">Ingrese Origen</p>{{/errorOrigen}}
+                    {{#errorOrigen}}<p class="text-danger">Ingrese Dirección de origen</p>{{/errorOrigen}}
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="destinoViaje"
                                name="destinoViaje"    placeholder="Dirección destino">
                     </div>
+
+                    {{#errorDestino}}<p class="text-danger">Ingrese Dirección de destino</p>{{/errorDestino}}
+
 
                     <div class="form-group">
                         <input type="date" class="form-control" id="fechaCarga"
@@ -79,6 +87,9 @@
                             Fecha de carga.
                         </small>
                     </div>
+
+                    {{#errorFechaCarga}}<p class="text-danger">Ingrese fecha de carga</p>{{/errorFechaCarga}}
+
 
                     <div class="form-group">
                         <input type="date" class="form-control" id="eta"
@@ -143,13 +154,16 @@
 
                             <select class="form-control" id="supervisorViaje" name="supervisorViaje">
 
-                                <option selected >Seleccionar Supervisor</option>
+                                <option selected value="0" >Seleccionar Supervisor</option>
                                 {{#supervisores}}
                                 <option value="{{id}}">{{nombre}} {{apellido}} </option>
                                 {{/supervisores}}
                             </select>
 
                         </div>
+
+                        {{#errorIdSupervisor}}<p class="text-danger">Debe Seleccionar un supervisor</p>{{/errorIdSupervisor}}
+
 
                         <div>
 
@@ -162,7 +176,7 @@
 
                                 <select class="form-control" id="camionViaje" name="camionViaje">
 
-                                    <option selected >Seleccionar Camión</option>
+                                    <option selected value="0" >Seleccionar Camión</option>
                                     {{#camiones}}
                                     <option value="{{id}}">{{marca}}-{{modelo}} </option>
                                     {{/camiones}}
@@ -177,7 +191,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" id="arrastradorViaje" name="arrastradorViaje">
-                                    <option selected >Seleccionar Arrastrador</option>
+                                    <option selected value="0" >Seleccionar Arrastrador</option>
                                     {{#arrastradores}}
                                     <option value="{{id}}">{{tipo}}-{{patente}}</option>
                                     {{/arrastradores}}
@@ -239,7 +253,7 @@
 
                                 <select class="form-control" id="choferViaje" name="choferViaje">
 
-                                    <option selected >Seleccionar Chofer</option>
+                                    <option selected value="0" >Seleccionar Chofer</option>
                                     {{#choferes}}
                                     <option value="{{id}}">{{nombre}} {{apellido}}</option>
                                     {{/choferes}}
