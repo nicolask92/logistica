@@ -8,7 +8,7 @@ class AdminModel{
     }
 
     public function obtenerTodosLosUsuarios(){
-        $sql = "SELECT * FROM empleado e INNER JOIN usuario u ON e.usuario_id = u.id
+        $sql = "SELECT * FROM usuario u INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id";
         $result = $this->ejecutarConsulta($sql);
         $result = $this->convertiraArrayAsociativo($result);
@@ -65,5 +65,21 @@ class AdminModel{
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
         $this->ejecutarConsulta($sql);
+    }
+
+    public function agregarUsuario($data = array()){
+        var_dump($data);
+        
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
+       $sql = "INSERT INTO usuario (usuario,email)
+               VALUES ('$usuario','$email')";
+        $this->ejecutarConsulta($sql);
+        $sql = "INSERT INTO empleado (dni,usuario_id,id_rol)
+               VALUES ('$dni',6,'$rol')";
+        $this->ejecutarConsulta($sql);
+
+
     }
 }

@@ -38,16 +38,32 @@ class AdminController
     }
 
     public function procesarFormulario(){
-        $data = array(
-            "id" => $_POST["id_usuario"],
-            "legajo" => $_POST["legajo"],
-            "dni" => $_POST["dni"],
-            "nacimiento" => $_POST["nacimiento"],
-            "email" => $_POST["email"],
-            "rol" => $_POST["rol"]
-        );
-        $this->database->editarUsuario($data);
-        header("location: /usuarios?editar=true");
+        if (isset($_POST["btn-editar"])) {
+            $data = array(
+                "id" => $_POST["id_usuario"],
+                "legajo" => $_POST["legajo"],
+                "dni" => $_POST["dni"],
+                "nacimiento" => $_POST["nacimiento"],
+                "email" => $_POST["email"],
+                "rol" => $_POST["rol"]
+            );
+            $this->database->editarUsuario($data);    
+            
+        }
+        
+        if (isset($_POST["btn-aceptar"])) {
+            
+            $data = array(
+                "rol" => $_POST["tipoRol"],
+                "usuario" => $_POST["usuario"],
+                "email" => $_POST["email"],
+                "legajo" => $_POST["legajo"],
+                "dni" => $_POST["dni"]
+            );
+            $this->database->agregarUsuario($data);    
+                
+        }
+        
     }
 
     public function eliminarUsuario(){

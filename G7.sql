@@ -34,7 +34,7 @@ VALUE(1,"Administrativo"),
      (4,"Chofer");
 
 CREATE TABLE empleado
-(legajo tinyint primary key,
+(legajo tinyint primary key auto_increment,
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
@@ -43,12 +43,12 @@ foreign key(id_rol) references rol(id),
 foreign key(usuario_id) references usuario(id) on update cascade on delete cascade
 );
 
-INSERT into empleado(legajo, dni, fecha_nacimiento, usuario_id,id_rol)
-values(001,25634786,'20160104', 1,1),
-      (002,17601423,'20080512', 2,2),
-      (003,30345123,'20171020', 3,3),
-      (004,23053567,'20160307', 4,4),
-      (005,38670221,'19940813', 5,4);
+INSERT into empleado(dni, fecha_nacimiento, usuario_id,id_rol)
+values(25634786,'20160104', 1,1),
+      (17601423,'20080512', 2,2),
+      (30345123,'20171020', 3,3),
+      (23053567,'20160307', 4,4),
+      (38670221,'19940813', 5,4);
 
 
 CREATE TABLE administrador
