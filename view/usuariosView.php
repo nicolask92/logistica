@@ -16,6 +16,11 @@
             <!-- Page Heading -->
             <div class="achicar">
                 <!-- DataTales Example -->
+                {{# alert}}
+                <div class="{{alerta}}" role="alert">
+                    {{mensaje}}
+                </div>
+                {{/ alert}}
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h3 class="m-0 font-weight-bold text-primary">Activos</h3>
@@ -35,21 +40,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{# users }}
-
+                                    {{# users}}
                                     <tr>
                                         <th>{{usuario}}</th>
                                         <th>{{email}}</th>
                                         <th>{{legajo}}</th>
                                         <th>{{dni}}</th>
                                         <th>{{rol}}</th>
-                                        <th> <a class="btn btn-primary" href="usuarios/editarUsuario/id={{id}}">Editar</a>
+                                        <th> <a class="btn btn-primary" href="usuarios/editarUsuario/id={{usuario_id}}">Editar</a>
                                             <a class="btn btn-danger" data-toggle="modal"
                                                 data-target="#delete{{usuario}}Modal" href="">Borrar</a>
                                         </th>
                                     </tr>
-
-                                    {{/ users }}
+                                    {{/ users}}
                                 </tbody>
                             </table>
                         </div>
