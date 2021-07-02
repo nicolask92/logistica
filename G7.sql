@@ -22,21 +22,34 @@ values('admin', 'admin','admin', 'admin', 'admin@g7.com', true),
 	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com', true),
 	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com', true),
     ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com', true);
+    
+CREATE TABLE rol(
+id tinyint primary key,
+rol varchar(50)
+);
+INSERT INTO rol(id,rol) 
+VALUE(1,"Administrativo"),
+	 (2,"Supervisor"),
+	 (3,"Mecanico"),
+     (4,"Chofer");
 
 CREATE TABLE empleado
-(legajo tinyint primary key,
+(legajo tinyint primary key auto_increment,
 dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
+id_rol tinyint,
+foreign key(id_rol) references rol(id),
 foreign key(usuario_id) references usuario(id) on update cascade on delete cascade
 );
 
-INSERT into empleado(legajo, dni, fecha_nacimiento, usuario_id)
-values(001,25634786,'20160104', 1),
-      (002,17601423,'20080512', 2),
-      (003,30345123,'20171020', 3),
-      (004,23053567,'20160307', 4),
-      (005,38670221,'19940813', 5);
+INSERT into empleado(dni, fecha_nacimiento, usuario_id,id_rol)
+values(25634786,'20160104', 1,1),
+      (17601423,'20080512', 2,2),
+      (30345123,'20171020', 3,3),
+      (23053567,'20160307', 4,4),
+      (38670221,'19940813', 5,4);
+
 
 CREATE TABLE administrador
 	(id tinyint primary key,
@@ -253,3 +266,5 @@ foreign key(id_camion) references camiones(id) on update cascade on delete casca
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id) on update cascade on delete cascade
 );
+
+
