@@ -20,11 +20,11 @@
                         <div class="achicar">
                             <H3>Mecánico</H3>
 
-                            <form class="" action="">
+                            <form class="" action="POST">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control" name="legajoMecanico"
-                                            id="legajoMecanico" placeholder="Legajo">
+                                        <input type="text" class="form-control" name="idMecanico"
+                                            id="idMecanico" placeholder="Legajo">
                                     </div>
                                 </div>    
 
