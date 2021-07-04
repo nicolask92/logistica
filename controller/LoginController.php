@@ -15,17 +15,19 @@ class LoginController
     }
 
     public function execute($error = false) {
+    	$data = null;
         $sm = new SessionManager();
         if ($sm->chequearSesion()) {
             $indexController = new IndexController($this->render);
             $indexController->execute();
         } else {
+        	if(isset($_GET['cuentaActivada'])) {
+        		$data['cuentaActivada'] = true;
+        	}
             if ($error == true) {
                 $data['error'] = true;
-                echo $this->render->render("view/loginView.php", $data);
-            } else {
-                echo $this->render->render("view/loginView.php");
             }
+	        echo $this->render->render("view/loginView.php", $data);
         }
     }
 
@@ -33,14 +35,14 @@ class LoginController
         $email = $_POST["email"];
         $password = $_POST["password"];
         $usuario = $this->loginModel->buscarUsuario($email , $password);
-
+        
         if ($usuario->num_rows > 0) {
             $usuarioComoArray = $usuario->fetch_array();
             $rolUsuario = $this->loginModel->buscarRolPorIdUsuario($usuarioComoArray['id']);
-            $indexController = new IndexController($this->render);
+
             $sm = new SessionManager();
             $sm->iniciarSesion($usuarioComoArray['usuario'], $rolUsuario);
-            $indexController->execute();
+            header('location: /');
         } else {
             $this->execute(true);
         }
@@ -49,6 +51,6 @@ class LoginController
     public function cerrarSesion() {
         $sm = new SessionManager();
         $sm->cerrarSesion();
-        echo $this->render->render("view/loginView.php");
+	    header('location: /login');
     }
 }

@@ -47,10 +47,10 @@ class Mustache_Test_Loader_InlineLoaderTest extends PHPUnit_Framework_TestCase
     }
 }
 
-__halt_compiler();
+// __halt_compiler();
 
-@@ foo
-{{ foo }}
+// @@ foo
+// {{ foo }}
 
-@@ bar
-{{#bar}}BAR{{/bar}}
+// @@ bar
+// {{#bar}}BAR{{/bar}}

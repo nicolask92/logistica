@@ -16,7 +16,7 @@ class LoginModel
         $sql = "
             SELECT *
             FROM usuario
-            WHERE email ='" . $email . "' AND contraseña = '" . $password . "'";
+            WHERE email ='" . $email . "' AND contrasenia = '" . $password . "' AND estado = true";
 
         $resultado = $this->database->execute($sql);
 
@@ -24,11 +24,10 @@ class LoginModel
     }
 
     public function buscarRolPorIdUsuario($id) {
-
         $sqlAdmin = "
             SELECT *
-            FROM administrador
-            WHERE id =" . $id;
+            FROM administrador join empleado on administrador.legajo = empleado.legajo
+            WHERE administrador.id =" . $id;
 
         $resultado = $this->database->execute($sqlAdmin);
 
@@ -38,8 +37,8 @@ class LoginModel
 
         $sqlSupervisor = "
             SELECT *
-            FROM supervisor
-            WHERE id =" . $id;
+            FROM supervisor join empleado on supervisor.legajo = empleado.legajo
+            WHERE supervisor.id =" . $id;
 
         $resultado = $this->database->execute($sqlSupervisor);
 
@@ -49,8 +48,8 @@ class LoginModel
 
         $sqlChofer = "
             SELECT *
-            FROM chofer
-            WHERE id =" . $id;
+            FROM chofer join empleado on chofer.legajo = empleado.legajo
+            WHERE chofer.id =" . $id;
 
         $resultado = $this->database->execute($sqlChofer);
 
@@ -60,8 +59,8 @@ class LoginModel
 
         $sqlMecanico = "
             SELECT *
-            FROM chofer
-            WHERE id =" . $id;
+            FROM mecanico join empleado on mecanico.legajo = empleado.legajo
+            WHERE mecanico.id =" . $id;
 
         $resultado = $this->database->execute($sqlMecanico);
 
@@ -73,5 +72,3 @@ class LoginModel
     }
 
 }
-
-
