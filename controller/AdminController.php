@@ -11,29 +11,63 @@ class AdminController
     }
 
     public function execute(){  
-        $result = $this->database->obtenerTodosLosUsuarios();
-        $data["users"] = $result;         
+        $result = $this->database->obtenerTodosLosUsuarios();    
+        $data["users"] = $result;
+        if ($_GET["editar"] == true) {
+            $alert = array(
+                "alerta" => 'alert alert-success',
+                "mensaje" =>'Se edito un usuario correctamente'
+            );
+            $data["alert"] = $alert;
+        }
+        if ($_GET["borrar"] == true) {
+            $alert = array(
+                "alerta" => 'alert alert-success',
+                "mensaje" =>'Se borro un usuario correctamente'
+            );
+            $data["alert"] = $alert;
+        }
         echo $this->render->render("view/usuariosView.php",$data);
+        
     }
 
     public function editarUsuario(){
         $result = $this->database->obtenerUsuarioPorId($_GET["id"]);
-        $data["id"] = $_GET["id"];
-        $data["user"] = $result["usuario"];
-        $data["legajo"] = $result["legajo"];
-        $data["dni"] = $result["dni"];
-        $data["nac"] = $result["fecha_nacimiento"];
-        $data["email"] = $result["email"];
+        $data["user"] = $result;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 
     public function procesarFormulario(){
-        $this->database->editarUsuario($_POST);
-        header("location: /usuarios");
+        if (isset($_POST["btn-editar"])) {
+            $data = array(
+                "id" => $_POST["id_usuario"],
+                "legajo" => $_POST["legajo"],
+                "dni" => $_POST["dni"],
+                "nacimiento" => $_POST["nacimiento"],
+                "email" => $_POST["email"],
+                "rol" => $_POST["rol"]
+            );
+            $this->database->editarUsuario($data);    
+            
+        }
+        
+        if (isset($_POST["btn-aceptar"])) {
+            
+            $data = array(
+                "rol" => $_POST["tipoRol"],
+                "usuario" => $_POST["usuario"],
+                "email" => $_POST["email"],
+                "legajo" => $_POST["legajo"],
+                "dni" => $_POST["dni"]
+            );
+            $this->database->agregarUsuario($data);    
+                
+        }
+        
     }
 
     public function eliminarUsuario(){
         $this->database->eliminarUsuario($_GET["id"]);
-        header("location: /usuarios");
+        header("location: /usuarios?borrar=true");
     }
 }

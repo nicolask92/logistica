@@ -12,7 +12,9 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800 text-center">Usuario {{user}}</h1>
+            {{# user}}
+            
+            <h1 class="h3 mb-4 text-gray-800 text-center">Usuario {{usuario}}</h1>
             <div class="achicar">
                 <form method="post" action="/usuarios/procesarFormulario" enctype="multipart/form-data">
                     <div class="form-group row">
@@ -32,8 +34,8 @@
 
                     <div class="form-group">
                         FECHA DE NACIMIENTO:
-                        <input type="text" class="form-control" id="nacimiento" name="nacimiento" placeholder="{{nac}}"
-                            value={{nac}}>
+                        <input type="text" class="form-control" id="nacimiento" name="nacimiento" placeholder="{{fecha_nacimiento}}"
+                            value={{fecha_nacimiento}}>
                     </div>
 
                     <div class="form-group">
@@ -44,21 +46,21 @@
 
                     <div class="form-group">
                         <select class="form-control" id="rol" name="rol">
-                            <option selected>Seleccionar Rol</option>
-                            <option value="admin">Administrativo</option>
-                            <option value="supervisor">Supervisor</option>
-                            <option value="mecanico">Mecanico</option>
-                            <option value="chofer">Chofer</option>
+                            <option selected>Rol actual: {{rol}}</option>
+                            <option value="1">Administrativo</option>
+                            <option value="2">Supervisor</option>
+                            <option value="3">Mecanico</option>
+                            <option value="4">Chofer</option>
                         </select>
                     </div>
                     <div class="form-group text-center">
                         <a class="btn btn-danger" href="/usuarios">Cancelar</a>
-                        <input type="hidden" name="id_usuario" value="{{id}}">
+                        <input type="hidden" name="id_usuario" value="{{usuario_id}}">
                         <button type="submit" class="btn btn-dark ml-3">Aceptar</button>
                     </div>
                 </form>
             </div>
-
+            {{/ user}}
         </div>
         <!-- /.container-fluid -->
     </div>
