@@ -18,6 +18,9 @@ class CargarViajeController
         $data["camiones"] = $this->cargarViajeModel->buscarCamiones();
         $data["arrastradores"] = $this->cargarViajeModel->buscarArrastradores();
         $data["supervisores"] = $this->cargarViajeModel->buscarSupervisores();
+        if(isset($_GET["errorNombreCliente"])){
+            $data["errorNombreCliente"] = true;
+        }
         echo $this->render->render("view/cargarViajeView.php", $data);
     }
 
@@ -110,7 +113,7 @@ class CargarViajeController
                 $errores["camiones"] = $this->cargarViajeModel->buscarCamiones();
                 $errores["arrastradores"] = $this->cargarViajeModel->buscarArrastradores();
                 $errores["supervisores"] = $this->cargarViajeModel->buscarSupervisores();
-                echo $this->render->render("view/cargarViajeView.php", $errores);
+                header("Location: /cargarViaje?errorNombreCliente=true");
             } else {
 
 
