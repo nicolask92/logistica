@@ -39,8 +39,8 @@ dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
 id_rol tinyint,
-foreign key(id_rol) references rol(id),
-foreign key(usuario_id) references usuario(id) on update cascade on delete cascade
+foreign key(id_rol) references rol(id) ON UPDATE CASCADE,
+foreign key(usuario_id) references usuario(id) ON UPDATE CASCADE
 );
 
 INSERT into empleado(dni, fecha_nacimiento, usuario_id,id_rol)
@@ -54,7 +54,7 @@ values(25634786,'20160104', 1,1),
 CREATE TABLE administrador
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on update cascade on delete cascade
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
 	);
 
 INSERT into administrador(id,legajo)
@@ -63,7 +63,7 @@ values(1,001);
 CREATE TABLE supervisor
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on update cascade on delete cascade
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
 	);
 
 INSERT into supervisor(id,legajo)
@@ -73,7 +73,7 @@ CREATE TABLE chofer
 (id tinyint primary key,
 	tipo_licencia varchar(10),
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on update cascade on delete cascade, 
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE, 
 	patente varchar(10),
     estado enum('DISPONIBLE', 'EN_VIAJE')
 	);
@@ -85,7 +85,7 @@ INSERT into chofer(id,tipo_licencia, legajo, patente)
 CREATE TABLE mecanico
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) on update cascade on delete cascade
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
 	);
 
 INSERT into mecanico(id,legajo)
@@ -195,13 +195,13 @@ CREATE TABLE viaje
 	fecha_carga datetime,
 	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
     id_supervisor tinyint,
-	foreign key(id_supervisor) references supervisor(id) on update cascade on delete cascade,
+	foreign key(id_supervisor) references supervisor(id),
 	id_chofer tinyint,
-	foreign key(id_chofer) references chofer(id) on update cascade on delete cascade,
+	foreign key(id_chofer) references chofer(id) ,
 	id_camion tinyint,
-	foreign key(id_camion) references camiones(id) on update cascade on delete cascade,
+	foreign key(id_camion) references camiones(id) ,
 	id_arrastrador tinyint,
-	foreign key(id_arrastrador) references arrastrador(id) on update cascade on delete cascade
+	foreign key(id_arrastrador) references arrastrador(id) 
 	);
 
 CREATE TABLE costeo(
@@ -225,7 +225,7 @@ CREATE TABLE costeo(
     extras_real int(10),
     fee_previsto int(10),
     fee_real int(10),
-    foreign key(id_viaje) references viaje(id) on update cascade on delete cascade
+    foreign key(id_viaje) references viaje(id) 
 );
 
 
@@ -238,7 +238,7 @@ CREATE TABLE carga
  temperatura int(10),
  peso_neto varchar(15),
  id_viaje tinyint,
- foreign key(id_viaje) references viaje(id) on update cascade on delete cascade
+ foreign key(id_viaje) references viaje(id) 
 );
 
 
@@ -251,7 +251,7 @@ cuit bigint,
 direccion varchar(15),
 email varchar(150) not null,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id) on update cascade on delete cascade
+foreign key(id_viaje) references viaje(id) 
 );
 
 
@@ -262,9 +262,9 @@ costo int(15),
 tipo enum('INTERNO', 'EXTERNO'),
 repuesto_cam varchar(150),
 id_camion tinyint,
-foreign key(id_camion) references camiones(id) on update cascade on delete cascade,
+foreign key(id_camion) references camiones(id) ,
 id_mecanico tinyint,
-foreign key(id_mecanico) references mecanico(id) on update cascade on delete cascade
+foreign key(id_mecanico) references mecanico(id) 
 );
 
 
