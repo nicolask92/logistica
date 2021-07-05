@@ -7,7 +7,9 @@ include_once("model/LoginModel.php");
 include_once("model/AdminModel.php");
 include_once("model/CargarViajeModel.php");
 include_once("model/RegistroModel.php");
+include_once("model/mecanicoModel.php");
 include_once("model/ViajesModel.php");
+
 
 include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
@@ -60,6 +62,11 @@ class Configuration{
 		return new RegistroModel($database);
 	}
 
+    public function getMecanicoModel(){
+		$database = $this->getDatabase();
+		return new MecanicoModel($database);
+	}
+
     public function getRender(){
         return new Render('view/partial');
     }
@@ -81,7 +88,8 @@ class Configuration{
 
 
     public function getMecanicoController(){
-        return new MecanicoController($this->getRender());
+        $mecanicoModel = $this->getmecanicoModel();
+        return new MecanicoController($mecanicoModel, $this->getRender());
     }
 
     public function getRegistroController(){
