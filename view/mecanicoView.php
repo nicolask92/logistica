@@ -14,13 +14,17 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
+<div class="{{alerta}}" role="alert">
+{{mensaje}}
+</div>
+                        
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800 text-center">Datos del mantenimiento</h1>
 
                         <div class="achicar">
                             <H3>Mecánico</H3>
 
-                            <form class="" action="POST">
+                            <form method="POST" enctype="multipart/form-data" action="mecanico/procesarMantenimiento">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control" name="idMecanico"
@@ -40,7 +44,7 @@
                                 
                                 <div class="form-group">
                                 <label for="select">Service</label>
-                                <select name="select" id="serviceInternoExterno" class="form-control">
+                                <select id="serviceInternoExterno" name="serviceInternoExterno" class="form-control">
                                     <option value="interno">Interno</option>
                                     <option value="externo" selected>Externo</option>
                                 </select>    
@@ -57,11 +61,6 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="repuestoCambiado"
                                         name="repuestoCambiado"    placeholder="Repuesto cambiado">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="IDvehiculo"
-                                        name="IDvehiculo"    placeholder="ID vehículo">
                                 </div>
 
                                 <div class="form-group">

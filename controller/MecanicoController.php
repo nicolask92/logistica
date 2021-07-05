@@ -3,48 +3,42 @@
 class MecanicoController
 {
     private $render;
+    private $mecanicoModel;
 
-    public function __construct($render)
+    public function __construct($mecanicoModel, $render)
     {
+        $this->mecanicoModel = $mecanicoModel;
         $this->render = $render;
     }
 
     public function execute()
     {
-        echo $this->render->render("view/mecanicoView.php");
-    }
-
-
-
-    $connect= mysql_connect("localhost","root","");
-    if(!$connect){
-        echo "No se pudo conectar con el servidor";
-    }else{
-        $g7=mysql_select_db("g7");
-        if(!$g7){
-            echo "No se encontro la base de datos";
+        if(isset($_GET["mensaje"])){
+            $array["alerta"]= "alert alert-success";
+            $array["mensaje"]= "Los datos se cargaron correctamente"; 
         }
+        
+        echo $this->render->render("view/mecanicoView.php", $array);
+        
     }
+    
 
-    $idMecanico= $_POST["idMecanico"];
-    $idVehiculo= $_POST["idVehiculo"];
-    $serviceInternoExterno= $_POST["serviceInternoExterno"];
-    $fechaService= $_POST["fechaService"];
-    $repuestoCambiado= $_POST["repuestoCambiado"];
-    $IDvehiculo= $_POST["IDvehiculo"];
-    $costoVehiculo= $_POST["costoVehiculo"];
+    public function procesarMantenimiento(){
 
-    $sql= "INSERT INTO mantenimiento VALUES ("idVehiculo",
-                                              "fechaService",
-                                              "costoVehiculo",
-                                              "serviceInternoExterno",
-                                              "repuestoCambiado",
-                                              "IDvehiculo",
-                                              "idMecanico")";
-    $ejecutar=mysql_query($sql);
-    if(!$ejecutar){
-        echo "Hubo un error";
-    }else{
-        echo "Datos guardados correctamente";
-    }                                         
+        $idMecanico= $_POST["idMecanico"];
+        $idVehiculo= $_POST["idVehiculo"];
+        $serviceInternoExterno= $_POST["serviceInternoExterno"];
+        $fechaService= $_POST["fechaService"];
+        $repuestoCambiado= $_POST["repuestoCambiado"];
+        $IDvehiculo= $_POST["IDvehiculo"];
+        $costoVehiculo= $_POST["costoVehiculo"];
+    
+        $this->mecanicoModel->insertMantenimiento($idVehiculo, $fechaService, $costoVehiculo, 
+                        $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico);
+
+         header("location:/mecanico?mensaje=true");  
+
+       
+    }
+                                         
 }
