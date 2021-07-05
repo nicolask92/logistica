@@ -1,22 +1,23 @@
 <?php
 class AdminModel{
     
-    private $database;
+    private $obj_mysql;
 
     public function __construct($obj_mysql){
-        $this->database = $obj_mysql;
+        $this->obj_mysql = $obj_mysql;
     }
 
     public function obtenerTodosLosUsuarios(){
         $sql = "SELECT * FROM usuario u INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id";
+
         $result = $this->ejecutarConsulta($sql);
         $result = $this->convertiraArrayAsociativo($result);
         return $result;
     }       
 
     private function ejecutarConsulta($sql){
-        return $this->database->execute($sql);
+        return $this->obj_mysql->execute($sql);
     }
 
     private function convertiraArrayAsociativo($result = array()){
@@ -47,17 +48,21 @@ class AdminModel{
         return $result;
     }
 
-    public function editarUsuario($data = array()){
+    public function userEdit($data){
         foreach ($data as $key => $value) {
-                $$key = $value;
+            $$key = $value;
         }
         $sql = "UPDATE empleado
-                SET empleado.legajo = '$legajo',
-                    empleado.dni = '$dni',
-                    empleado.fecha_nacimiento = '$nacimiento',
-                    empleado.email = '$email',
-                    empleado.id_rol = '$rol'
-                WHERE empleado.usuario_id = '$id'";
+                SET legajo = $legacy,
+                    dni = $dni,
+                    fecha_nacimiento = '$nacimiento',
+                    id_rol = '$rol'
+                WHERE usuario_id = $id_usuario";
+        $this->ejecutarConsulta($sql);
+        
+        $sql = "UPDATE usuario
+                SET email = '$email'
+                WHERE id = $id_usuario";
         $this->ejecutarConsulta($sql);
     }
     
@@ -68,16 +73,15 @@ class AdminModel{
     }
 
     public function agregarUsuario($data = array()){
-        var_dump($data);
-        
-        foreach ($data as $key => $value) {
+            foreach ($data as $key => $value) {
             $$key = $value;
         }
-       $sql = "INSERT INTO usuario (usuario,email)
+        $sql = "INSERT INTO usuario (usuario,email)
                VALUES ('$usuario','$email')";
         $this->ejecutarConsulta($sql);
+        
         $sql = "INSERT INTO empleado (dni,usuario_id,id_rol)
-               VALUES ('$dni',6,'$rol')";
+               VALUES ('$dni',6,'$tipoRol')";
         $this->ejecutarConsulta($sql);
 
 

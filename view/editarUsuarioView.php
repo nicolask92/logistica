@@ -20,7 +20,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             LEGAJO:
-                            <input type="text" class="form-control" id="legajo" name="legajo" placeholder="{{legajo}}"
+                            <input type="text" class="form-control" id="legajo" name="legacy" placeholder="{{legajo}}"
                                 value={{legajo}}>
                         </div>
 
@@ -29,7 +29,7 @@
                     <div class="form-group">
                         DNI:
                         <input type="Number" class="form-control" id="dni" name="dni" placeholder="{{dni}}"
-                            value="{{dni}}">
+                            value={{dni}}>
                     </div>
 
                     <div class="form-group">
@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <select class="form-control" id="rol" name="rol">
-                            <option selected>Rol actual: {{rol}}</option>
+                            <option value="{{id_rol}}"selected>Rol Actual: {{rol}}</option>
                             <option value="1">Administrativo</option>
                             <option value="2">Supervisor</option>
                             <option value="3">Mecanico</option>
@@ -56,7 +56,7 @@
                     <div class="form-group text-center">
                         <a class="btn btn-danger" href="/usuarios">Cancelar</a>
                         <input type="hidden" name="id_usuario" value="{{usuario_id}}">
-                        <button type="submit" class="btn btn-dark ml-3">Aceptar</button>
+                        <input type="submit" class="btn btn-dark ml-3" name="btn-editar" value="Aceptar"></input>
                     </div>
                 </form>
             </div>
