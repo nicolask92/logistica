@@ -7,6 +7,7 @@ include_once("model/LoginModel.php");
 include_once("model/AdminModel.php");
 include_once("model/CargarViajeModel.php");
 include_once("model/RegistroModel.php");
+include_once("model/ViajesModel.php");
 
 include_once("controller/IndexController.php");
 include_once("controller/CargarViajeController.php");
@@ -49,6 +50,11 @@ class Configuration{
         return new CargarViajeModel($database);
     }
 
+    public function getViajesModel(){
+            $database = $this->getDatabase();
+            return new ViajesModel($database);
+        }
+
 	public function getRegisterModel(){
 		$database = $this->getDatabase();
 		return new RegistroModel($database);
@@ -59,7 +65,8 @@ class Configuration{
     }
 
     public function getIndexController(){
-        return new IndexController($this->getRender());
+        $viajesModel = $this->getViajesModel();
+        return new IndexController($viajesModel, $this->getRender());
     }
 
     public function getCargarViajeController(){
