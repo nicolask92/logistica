@@ -18,8 +18,7 @@ class LoginController
     	$data = null;
         $sm = new SessionManager();
         if ($sm->chequearSesion()) {
-            $indexController = new IndexController($this->render);
-            $indexController->execute();
+			header('location: /home');
         } else {
         	if(isset($_GET['cuentaActivada'])) {
         		$data['cuentaActivada'] = true;

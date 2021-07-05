@@ -9,7 +9,7 @@ class MysqlDatabase{
             $username,
             $password,
             $dbname,
-            3306
+            3307
         );
 
         if ($conn->connect_errno) {
