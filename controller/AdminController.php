@@ -3,37 +3,58 @@
 class AdminController
 {
     private $render;
-    private $database;
+    private $obj_database;
 
     public function __construct($adminModel, $render){
         $this->render = $render;
-        $this->database = $adminModel;
+        $this->obj_database = $adminModel;
     }
 
-    public function execute(){  
-        $result = $this->database->obtenerTodosLosUsuarios();
-        $data["users"] = $result;         
+    public function execute($mensajes = null){  
+        $result = $this->obj_database->obtenerTodosLosUsuarios();    
+        $data["users"] = $result;
+        if ($mensajes == true) {
+            $alert = array(
+                "alerta" => 'alert alert-success',
+                "mensaje" =>'Se edito un usuario correctamente'
+            );
+            $data["alert"] = $alert;
+        }
+        if (isset($_GET["borrar"])) {
+            $alert = array(
+                "alerta" => 'alert alert-success',
+                "mensaje" =>'Se borro un usuario correctamente'
+            );
+            $data["alert"] = $alert;
+        }
         echo $this->render->render("view/usuariosView.php",$data);
+        
     }
 
     public function editarUsuario(){
-        $result = $this->database->obtenerUsuarioPorId($_GET["id"]);
-        $data["id"] = $_GET["id"];
-        $data["user"] = $result["usuario"];
-        $data["legajo"] = $result["legajo"];
-        $data["dni"] = $result["dni"];
-        $data["nac"] = $result["fecha_nacimiento"];
-        $data["email"] = $result["email"];
+        $usuario = $this->obj_database->obtenerUsuarioPorId($_GET["id"]);
+        print_r($usuario);
+        $data["user"] = $usuario;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 
     public function procesarFormulario(){
-        $this->database->editarUsuario($_POST);
-        header("location: /usuarios");
+        $data = array(
+            "legacy" => $_POST["legacy"],
+            "dni" => $_POST["dni"],
+            "nacimiento" => $_POST["nacimiento"],
+            "email" => $_POST["email"],
+            "rol" => $_POST["rol"],
+            "id_usuario" => $_POST["id_usuario"]
+
+        );
+        $this->obj_database->userEdit($data);
+        $editar = true;
+        return $this->execute($editar);
     }
 
     public function eliminarUsuario(){
-        $this->database->eliminarUsuario($_GET["id"]);
-        header("location: /usuarios");
+        $this->obj_database->eliminarUsuario($_GET["id"]);
+        header("location: /usuarios?borrar=true");
     }
 }

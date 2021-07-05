@@ -34,46 +34,47 @@
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <input type="text" class="form-control" name="nombreCliente"
-                                   id="nombreCliente" placeholder="Nombre">
+                                   id="nombreCliente" placeholder="Nombre" value="{{nombreCliente}}">
 
-                            {{#errorNombreCliente}}<p class="text-danger">Ingrese nombre</p>{{/errorNombreCliente}}
+                            {{#errorNombreCliente}}<p class="text-danger">Ingresar nombre</p>{{/errorNombreCliente}}
                         </div>
 
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="apellidoCliente"
-                                   name="apellidoCliente" placeholder="Apellido">
+                                   name="apellidoCliente" placeholder="Apellido" value="{{apellidoCliente}}">
 
-                            {{#errorApellidoCliente}}<p class="text-danger">Ingrese apellido</p>{{/errorApellidoCliente}}
+                            {{#errorApellidoCliente}}<p class="text-danger">Ingresar apellido</p>{{/errorApellidoCliente}}
                         </div>
 
                     </div>
 
                     <div class="form-group">
                         <input type="Number" class="form-control" id="cuitCliente"
-                               name="cuitCliente"  placeholder="CUIT">
+                               name="cuitCliente"  placeholder="CUIT" value="{{cuitCliente}}">
                     </div>
 
-                    {{#errorCuitCliente}}<p class="text-danger">Ingrese CUIT</p>{{/errorCuitCliente}}
+                    {{#errorCuitCliente}}<p class="text-danger">Ingresar CUIT</p>{{/errorCuitCliente}}
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="domicilioCliente"
-                               name="domicilioCliente"    placeholder="Domicilio">
+                               name="domicilioCliente"    placeholder="Domicilio" value="{{domicilioCliente}}">
                     </div>
 
-                    {{#errorDomicilioCliente}}<p class="text-danger">Ingrese Domicilio</p>{{/errorDomicilioCliente}}
+                    {{#errorDomicilioCliente}}<p class="text-danger">Ingresar Domicilio</p>{{/errorDomicilioCliente}}
 
                     <div class="form-group">
                         <input type="tel" class="form-control" id="telefonoCliente"
-                               name="telefonoCliente"    placeholder="Teléfono">
+                               name="telefonoCliente"    placeholder="Teléfono" value="{{telCliente}}">
                     </div>
 
-                    {{#errorTelCliente}}<p class="text-danger">Ingrese Teléfono</p>{{/errorTelCliente}}
+                    {{#errorTelCliente}}<p class="text-danger">Ingresar Teléfono</p>{{/errorTelCliente}}
 
 
                     <div class="form-group">
                         <input type="email" class="form-control" id="emailCliente"
-                               name="emailCliente"    placeholder="Email">
+                               name="emailCliente"    placeholder="Email" value="{{emailCliente}}">
                     </div>
+                    {{#errorEmailCliente}}<p class="text-danger">Ingresar Email</p>{{/errorEmailCliente}}
 
 
                     <div>
@@ -83,81 +84,92 @@
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="origenViaje"
-                               name="origenViaje"    placeholder="Dirección origen">
+                               name="origenViaje"    placeholder="Dirección origen" value="{{origen}}">
                     </div>
 
-                    {{#errorOrigen}}<p class="text-danger">Ingrese Dirección de origen</p>{{/errorOrigen}}
+                    {{#errorOrigen}}<p class="text-danger">Ingresar Dirección de origen</p>{{/errorOrigen}}
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="destinoViaje"
-                               name="destinoViaje"    placeholder="Dirección destino">
+                               name="destinoViaje"    placeholder="Dirección destino" value="{{destino}}">
                     </div>
 
-                    {{#errorDestino}}<p class="text-danger">Ingrese Dirección de destino</p>{{/errorDestino}}
+                    {{#errorDestino}}<p class="text-danger">Ingresar Dirección de destino</p>{{/errorDestino}}
 
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="fechaCarga"
-                               name="fechaCarga" aria-describedby="fecha">
+                        <input type="datetime-local" class="form-control" id="fechaCarga"
+                               name="fechaCarga" aria-describedby="fecha" value="{{fechaCarga}}">
                         <small id="fecha" class="text-muted">
                             Fecha de carga.
                         </small>
                     </div>
 
-                    {{#errorFechaCarga}}<p class="text-danger">Ingrese fecha de carga</p>{{/errorFechaCarga}}
+                    {{#errorFechaCarga}}<p class="text-danger">Ingresar fecha de carga</p>{{/errorFechaCarga}}
 
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="eta"
-                               name="eta" aria-describedby="eta">
+                        <input type="datetime-local" class="form-control" id="eta"
+                               name="eta" aria-describedby="eta" value="{{eta}}">
                         <small id="eta" class="text-muted">
                             Fecha estimada de llegada.
                         </small>
                     </div>
+                    {{#errorETA}}<p class="text-danger">Ingresar fecha estimada de llegada</p>{{/errorETA}}
+
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="etd"
-                               name="etd" aria-describedby="etd">
+                        <input type="datetime-local" class="form-control" id="etd"
+                               name="etd" aria-describedby="etd" value="{{etd}}">
                         <small id="etd" class="text-muted">
                             Fecha estimada de salida.
                         </small>
                     </div>
+                    {{#errorETD}}<p class="text-danger">Ingresar fecha estimada de salida</p>{{/errorETD}}
 
                     <div class="form-group">
                         <input type="number" class="form-control" id="kmPrevisto"
-                               name="kmPrevisto"    placeholder="Kilometros previstos">
+                               name="kmPrevisto"    placeholder="Kilometros previstos" value="{{kmPrevisto}}">
                     </div>
+                    {{#errorKmPrevisto}}<p class="text-danger">Ingresar Kilometros previstos</p>{{/errorKmPrevisto}}
 
                     <div class="form-group">
                         <input type="number" class="form-control" id="combustiblePrevisto"
-                               name="combustiblePrevisto"    placeholder="Cumbustible previsto Lts">
+                               name="combustiblePrevisto"    placeholder="Cumbustible previsto Lts" value={{combustiblePrevisto}}>
                     </div>
+                    {{#errorCombustiblePrevisto}}<p class="text-danger">Ingresar combustible previsto</p>{{/errorCombustiblePrevisto}}
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="viaticosPrevisto"
-                               name="viaticosPrevisto"    placeholder="Viáticos Previstos">
+                        <input type="number" class="form-control" id="viaticosPrevisto"
+                               name="viaticosPrevisto"    placeholder="Viáticos Previstos" value={{viaticosPrevisto}}>
                     </div>
+                    {{#errorViaticosPrevisto}}<p class="text-danger">Ingresar viaticos previstos</p>{{/errorViaticosPrevisto}}
+
                     <div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="peajesPrevisto"
-                                   name="peajesPrevisto"    placeholder="Peajes Previstos">
+                            <input type="number" class="form-control" id="peajesPrevisto"
+                                   name="peajesPrevisto"    placeholder="Peajes Previstos" value={{peajesPrevisto}}>
                         </div>
+                        {{#errorPeajesPrevisto}}<p class="text-danger">Ingresar peajes previstos</p>{{/errorPeajesPrevisto}}
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="pesajesPrevisto"
-                                   name="pesajesPrevisto"    placeholder="Pesajes Previstos">
+                            <input type="number" class="form-control" id="pesajesPrevisto"
+                                   name="pesajesPrevisto"    placeholder="Pesajes Previstos" value={{pesajesPrevisto}}>
                         </div>
+                        {{#errorPesajesPrevisto}}<p class="text-danger">Ingresar pesajes previstos</p>{{/errorPesajesPrevisto}}
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="extrasPrevisto"
-                                   name="extrasPrevisto"    placeholder="Extras Previstos">
+                            <input type="number" class="form-control" id="extrasPrevisto"
+                                   name="extrasPrevisto"    placeholder="Extras Previstos" value={{extrasPrevisto}}>
                         </div>
+                        {{#errorExtrasPrevisto}}<p class="text-danger">Ingresar extras previstos</p>{{/errorExtrasPrevisto}}
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="feePrevisto"
-                                   name="feePrevisto"    placeholder="Fee Previsto">
+                            <input type="number" class="form-control" id="feePrevisto"
+                                   name="feePrevisto"    placeholder="Fee Previsto" value={{feePrevisto}}>
                         </div>
+                        {{#errorFeePrevisto}}<p class="text-danger">Ingresar fee previstos</p>{{/errorFeePrevisto}}
 
 
                         <div>
@@ -197,6 +209,8 @@
                                     <option value="{{id}}">{{marca}}-{{modelo}} </option>
                                     {{/camiones}}
                                 </select>
+                                {{#errorIdCamion}}<p class="text-danger">Debe Seleccionar un Camión</p>{{/errorIdCamion}}
+
 
                             </div>
 
@@ -212,12 +226,15 @@
                                     <option value="{{id}}">{{tipo}}-{{patente}}</option>
                                     {{/arrastradores}}
                                 </select>
+                                {{#errorIdArrastrador}}<p class="text-danger">Debe Seleccionar un Arrastrador</p>{{/errorIdArrastrador}}
+
                             </div>
 
                             <div class="form-group">
                                 <input type="number" class="form-control" id="pesoCarga"
-                                       name="pesoCarga"    placeholder="Peso neto de la carga">
+                                       name="pesoCarga"    placeholder="Peso neto de la carga" value={{pesoCarga}}>
                             </div>
+                            {{#errorPesoCarga}}<p class="text-danger">Ingresar peso neto</p>{{/errorPesoCarga}}
 
                             <div class="form-group">
                                 <label for="hazardCarga">Hazard</label> <br>
@@ -226,6 +243,7 @@
                                 <input  type="radio" name="hazardCarga" id="hazardCarga" value="0"> No
 
                             </div>
+                            {{#errorHazardCarga}}<p class="text-danger">Debe Seleccionar Hazard</p>{{/errorHazardCarga}}
 
                             <div class="form-group">
                                 <select class="form-control" id="imoCarga" name="imoCarga">
@@ -245,6 +263,7 @@
                                     <option value="9">Class 9</option>
                                 </select>
                             </div>
+                            {{#errorImoCarga}}<p class="text-danger">Debe Seleccionar Imo Class</p>{{/errorImoCarga}}
 
                             <div class="form-group">
 
@@ -254,11 +273,14 @@
                                 <input  type="radio" name="reeferCarga" id="reeferCarga" value="0"> No
 
                             </div>
+                            {{#errorReeferCarga}}<p class="text-danger">Debe Seleccionar Reefer</p>{{/errorReeferCarga}}
+
 
                             <div class="form-group">
                                 <input type="number" class="form-control" id="temperaturaCarga"
-                                       name="temperaturaCarga"    placeholder="Temperatura de la carga">
+                                       name="temperaturaCarga"    placeholder="Temperatura de la carga" value={{temperaturaCarga}}>
                             </div>
+                            {{#errorTemperaturaCarga}}<p class="text-danger">Ingresar temperatura</p>{{/errorTemperaturaCarga}}
 
                             <div>
                                 <hr class="sidebar-divider mt-4">
@@ -274,6 +296,7 @@
                                     <option value="{{id}}">{{nombre}} {{apellido}}</option>
                                     {{/choferes}}
                                 </select>
+                                {{#errorIdChofer}}<p class="text-danger">Debe Seleccionar un Chofer</p>{{/errorIdChofer}}
 
                             </div>
 
