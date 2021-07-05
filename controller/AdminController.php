@@ -20,7 +20,7 @@ class AdminController
             );
             $data["alert"] = $alert;
         }
-        if ($_GET["borrar"] == true) {
+        if (isset($_GET["borrar"])) {
             $alert = array(
                 "alerta" => 'alert alert-success',
                 "mensaje" =>'Se borro un usuario correctamente'
