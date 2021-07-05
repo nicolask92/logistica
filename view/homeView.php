@@ -58,8 +58,8 @@
                                 <td>{{destino}}</td>
                                 <td>{{fecha_carga}}</td>
                                 <td>{{estado}}</td>
-                                <td>{{id_supervisor}}</td>
-                                <td>{{id_chofer}}</td>
+                                <td>{{nombreSupervisor}} {{apellidoSupervisor}}</td>
+                                <td>{{nombreChofer}} {{apellidoChofer}}</td>
                             </tr>
                             {{/viajes}}
                             </tbody>
