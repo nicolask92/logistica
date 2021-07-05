@@ -13,6 +13,12 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+            {{#viajeCargado}}
+            <div class="alert alert-primary" role="alert">
+                Se cargo Viaje Correctamente.
+            </div>
+            {{/viajeCargado}}
+
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">

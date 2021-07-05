@@ -12,7 +12,15 @@ class IndexController
 
     public function execute()
     {
-      echo $this->render->render("view/homeView.php");
+      if (isset($_GET["cargado"])){
+
+          $data["viajeCargado"] = true;
+
+      }
+
+      
+
+      echo $this->render->render("view/homeView.php", $data);
     }
 
 
