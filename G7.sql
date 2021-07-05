@@ -1,4 +1,3 @@
-
 drop schema if exists G7;
 create database G7;
 
@@ -266,5 +265,3 @@ foreign key(id_camion) references camiones(id) ,
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id) 
 );
-
-
