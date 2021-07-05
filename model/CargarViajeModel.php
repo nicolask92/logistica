@@ -82,8 +82,8 @@ class CargarViajeModel
                                   $tel_cliente, $email_cliente, $id_viaje){
 
         $sql = "INSERT INTO cliente( `nombre`, `apellido`, `telefono`, `cuit`, `direccion`, `email`, `id_viaje`) 
-                VALUES ('$nombre_cliente','$apellido_cliente','$cuit_cliente','$domicilio_cliente',
-                        '$tel_cliente',' $email_cliente','$id_viaje')";
+                VALUES ('$nombre_cliente','$apellido_cliente','$tel_cliente','$cuit_cliente','$domicilio_cliente',
+                        ' $email_cliente','$id_viaje')";
 
         $this->database->execute($sql);
 
