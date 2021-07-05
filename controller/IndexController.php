@@ -18,8 +18,9 @@ class IndexController
       if (isset($_GET["cargado"])){
 
           $data["viajeCargado"] = true;
-
       }
+
+      $data["viajes"] = $this->viajesModel->getViajes();
 
       echo $this->render->render("view/homeView.php", $data);
 

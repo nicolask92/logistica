@@ -23,66 +23,39 @@
                         <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Cliente</th>
-                                <th>Vehiculo</th>
+                                <th>ID</th>
                                 <th>Origen</th>
                                 <th>Destino</th>
-                                <th>Tipo de carga</th>
-                                <th>Chofer</th>
+                                <th>Fecha de carga</th>
                                 <th>Estado</th>
-                                <th>Partida</th>
-                                <th>Arribo</th>
-                                <th>Tiempo estimado de viaje</th>
-                                <th>Tiempo real</th>
-                                <th>Desviacion</th>
-                                <th>Km recorridos previstos</th>
-                                <th>Km recorridos reales</th>
-                                <th>Combustible previsto consumido</th>
-                                <th>Combustible real consumido</th>
-                                <th>Ubicación</th>
+                                <th>Supervisor</th>
+                                <th>Chofer</th>
+
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Cliente</th>
-                                <th>Vehiculo</th>
+                                <th>ID</th>
                                 <th>Origen</th>
                                 <th>Destino</th>
-                                <th>Tipo de carga</th>
-                                <th>Chofer</th>
+                                <th>Fecha de carga</th>
                                 <th>Estado</th>
-                                <th>Partida</th>
-                                <th>Arribo Estimado</th>
-                                <th>Tiempo estimado de viaje</th>
-                                <th>Tiempo real</th>
-                                <th>Desviacion</th>
-                                <th>Km recorridos previstos</th>
-                                <th>Km recorridos reales</th>
-                                <th>Combustible previsto consumido</th>
-                                <th>Combustible real consumido</th>
-                                <th>Ubicación</th>
+                                <th>Supervisor</th>
+                                <th>Chofer</th>
                             </tr>
                             </tfoot>
                             <tbody>
+                            {{#viajes}}
                             <tr>
-                                <td>Cliente 1</td>
-                                <td>AB-123-CD</td>
-                                <td>Buenos Aires</td>
-                                <td>Puerto Alegre</td>
-                                <td>Plasticos</td>
-                                <td>Juan Carlos Pezzoa</td>
-                                <td>En curso</td>
-                                <td>12/06/2021 13:00</td>
-                                <td>13/06/2021 21:00</td>
-                                <td>32hs</td>
-                                <td>20hs</td>
-                                <td>Sin desviacion</td>
-                                <td>800km</td>
-                                <td>650km</td>
-                                <td>50L</td>
-                                <td>20L</td>
-                                <td><a href="admin">Ver mapa</a></td>
+                                <td>{{id}}</td>
+                                <td>{{origen}}</td>
+                                <td>{{destino}}</td>
+                                <td>{{fecha_carga}}</td>
+                                <td>{{estado}}</td>
+                                <td>{{id_supervisor}}</td>
+                                <td>{{id_chofer}}</td>
                             </tr>
+                            {{/viajes}}
                             </tbody>
                         </table>
                     </div>

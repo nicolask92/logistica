@@ -98,7 +98,7 @@
 
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="fechaCarga"
+                        <input type="datetime-local" class="form-control" id="fechaCarga"
                                name="fechaCarga" aria-describedby="fecha" value="{{fechaCarga}}">
                         <small id="fecha" class="text-muted">
                             Fecha de carga.
@@ -109,7 +109,7 @@
 
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="eta"
+                        <input type="datetime-local" class="form-control" id="eta"
                                name="eta" aria-describedby="eta" value="{{eta}}">
                         <small id="eta" class="text-muted">
                             Fecha estimada de llegada.
@@ -119,7 +119,7 @@
 
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="etd"
+                        <input type="datetime-local" class="form-control" id="etd"
                                name="etd" aria-describedby="etd" value="{{etd}}">
                         <small id="etd" class="text-muted">
                             Fecha estimada de salida.
