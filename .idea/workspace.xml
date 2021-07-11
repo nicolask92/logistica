@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CargarViajeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CargarViajeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/ChoferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ChoferController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/DetalleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/DetalleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper/SessionManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/SessionManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/cargarViajeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarViajeView.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/partial/barraLateral.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/barraLateral.mustache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/partial/header.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/header.mustache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/verQrView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/verQrView.php" afterDir="false" />
@@ -76,6 +79,7 @@
       <workItem from="1625349922644" duration="407000" />
       <workItem from="1625523078793" duration="927000" />
       <workItem from="1625526049839" duration="1715000" />
+      <workItem from="1626027635325" duration="2790000" />
       <workItem from="1625942219913" duration="6208000" />
       <workItem from="1626022022601" duration="8858000" />
     </task>

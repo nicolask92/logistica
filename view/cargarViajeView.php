@@ -248,19 +248,19 @@
                             <div class="form-group">
                                 <select class="form-control" id="imoCarga" name="imoCarga">
                                     <option value="" selected >Seleccionar IMO Class</option>
-                                    <option value="1">Class 1</option>
-                                    <option value="2">Class 2</option>
-                                    <option value="3">Class 3</option>
-                                    <option value="41">Class 4.1</option>
-                                    <option value="42">Class 4.2</option>
-                                    <option value="43">Class 4.3</option>
-                                    <option value="51">Class 5.1</option>
-                                    <option value="52">Class 5.2</option>
-                                    <option value="61">Class 6.1</option>
-                                    <option value="62">Class 6.2</option>
-                                    <option value="7">Class 7</option>
-                                    <option value="8">Class 8</option>
-                                    <option value="9">Class 9</option>
+                                    <option value="Class 1">Class 1</option>
+                                    <option value="Class 2">Class 2</option>
+                                    <option value="Class">Class 3</option>
+                                    <option value="Class 4.1">Class 4.1</option>
+                                    <option value="Class 4.2">Class 4.2</option>
+                                    <option value="Class 4.3">Class 4.3</option>
+                                    <option value="Class 5.1">Class 5.1</option>
+                                    <option value="Class 5.2">Class 5.2</option>
+                                    <option value="Class 6.1">Class 6.1</option>
+                                    <option value="Class 6.2">Class 6.2</option>
+                                    <option value="Class 7">Class 7</option>
+                                    <option value="Class 8">Class 8</option>
+                                    <option value="Class 9">Class 9</option>
                                 </select>
                             </div>
                             {{#errorImoCarga}}<p class="text-danger">Debe Seleccionar Imo Class</p>{{/errorImoCarga}}

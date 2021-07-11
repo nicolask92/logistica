@@ -24,7 +24,7 @@
                     <div id="mapa" style="width:500px; height:400px;"></div>
                 </div>
                 <div class="col-md-6">
-                    
+
                 </div>
             </div>
 		<!-- /.container-fluid -->

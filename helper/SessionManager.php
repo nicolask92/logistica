@@ -6,7 +6,7 @@ class SessionManager {
 
     private $accessControl = [
         "admin" => ['login', 'registro', 'home', 'reportes', 'usuarios','editarUsuario','eliminarUsuario','cargarViaje'],
-        "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje', 'detalle'],
         "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos', 'chofer', 'reporteDiario'],
         "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
         "sinRol" => ['login', 'registro', 'home']
@@ -50,8 +50,6 @@ class SessionManager {
     }
 
     private function esUnaVistaValida($modulo) {
-    //	var_dump($modulo);
-    //	die;
 		$arrayDeVistas = array_merge(...array_values($this->accessControl));
 
 		$existeVista = in_array($modulo, $arrayDeVistas);
