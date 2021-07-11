@@ -17,6 +17,7 @@ class Render{
         $sm = new SessionManager();
         if ($sm->chequearSesion()) {
             $data[$_SESSION['rol']] = true;
+            $data['nombreCompleto'] = $_SESSION['nombreCompleto'];
         }
         $contentAsString =  file_get_contents($contentFile);
         return  $this->mustache->render($contentAsString, $data);

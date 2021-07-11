@@ -4,7 +4,7 @@ class MysqlDatabase{
     private $connection;
 
     public function __construct($servername, $username, $password, $dbname){
-        $conn = new mysqli(
+	    @$conn = new mysqli(
             $servername,
             $username,
             $password,
@@ -13,7 +13,16 @@ class MysqlDatabase{
         );
 
         if ($conn->connect_errno) {
-            die("Connection failed: " . $conn->connect_error);
+	        $conn = new mysqli(
+		        $servername,
+		        $username,
+		        $password,
+		        $dbname,
+		        3307
+	        );
+	        if ($conn->connect_errno) {
+		        die("Connection failed: " . $conn->connect_error);
+	        }
         }
         $this->connection = $conn;
     }
@@ -24,7 +33,6 @@ class MysqlDatabase{
     }
 
     public function execute($sql){
-        $result = $this->connection->query($sql);
-        return $result;
+	    return $this->connection->query($sql);
     }
 }
