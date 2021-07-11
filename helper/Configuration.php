@@ -10,6 +10,7 @@ include_once("model/RegistroModel.php");
 include_once("model/mecanicoModel.php");
 include_once("model/ViajesModel.php");
 include_once("model/DetalleModel.php");
+include_once("model/ChoferModel.php");
 
 
 include_once("controller/IndexController.php");
@@ -18,6 +19,7 @@ include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
 include_once("controller/MecanicoController.php");
 include_once("controller/RegistroController.php");
+include_once("controller/ChoferController.php");
 include_once("controller/AccessDeniedY404Controller.php");
 include_once("controller/DetalleController.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
@@ -74,6 +76,11 @@ class Configuration{
 		return new MecanicoModel($database);
 	}
 
+	public function getChoferModel(){
+		$database = $this->getDatabase();
+		return new ChoferModel($database);
+	}
+
     public function getRender(){
         return new Render('view/partial');
     }
@@ -108,6 +115,11 @@ class Configuration{
 	    $registerModel = $this->getRegisterModel();
         return new RegistroController($registerModel, $this->getRender());
     }
+
+	public function getChoferController(){
+		$choferModel = $this->getChoferModel();
+		return new ChoferController($choferModel, $this->getRender());
+	}
 
      public function getUsuariosController()
      {

@@ -29,25 +29,26 @@
                         <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Fecha de carga</th>
-                                <th>Estado</th>
-                                <th>Supervisor</th>
-                                <th>Chofer</th>
-
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Origen</th>
+                                <th class="text-center">Destino</th>
+                                <th class="text-center">Fecha de carga</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Supervisor</th>
+                                <th class="text-center">Chofer</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Fecha de carga</th>
-                                <th>Estado</th>
-                                <th>Supervisor</th>
-                                <th>Chofer</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Origen</th>
+                                <th class="text-center">Destino</th>
+                                <th class="text-center">Fecha de carga</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Supervisor</th>
+                                <th class="text-center">Chofer</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -60,6 +61,10 @@
                                 <td>{{estado}}</td>
                                 <td>{{nombreSupervisor}} {{apellidoSupervisor}}</td>
                                 <td>{{nombreChofer}} {{apellidoChofer}}</td>
+                                <td class="text-center">
+                                    <a href="/cargarViaje/descargarPDF/{{id}}" target=_blank type="button" class="btn btn-primary">DESCARGAR PDF</a>
+                                    <a href="/chofer?id={{id}}" type="button" class="btn btn-secondary">QR</a>
+                                </td>
                             </tr>
                             {{/viajes}}
                             </tbody>
