@@ -20,6 +20,7 @@
                         Codigo QR para: {{nombreCompleto}}
                     </div>
                     <div class="card-body">
+                        <h5 class="card-title">Con el siguiente codigo va a poder cargar el reporte diario.</h5>
                         <div class="container-fluid">
                             <img class="img-fluid" src="{{urlQr}}" alt="qr viaje"/>
                         </div>

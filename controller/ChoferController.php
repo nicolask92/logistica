@@ -28,7 +28,13 @@ class ChoferController
 	}
 
 	public function reporteDiario() {
+		$data['mapa'] = true;
+		echo $this->render->render("view/cargarReporteView.php", $data);
+	}
 
+	public function procesarReporteDiario() {
+
+		echo $this->render->render("view/verQrView.php");
 	}
 
 }

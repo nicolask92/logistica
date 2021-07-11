@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_19_05__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_19_05__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CargarViajeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CargarViajeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/Render.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Render.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/ChoferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ChoferController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper/SessionManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/SessionManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/homeView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/homeView.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/partial/barraLateral.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/barraLateral.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/partial/barraTop.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/barraTop.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/partial/header.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/header.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/verQrView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/verQrView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +77,7 @@
       <workItem from="1625523078793" duration="927000" />
       <workItem from="1625526049839" duration="1715000" />
       <workItem from="1625942219913" duration="6208000" />
-      <workItem from="1626022022601" duration="5371000" />
+      <workItem from="1626022022601" duration="8858000" />
     </task>
     <servers />
   </component>
