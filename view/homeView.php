@@ -62,7 +62,8 @@
                                 <td>{{nombreSupervisor}} {{apellidoSupervisor}}</td>
                                 <td>{{nombreChofer}} {{apellidoChofer}}</td>
                                 <td class="text-center">
-                                    <a href="/cargarViaje/descargarPDF/{{id}}" target=_blank type="button" class="btn btn-primary">DESCARGAR PDF</a>
+                                    <a href="/detalle?id={{id}}" target=_blank type="button" class="btn btn-primary">Detalle</a>
+                                    <a href="/cargarViaje/descargarPDF/{{id}}" target=_blank type="button" class="btn btn-primary">PDF</a>
                                     <a href="/chofer?id={{id}}" type="button" class="btn btn-secondary">QR</a>
                                 </td>
                             </tr>
