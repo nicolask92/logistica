@@ -6,7 +6,7 @@ class SessionManager {
 
     private $accessControl = [
         "admin" => ['login', 'registro', 'home', 'reportes', 'usuarios','editarUsuario','eliminarUsuario','cargarViaje'],
-        "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje', 'detalle'],
         "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos'],
         "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
         "sinRol" => ['login', 'registro', 'home']

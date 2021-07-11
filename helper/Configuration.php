@@ -9,6 +9,7 @@ include_once("model/CargarViajeModel.php");
 include_once("model/RegistroModel.php");
 include_once("model/mecanicoModel.php");
 include_once("model/ViajesModel.php");
+include_once("model/DetalleModel.php");
 
 
 include_once("controller/IndexController.php");
@@ -18,6 +19,7 @@ include_once("controller/LoginController.php");
 include_once("controller/MecanicoController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/AccessDeniedY404Controller.php");
+include_once("controller/DetalleController.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -52,6 +54,11 @@ class Configuration{
         return new CargarViajeModel($database);
     }
 
+    public function getDetalleModel(){
+        $database = $this->getDatabase();
+        return new DetalleModel($database);
+    }
+
     public function getViajesModel(){
             $database = $this->getDatabase();
             return new ViajesModel($database);
@@ -79,6 +86,11 @@ class Configuration{
     public function getCargarViajeController(){
             $cargarViajeModel = $this->getCargarViajeModel();
             return new CargarViajeController($cargarViajeModel, $this->getRender());
+    }
+
+    public function getDetalleController(){
+            $detalleModel = $this->getDetalleModel();
+            return new DetalleController($detalleModel, $this->getRender());
     }
 
     public function getLoginController(){
