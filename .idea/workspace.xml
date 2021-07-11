@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/DetalleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/DetalleModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/detalleView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/SessionManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/SessionManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/detalleView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/detalleView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +68,7 @@
       <workItem from="1625349922644" duration="407000" />
       <workItem from="1625523078793" duration="927000" />
       <workItem from="1625526049839" duration="1715000" />
-      <workItem from="1626027635325" duration="845000" />
+      <workItem from="1626027635325" duration="2790000" />
     </task>
     <servers />
   </component>
