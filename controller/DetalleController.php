@@ -19,7 +19,7 @@ class DetalleController
         $data["carga"]= $this->detalleModel->getCarga($id);
         $data["cliente"]= $this->detalleModel->getCliente($id);
         $data["costeo"]= $this->detalleModel->getCosteo($id);
-        
+
         echo $this->render->render("view/detalleView.php", $data);
 
     }

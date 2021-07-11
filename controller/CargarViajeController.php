@@ -311,7 +311,7 @@ class CargarViajeController
         }else{
             $campos = $campos . "feePrevisto=". $fee_p. "&";
         }
-        if (empty($hazard)) {
+        if (!isset($hazard)) {
             $errores = $errores. "errorHazardCarga=true&";
         }else{
             $campos = $campos . "hazardCarga=". $hazard. "&";
@@ -321,7 +321,7 @@ class CargarViajeController
         }else{
             $campos = $campos . "imoCarga=". $imo. "&";
         }
-        if (empty($reefer)) {
+        if (!isset($reefer)) {
             $errores = $errores. "errorReeferCarga=true&";
         }else{
             $campos = $campos . "reeferCarga=". $reefer. "&";
