@@ -34,9 +34,8 @@ class ChoferController
 	}
 
 	public function informacionViaje(){
-		$id = $_POST['id'];
 
-		$viajes = $this->model->getInformacionViaje($id);
+		$viajes = $this->model->getInformacionViaje();
 
 		echo json_encode($viajes);
 	}
