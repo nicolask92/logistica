@@ -23,6 +23,7 @@ class ChoferController
 		QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L,8);
 
 		$data['urlQr'] = $rutaImagenAGuardar;
+		$data['urlViaje'] = $rutaTotal;
 
 		echo $this->render->render("view/verQrView.php", $data);
 	}
