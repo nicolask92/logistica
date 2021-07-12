@@ -13,20 +13,21 @@ class RegistroModel
 		$usuario = $nombre.$apellido;
 		$sql = "INSERT INTO usuario(nombre, apellido, usuario, contrasenia, email, estado, codigo) 
 				VALUES('${nombre}','${apellido}', '${usuario}','${contrasenia}', '${email}', false, ${codigo})";
-
 		$resultado = $this->database->execute($sql);
 
+		$usuario_id = $this->obtenerIdDelUsuarioRecienCreado(); 
+		$sql = "INSERT INTO empleado (usuario_id,id_rol) VALUES ('${usuario_id}',5)";
+		//por defecto 5 es sinRol ya que cuando se crea un usuario nuevo este no tiene rol hasta
+		//que el administrador le asigne uno
+		$resultado = $this->database->execute($sql);
 		return $resultado;
 	}
 
-	public function confirmarCuenta($nombre, $apellido, $email, $contrasenia, $codigo) {
-		$usuario = $nombre.$apellido;
-		$sql = "INSERT INTO usuario(nombre, apellido, usuario, contrasenia, email, estado, codigo) 
-				VALUES('${nombre}','${apellido}', '${usuario}','${contrasenia}', '${email}', false, ${codigo})";
-
+	private function obtenerIdDelUsuarioRecienCreado(){
+		$sql = "SELECT MAX(id) from usuario";
 		$resultado = $this->database->execute($sql);
-
-		return $resultado;
+		$resultado = $resultado->fetch_assoc();
+		return $resultado['MAX(id)'];
 	}
 
 	public function activarCuenta($email, $codigo) {

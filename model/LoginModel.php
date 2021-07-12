@@ -27,6 +27,7 @@ class LoginModel
         $sqlAdmin = "
             SELECT *
             FROM administrador join empleado on administrador.legajo = empleado.legajo
+            join rol on administrador.id_rol = rol.id
             WHERE empleado.usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlAdmin);
@@ -38,6 +39,7 @@ class LoginModel
         $sqlSupervisor = "
             SELECT *
             FROM supervisor join empleado on supervisor.legajo = empleado.legajo
+            join rol on supervisor.id_rol = rol.id
             WHERE empleado.usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlSupervisor);
@@ -49,6 +51,7 @@ class LoginModel
         $sqlChofer = "
             SELECT *
             FROM chofer join empleado on chofer.legajo = empleado.legajo
+            join rol on chofer.id_rol = rol.id
             WHERE empleado.usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlChofer);
@@ -60,6 +63,7 @@ class LoginModel
         $sqlMecanico = "
             SELECT *
             FROM mecanico join empleado on mecanico.legajo = empleado.legajo
+            join rol on mecanico.id_rol = rol.id
             WHERE empleado.usuario_id =" . $id;
 
         $resultado = $this->database->execute($sqlMecanico);
