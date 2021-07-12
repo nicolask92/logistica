@@ -24,6 +24,9 @@
                         <div class="container-fluid">
                             <img class="img-fluid" src="{{urlQr}}" alt="qr viaje"/>
                         </div>
+                        <h5>
+                            URL del viaje: {{urlViaje}}
+                        </h5>
                     </div>
                 </div>
             </div>
