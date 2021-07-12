@@ -21,9 +21,9 @@
             <div class="row">
                 <select class="form-select" aria-label="Default select">
                     <option selected>Seleccione viaje a cual reportar</option>
-                    <!-- ko foreach: { data: viajes, as: 'viaje' } -->
-                        <option data-bind="attr: {value: viaje.id}, text: formatearDatosViaje(viaje)"></option>
-                    <!-- /ko -->
+                    {{# viajes}}
+                        <option value="{{id}}">{{descripcionViaje}}</option>
+                    {{/ viajes}}
                 </select>
             </div>
 
@@ -116,24 +116,15 @@
                     self.longitud(position.coords.longitude);
                 }
 
-                // funciones de la pagina con respecto al viaje
-                self.viajes = ko.observableArray();
-
                 self.informacionDeViajes = function () {
-                    $.ajax({
-                        url: '/chofer/informacionViaje',
-                        method: 'POST'
-                    }).done(function(respuesta) {
-                        self.viajes(JSON.parse(respuesta));
-                        console.log(JSON.parse(respuesta));
+                    $.ajax(
+                        '/chofer/informacionViaje',
+                    ).done(function(respuesta) {
+                        console.log(respuesta);
                     })
                 }
 
                 self.informacionDeViajes();
-
-                self.formatearDatosViaje = function (data) {
-                    return `${data[0]} - ${data[1]} a ${data[2]} - ${data[3]}`;
-                }
 
                 self.enviarReporte = function() {
                     var data = {
