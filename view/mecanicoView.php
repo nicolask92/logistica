@@ -14,9 +14,9 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-<div class="{{alerta}}" role="alert">
-{{mensaje}}
-</div>
+                    <div class="{{alerta}}" role="alert">
+                        {{mensaje}}
+                    </div>
                         
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800 text-center">Datos del mantenimiento</h1>
@@ -29,9 +29,9 @@
                                   <div class="col-sm-6 mb-3 mb-sm-0">
                                     <select class="form-control" id="mecanico" name="mecanico">
                                         <option selected value="0" >Seleccionar Mecánico</option>
-                                            {{#mecanico}}
-                                        <option value="{{id}}">{{nombre}} {{apellido}} </option>
-                                            {{/mecanico}}
+                                            {{# datosMecanico}}
+                                                <option value="{{id}}">{{nombre}} {{apellido}} </option>
+                                            {{/ datosMecanico}}
                                     </select>
                                   </div>
                                 </div>    

@@ -7,7 +7,7 @@ include_once("model/LoginModel.php");
 include_once("model/AdminModel.php");
 include_once("model/CargarViajeModel.php");
 include_once("model/RegistroModel.php");
-include_once("model/mecanicoModel.php");
+include_once("model/MecanicoModel.php");
 include_once("model/ViajesModel.php");
 
 
@@ -88,7 +88,7 @@ class Configuration{
 
 
     public function getMecanicoController(){
-        $mecanicoModel = $this->getmecanicoModel();
+        $mecanicoModel = $this->getMecanicoModel();
         return new MecanicoController($mecanicoModel, $this->getRender());
     }
 

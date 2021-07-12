@@ -13,18 +13,14 @@ class MecanicoController
 
     public function execute()
     {
-        $data["mecanico"] = $this->mecanicoModel->buscarMecanico();
-
+        $data["datosMecanico"] = $this->mecanicoModel->buscarMecanico();
 
          if(isset($_GET["mensaje"])){
             $array["alerta"]= "alert alert-success";
             $array["mensaje"]= "Los datos se cargaron correctamente"; 
         }
-        
-        
-        echo $this->render->render("view/mecanicoView.php", $array, $data);
-        
-        var_dump($data);
+
+        echo $this->render->render("view/mecanicoView.php", $data);
     }
     
 
