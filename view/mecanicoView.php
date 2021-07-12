@@ -26,10 +26,14 @@
 
                             <form method="POST" enctype="multipart/form-data" action="mecanico/procesarMantenimiento">
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control" name="idMecanico"
-                                            id="idMecanico" placeholder="Legajo">
-                                    </div>
+                                  <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <select class="form-control" id="mecanico" name="mecanico">
+                                        <option selected value="0" >Seleccionar Mecánico</option>
+                                            {{#mecanico}}
+                                        <option value="{{id}}">{{nombre}} {{apellido}} </option>
+                                            {{/mecanico}}
+                                    </select>
+                                  </div>
                                 </div>    
 
                                 <div>
