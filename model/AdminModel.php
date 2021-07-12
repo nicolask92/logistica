@@ -13,6 +13,7 @@ class AdminModel{
 
         $result = $this->ejecutarConsulta($sql);
         $result = $this->convertiraArrayAsociativo($result);
+        
         return $result;
     }       
 
@@ -72,18 +73,33 @@ class AdminModel{
         $this->ejecutarConsulta($sql);
     }
 
-    public function agregarUsuario($data = array()){
-            foreach ($data as $key => $value) {
+    public function actualizarRol($array){
+        foreach ($array as $key => $value) {
             $$key = $value;
         }
-        $sql = "INSERT INTO usuario (usuario,email)
-               VALUES ('$usuario','$email')";
+        $sql = "UPDATE empleado
+                SET id_rol = $idRol
+                WHERE usuario_id = $id_user";
         $this->ejecutarConsulta($sql);
-        
-        $sql = "INSERT INTO empleado (dni,usuario_id,id_rol)
-               VALUES ('$dni',6,'$tipoRol')";
-        $this->ejecutarConsulta($sql);
+        $rol = $this->tipoDeRol($array["idRol"]);
+        $sql = "INSERT INTO ${rol} (legajo,id_rol) VALUES($legajo,$idRol)";
+        $result = ($this->obj_mysql->execute($sql))?"si":"no";
+        echo $result;
+        die();
+    }
 
-
+    private function tipoDeRol($num_rol){
+        if ($num_rol == 1) {
+            return "administrador";
+        }
+        if ($num_rol == 2) {
+            return "supervisor";
+        }
+        if ($num_rol == 3) {
+            return "mecanico";
+        }
+        if ($num_rol == 4) {
+            return "chofer";
+        }
     }
 }

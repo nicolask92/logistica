@@ -1,4 +1,3 @@
-
 drop schema if exists G7;
 create database G7;
 
@@ -31,7 +30,8 @@ INSERT INTO rol(id,rol)
 VALUE(1,"Administrativo"),
 	 (2,"Supervisor"),
 	 (3,"Mecanico"),
-     (4,"Chofer");
+     (4,"Chofer"),
+     (5,"sinRol");
 
 CREATE TABLE empleado
 (legajo tinyint primary key auto_increment,
@@ -39,8 +39,8 @@ dni int(15),
 fecha_nacimiento datetime,
 usuario_id int,
 id_rol tinyint,
-foreign key(id_rol) references rol(id) ON UPDATE CASCADE,
-foreign key(usuario_id) references usuario(id) ON UPDATE CASCADE
+foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,
+foreign key(usuario_id) references usuario(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 INSERT into empleado(dni, fecha_nacimiento, usuario_id,id_rol)
@@ -52,44 +52,52 @@ values(25634786,'20160104', 1,1),
 
 
 CREATE TABLE administrador
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
+    id_rol tinyint,
+    foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE ON DELETE CASCADE 
 	);
 
-INSERT into administrador(id,legajo)
-values(1,001); 
+INSERT into administrador(legajo,id_rol)
+values(001,1); 
 
 CREATE TABLE supervisor
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
+    id_rol tinyint,
+    foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE ON DELETE CASCADE 
 	);
 
-INSERT into supervisor(id,legajo)
-	values(2,002);
+INSERT into supervisor(legajo,id_rol)
+	values(002,2);
 
 CREATE TABLE chofer
-(id tinyint primary key,
+(id tinyint primary key auto_increment,
 	tipo_licencia varchar(10),
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE, 
+    id_rol tinyint,
+    foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE ON DELETE CASCADE , 
 	patente varchar(10),
     estado enum('DISPONIBLE', 'EN_VIAJE')
 	);
 
-INSERT into chofer(id,tipo_licencia, legajo, patente)
-	values(4,'A', 004, 'amh628'),
-          (5,'A', 005, 'FAC123');
+INSERT into chofer(tipo_licencia, legajo, patente,id_rol)
+	values('A', 004, 'amh628',4),
+          ('A', 005, 'FAC123',4);
 
 CREATE TABLE mecanico
 	(id tinyint primary key,
 	legajo tinyint,
-	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE
+    id_rol tinyint,
+    foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,
+	foreign key(legajo) references empleado(legajo) ON UPDATE CASCADE ON DELETE CASCADE 
 	);
 
-INSERT into mecanico(id,legajo)
-	values(3,003);
+INSERT into mecanico(legajo,id_rol)
+	values(003,3);
 
 CREATE TABLE camiones
 (
@@ -195,21 +203,21 @@ CREATE TABLE viaje
 	fecha_carga datetime,
 	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
 	id_supervisor tinyint,
-	foreign key(id_supervisor) references supervisor(id),
+	foreign key(id_supervisor) references supervisor(id) on delete cascade on update cascade,
 	id_chofer tinyint,
-	foreign key(id_chofer) references chofer(id) ,
+	foreign key(id_chofer) references chofer(id) on delete cascade on update cascade,
 	id_camion tinyint,
-	foreign key(id_camion) references camiones(id) ,
+	foreign key(id_camion) references camiones(id) on delete cascade on update cascade,
 	id_arrastrador tinyint,
-	foreign key(id_arrastrador) references arrastrador(id) 
+	foreign key(id_arrastrador) references arrastrador(id) on delete cascade on update cascade
 	);
 	
 insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
-values('Buenos Aires', 'Cordoba', '2021-06-01 00:00:00', 'PENDIENTE', 2, 5, 1, 1);
+values('Buenos Aires', 'Cordoba', '2021-06-01 00:00:00', 'PENDIENTE', 1, 1, 1, 1);
 insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
-values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 2, 5, 1, 1);
+values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 1, 1, 1, 1);
 insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
-values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 2, 5, 1, 1);
+values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 1, 1, 1, 1);
 
 
 CREATE TABLE costeo(
@@ -272,7 +280,5 @@ repuesto_cam varchar(150),
 id_camion tinyint,
 foreign key(id_camion) references camiones(id) ,
 id_mecanico tinyint,
-foreign key(id_mecanico) references mecanico(id) 
+foreign key(id_mecanico) references mecanico(id) on delete cascade on update cascade
 );
-
-
