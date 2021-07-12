@@ -25,15 +25,21 @@ class AdminController
                 $data["users"][$i] = $result[$i];
             }
         }
+        if (isset($_GET["editar"])) {
+            $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
+        }
+        if (isset($_GET["borrar"])) {
+            $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
+        }
+        if (isset($_GET["rol"])) {
+            $data["alert"] = $this->mensajeBorrar($_GET["rol"]);
+        }
         $data["usuarioSinRol"] = $array_users_sinRol;
-        $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
-        $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
-        $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
         echo $this->render->render("view/usuariosView.php",$data);                        
         
     }
 
-    private function mensajeEdicion($mensaje_edicion)
+    private function mensajeEdicion($mensaje_edicion = null)
     {
         $alert = array();
         if ($mensaje_edicion) {
@@ -45,7 +51,7 @@ class AdminController
         }
     }
 
-    private function mensajeBorrar($mensaje_borrado){
+    private function mensajeBorrar($mensaje_borrado = null){   
         $alert = array();
         if ($mensaje_borrado) {
             array_push($alert,[
@@ -56,7 +62,7 @@ class AdminController
         }
     }
 
-    private function mensajeAsignar($mensaje_rol){
+    private function mensajeAsignar($mensaje_rol = null){    
         $alert = array();
         if ($mensaje_rol) {
             array_push($alert,[
@@ -74,16 +80,22 @@ class AdminController
     }
 
     public function procesarFormulario(){
-        $data = array(
-            "legacy" => $_POST["legacy"],
-            "dni" => $_POST["dni"],
-            "nacimiento" => $_POST["nacimiento"],
-            "email" => $_POST["email"],
-            "rol" => $_POST["rol"],
-            "id_usuario" => $_POST["id_usuario"]
-
-        );
-        $this->obj_adminModel->userEdit($data);
+        if (isset($_POST['btn-editar'])) {
+            $data = array(
+                "legacy" => $_POST["legacy"],
+                "dni" => $_POST["dni"],
+                "nacimiento" => $_POST["nacimiento"],
+                "email" => $_POST["email"],
+                "rol" => $_POST["rol"],
+                "id_usuario" => $_POST["id_usuario"]
+    
+            );
+            $this->obj_adminModel->userEdit($data);
+        }
+        
+        if (isset($_POST['rol'])) {
+            $this->asignarRol();
+        }
         header("location: /usuarios?editar=true");
     }
 
@@ -97,6 +109,14 @@ class AdminController
         if (isset($_POST["btn-aceptar"])) {
             $this->obj_adminModel->actualizarRol($_POST);
             header("location: /usuarios?rol=true");
+        }
+        if(isset($_POST["btn-editar"])){
+            $array = array(
+                'idRol' => $_POST['rol'],
+                'id_user' =>$_POST['id_usuario'],
+                'legajo' => $_POST["legacy"]
+            );
+            $this->obj_adminModel->actualizarRol($array);
         }
     }
 }
