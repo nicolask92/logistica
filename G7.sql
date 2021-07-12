@@ -190,11 +190,11 @@ values('Araña','AA100AS',585822),
 
 CREATE TABLE viaje
 	(id tinyint primary key auto_increment,
-    origen varchar(100),
-    destino varchar(100),
+	origen varchar(100),
+	destino varchar(100),
 	fecha_carga datetime,
 	estado enum('PENDIENTE', 'ACTIVO', 'FINALIZADO'),
-    id_supervisor tinyint,
+	id_supervisor tinyint,
 	foreign key(id_supervisor) references supervisor(id),
 	id_chofer tinyint,
 	foreign key(id_chofer) references chofer(id) ,
@@ -203,6 +203,14 @@ CREATE TABLE viaje
 	id_arrastrador tinyint,
 	foreign key(id_arrastrador) references arrastrador(id) 
 	);
+	
+insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
+values('Buenos Aires', 'Cordoba', '2021-06-01 00:00:00', 'PENDIENTE', 2, 5, 1, 1);
+insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
+values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 2, 5, 1, 1);
+insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador)
+values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 2, 5, 1, 1);
+
 
 CREATE TABLE costeo(
     id tinyint primary key auto_increment,

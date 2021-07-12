@@ -6,16 +6,19 @@ class SessionManager {
 
     private $accessControl = [
         "admin" => ['login', 'registro', 'home', 'reportes', 'usuarios','editarUsuario','eliminarUsuario','cargarViaje'],
-        "supervisor" => ['login', 'registro', 'home', 'cargarViaje'],
-        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje', 'detalle'],
+        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos', 'chofer', 'reporteDiario'],
         "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
         "sinRol" => ['login', 'registro', 'home']
     ];
 
     function iniciarSesion($usuario, $rol) {
-        if (!isset($_SESSION['usuario'])) {
-            $_SESSION['usuario'] = $usuario;
+        if (!isset($_SESSION[$usuario['usuario']])) {
+            $_SESSION['usuario'] = $usuario['usuario'];
             $_SESSION['rol'] = $rol;
+            $nombre = ucfirst($usuario['nombre']);
+            $apellido = ucfirst($usuario['apellido']);
+            $_SESSION['nombreCompleto'] = "${nombre}, ${apellido}";
         }
     }
 

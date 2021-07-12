@@ -12,6 +12,10 @@
       <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/mecanicoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/MecanicoModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/mecanicoView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/mecanicoView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/ChoferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ChoferController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/cargarReporteView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarReporteView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/verQrView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/verQrView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +58,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\xampp2\htdocs\model" />
+      <recent name="E:\xampp2\htdocs\third-party" />
+      <recent name="E:\xampp2\htdocs\view" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\xampp2\htdocs\view" />
     </key>
   </component>
@@ -72,6 +80,10 @@
       <workItem from="1624906977886" duration="99000" />
       <workItem from="1625349922644" duration="407000" />
       <workItem from="1625523078793" duration="927000" />
+      <workItem from="1625526049839" duration="1715000" />
+      <workItem from="1626027635325" duration="2790000" />
+      <workItem from="1625942219913" duration="6208000" />
+      <workItem from="1626022022601" duration="8858000" />
     </task>
     <servers />
   </component>
