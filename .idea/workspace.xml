@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2021_20_30__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2021_20_30__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/ChoferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ChoferController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper/SessionManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/SessionManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ChoferModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/ChoferModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/cargarReporteView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarReporteView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/verQrView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/verQrView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
