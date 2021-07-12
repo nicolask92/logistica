@@ -25,10 +25,21 @@ class AdminController
                 $data["users"][$i] = $result[$i];
             }
         }
+
+        if(isset($_GET["editar"])){
+
+            $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
+        }
+        if(isset($_GET["borrar"])){
+
+            $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
+        }
+        if(isset($_GET["rol"])){
+
+            $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
+        }
+
         $data["usuarioSinRol"] = $array_users_sinRol;
-        $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
-        $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
-        $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
         echo $this->render->render("view/usuariosView.php",$data);                        
         
     }

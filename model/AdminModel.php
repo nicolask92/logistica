@@ -83,9 +83,7 @@ class AdminModel{
         $this->ejecutarConsulta($sql);
         $rol = $this->tipoDeRol($array["idRol"]);
         $sql = "INSERT INTO ${rol} (legajo,id_rol) VALUES($legajo,$idRol)";
-        $result = ($this->obj_mysql->execute($sql))?"si":"no";
-        echo $result;
-        die();
+        $result = $this->obj_mysql->execute($sql);
     }
 
     private function tipoDeRol($num_rol){
