@@ -241,6 +241,8 @@ CREATE TABLE costeo(
     extras_real int(10),
     fee_previsto int(10),
     fee_real int(10),
+    hazard_precio int(10),
+    reefer_precio int(10),
     foreign key(id_viaje) references viaje(id) 
 );
 
