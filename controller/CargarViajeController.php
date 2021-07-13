@@ -145,17 +145,23 @@ class CargarViajeController
         if(isset($_GET["errorHazardCarga"])){
             $data["errorHazardCarga"] = true;
         }
-        if(isset($_GET["hazardCarga"])&&$_GET["hazardCarga"]==1) {
+        if(isset($_GET["hazardCarga"])&&$_GET["hazardCarga"]=="Si") {
             if(isset($_GET["errorImoCarga"])){
                 $data["errorImoCarga"] = true;
+            }
+            if(isset($_GET["hazarPrecio"])){
+                $data["errorHazardPrecio"] = true;
             }
         }
         if(isset($_GET["errorReeferCarga"])){
             $data["errorReeferCarga"] = true;
         }
-        if(isset($_GET["reeferCarga"])&&$_GET["reeferCarga"]==1) {
+        if(isset($_GET["reeferCarga"])&&$_GET["reeferCarga"]=="Si") {
             if(isset($_GET["errorTemperaturaCarga"])){
                 $data["errorTemperaturaCarga"] = true;
+            }
+            if(isset($_GET["reeferPrecio"])){
+                $data["errorReeferPrecio"] = true;
             }
         }
         if(isset($_GET["errorPesoCarga"])){
@@ -204,6 +210,9 @@ class CargarViajeController
         $reefer = $_POST["reeferCarga"];
         $temperatura = $_POST["temperaturaCarga"];
         $peso_neto = $_POST["pesoCarga"];
+        $hazard_precio = $_POST["hazardPrecio"];
+        $reefer_precio = $_POST["reeferPrecio"];
+
 
         $errores="";
         $campos="";
@@ -335,6 +344,17 @@ class CargarViajeController
             $errores = $errores. "errorPesoCarga=true&";
         }else{
             $campos = $campos . "pesoCarga=". $peso_neto. "&";
+        }
+
+        if (empty($hazard_precio)){
+            $errores = $errores ."errorHazardPrecio=true&";
+        }else{
+            $campos = $campos . "hazardPrecio=" . $hazard_precio;
+        }
+        if (empty($reefer_precio)){
+            $errores = $errores ."errorReeferPrecio=true&";
+        }else{
+            $campos = $campos . "reeferPrecio=" . $reefer_precio;
         }
 
         if (!empty($errores)) {
