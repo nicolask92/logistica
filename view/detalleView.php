@@ -134,7 +134,7 @@
                     </table>
                     {{/cliente}}
 
-
+                    <img src="/detalle/grafico">
 
                 </div>
 
