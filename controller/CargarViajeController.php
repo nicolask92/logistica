@@ -149,10 +149,11 @@ class CargarViajeController
             if(isset($_GET["errorImoCarga"])){
                 $data["errorImoCarga"] = true;
             }
-            if(isset($_GET["hazarPrecio"])){
-                $data["errorHazardPrecio"] = true;
-            }
         }
+        if(isset($_GET["hazarPrecio"])){
+            $data["errorHazardPrecio"] = true;
+        }
+
         if(isset($_GET["errorReeferCarga"])){
             $data["errorReeferCarga"] = true;
         }
@@ -330,6 +331,13 @@ class CargarViajeController
         }else{
             $campos = $campos . "imoCarga=". $imo. "&";
         }
+
+        if (empty($hazard_precio)){
+            $errores = $errores ."errorHazardPrecio=true&";
+        }else{
+            $campos = $campos . "hazardPrecio=" . $hazard_precio . "&";
+        }
+
         if (!isset($reefer)) {
             $errores = $errores. "errorReeferCarga=true&";
         }else{
@@ -340,21 +348,17 @@ class CargarViajeController
         }else{
             $campos = $campos . "temperaturaCarga=". $temperatura. "&";
         }
+
+        if (empty($reefer_precio)){
+            $errores = $errores ."errorReeferPrecio=true&";
+        }else{
+            $campos = $campos . "reeferPrecio=" . $reefer_precio . "&";
+        }
+
         if (empty($peso_neto)) {
             $errores = $errores. "errorPesoCarga=true&";
         }else{
             $campos = $campos . "pesoCarga=". $peso_neto. "&";
-        }
-
-        if (empty($hazard_precio)){
-            $errores = $errores ."errorHazardPrecio=true&";
-        }else{
-            $campos = $campos . "hazardPrecio=" . $hazard_precio;
-        }
-        if (empty($reefer_precio)){
-            $errores = $errores ."errorReeferPrecio=true&";
-        }else{
-            $campos = $campos . "reeferPrecio=" . $reefer_precio;
         }
 
         if (!empty($errores)) {
@@ -372,7 +376,7 @@ class CargarViajeController
                 $tel_cliente, $email_cliente, $id_viaje["id"]);
 
             $this->cargarViajeModel->insertCosteoPrevisto($id_viaje["id"], $eta, $etd, $combustible_p, $km_p, $viaticos_p, $peajes_p,
-                $pesajes_p, $extras_p, $fee_p);
+                $pesajes_p, $extras_p, $fee_p, $hazard_precio, $reefer_precio);
 
 
             $tipo_carga = $this->cargarViajeModel->getTipoCarga($id_arrastrador);

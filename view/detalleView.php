@@ -189,13 +189,13 @@
                         </tr>
                         <tr>
                             <th scope="row">Hazard</th>
-                            <td>Larry</td>
-                            <td>Larry</td>
+                            <td>{{hazard_precio}}</td>
+                            <td>{{hazard_precio}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Reefer</th>
-                            <td>Larry</td>
-                            <td>Larry</td>
+                            <td>{{reefer_precio}}</td>
+                            <td>{{reefer_precio}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Fee</th>
@@ -213,6 +213,8 @@
                 </div>
 
             </div>
+
+            
 
 
         </div>

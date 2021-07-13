@@ -18,15 +18,6 @@
 
             <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
-
-            {{#cargado}}
-            <div class="alert alert-primary" role="alert">
-                Se cargo Viaje.
-            </div>
-            {{/cargado}}
-
-
-
             <div class="achicar">
                 <H3>Cliente</H3>
 
