@@ -194,14 +194,13 @@
         </tr>
         <tr>
             <td>Hazard</td>
-            <td>Larry</td>
-            <td>Larry</td>
+            <td>{{hazard_precio}}</td>
+            <td>{{hazard_precio}}</td>
         </tr>
         <tr class="alt">
             <td>Reefer</td>
-            <td>Larry</td>
-            <td>Larry</td>
-        </tr>
+            <td>{{reefer_precio}}</td>
+            <td>{{reefer_precio}}</td>
         <tr>
             <td>Fee</td>
             <td>{{fee_previsto}}</td>

@@ -52,7 +52,7 @@ class DetalleModel
         $sql ="SELECT * FROM costeo 
                WHERE id_viaje =".$id;
 
-        $resultado = $this->database->execute($sql);
+        $resultado = $this->database->query($sql);
 
         return $resultado;
     }

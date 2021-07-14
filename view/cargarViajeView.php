@@ -18,15 +18,6 @@
 
             <h1 class="h3 mb-4 text-gray-800 text-center">Cargar nuevo viaje.</h1>
 
-
-            {{#cargado}}
-            <div class="alert alert-primary" role="alert">
-                Se cargo Viaje.
-            </div>
-            {{/cargado}}
-
-
-
             <div class="achicar">
                 <H3>Cliente</H3>
 
@@ -238,9 +229,9 @@
 
                             <div class="form-group">
                                 <label for="hazardCarga">Hazard</label> <br>
-                                <input  type="radio" name="hazardCarga" id="hazardCarga" value="1"> Si
+                                <input  type="radio" name="hazardCarga" id="hazardCarga" value="Si"> Si
 
-                                <input  type="radio" name="hazardCarga" id="hazardCarga" value="0"> No
+                                <input  type="radio" name="hazardCarga" id="hazardCarga" value="No"> No
 
                             </div>
                             {{#errorHazardCarga}}<p class="text-danger">Debe Seleccionar Hazard</p>{{/errorHazardCarga}}
@@ -266,11 +257,18 @@
                             {{#errorImoCarga}}<p class="text-danger">Debe Seleccionar Imo Class</p>{{/errorImoCarga}}
 
                             <div class="form-group">
+                                <input type="number" class="form-control" id="hazardPrecio"
+                                       name="hazardPrecio"    placeholder="Precio del Hazard" value={{hazardPrecio}}>
+                            </div>
+                            {{#errorHazardPrecio}}<p class="text-danger">Ingresar precio Hazard</p>{{/errorHazardPrecio}}
+
+
+                            <div class="form-group">
 
                                 <label for="reeferCarga">Reefer</label> <br>
-                                <input  type="radio" name="reeferCarga" id="reeferCarga" value="1"> Si
+                                <input  type="radio" name="reeferCarga" id="reeferCarga" value="Si"> Si
 
-                                <input  type="radio" name="reeferCarga" id="reeferCarga" value="0"> No
+                                <input  type="radio" name="reeferCarga" id="reeferCarga2" value="No"> No
 
                             </div>
                             {{#errorReeferCarga}}<p class="text-danger">Debe Seleccionar Reefer</p>{{/errorReeferCarga}}
@@ -281,6 +279,13 @@
                                        name="temperaturaCarga"    placeholder="Temperatura de la carga" value={{temperaturaCarga}}>
                             </div>
                             {{#errorTemperaturaCarga}}<p class="text-danger">Ingresar temperatura</p>{{/errorTemperaturaCarga}}
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="reeferPrecio"
+                                       name="reeferPrecio"    placeholder="Precio del Reefer" value={{reeferPrecio}}>
+                            </div>
+                            {{#errorReeferPrecio}}<p class="text-danger">Ingresar precio Reefer</p>{{/errorReeferPrecio}}
+
 
                             <div>
                                 <hr class="sidebar-divider mt-4">
