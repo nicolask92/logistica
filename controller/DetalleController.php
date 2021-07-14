@@ -17,11 +17,7 @@ class DetalleController
     public function execute()
     {
 
-        $id = $_GET["id"];
-        $data["viaje"] = $this->detalleModel->getViaje($id);
-        $data["carga"] = $this->detalleModel->getCarga($id);
-        $data["cliente"] = $this->detalleModel->getCliente($id);
-        $data["costeo"] = $this->detalleModel->getCosteo($id);
+       $data= $this->getDatos();
 
         echo $this->render->render("view/detalleView.php", $data);
 
@@ -29,15 +25,13 @@ class DetalleController
 
     public function PDF()
     {
-        $id = $_GET["id"];
+
 
         $dompdf = new Dompdf();
 
         ob_start();
-        $data["viaje"] = $this->detalleModel->getViaje($id);
-        $data["carga"] = $this->detalleModel->getCarga($id);
-        $data["cliente"] = $this->detalleModel->getCliente($id);
-        $data["costeo"] = $this->detalleModel->getCosteo($id);
+
+        $data=$this->getDatos();
 
         echo $this->render->render("view/pdfview.php", $data);
 
@@ -53,6 +47,7 @@ class DetalleController
     public function grafico()
     {
         $id = $_GET["id"];
+
         $costeo= $this->detalleModel->getCosteo($id );
 
         $data1y = array($costeo["kilometros_previsto"],$costeo["combustible_previsto"], $costeo["viaticos_previsto"],
@@ -65,7 +60,8 @@ class DetalleController
 
 
         // Create the graph. These two calls are always required
-        $graph = new Graph(700, 700, 'auto');
+        $graph = new Graph(700, 500, 'auto');
+        $graph->SetMargin(50,50,50,50);
         $graph->SetScale("textint", 0, 100000);
 
         $theme_class = new UniversalTheme;
@@ -91,10 +87,16 @@ class DetalleController
 
         $b1plot->SetColor("white");
         $b1plot->SetFillColor("#cc1111");
+        $b1plot->SetLegend("Previsto");
 
         $b2plot->SetColor("white");
         $b2plot->SetFillColor("#11cccc");
+        $b2plot->SetLegend("Real");
 
+        $graph->legend->SetFrameWeight(2);
+        $graph->legend->SetColumns(2);
+        $graph->legend->SetColor('#4E4E4E','#00A78A');
+        $graph->legend->SetPos(0,0);
 
         $graph->title->Set("Proforma");
 
@@ -102,6 +104,17 @@ class DetalleController
         $graph->Stroke();
 
 
+    }
+
+    public function getDatos(){
+
+        $id = $_GET["id"];
+        $data["viaje"] = $this->detalleModel->getViaje($id);
+        $data["carga"] = $this->detalleModel->getCarga($id);
+        $data["cliente"] = $this->detalleModel->getCliente($id);
+        $data["costeo"] = $this->detalleModel->getCosteo($id);
+
+        return $data;
     }
 
 }
