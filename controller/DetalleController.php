@@ -86,16 +86,16 @@ class DetalleController
 
 
         $b1plot->SetColor("white");
-        $b1plot->SetFillColor("#cc1111");
+        $b1plot->SetFillColor("#575966");
         $b1plot->SetLegend("Previsto");
 
         $b2plot->SetColor("white");
-        $b2plot->SetFillColor("#11cccc");
+        $b2plot->SetFillColor("#F94107");
         $b2plot->SetLegend("Real");
 
         $graph->legend->SetFrameWeight(2);
         $graph->legend->SetColumns(2);
-        $graph->legend->SetColor('#4E4E4E','#00A78A');
+        $graph->legend->SetColor('#575966','#F94107');
         $graph->legend->SetPos(0,0);
 
         $graph->title->Set("Proforma");
