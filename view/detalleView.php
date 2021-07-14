@@ -132,9 +132,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    {{/cliente}}
 
-                    <img src="/detalle/grafico">
 
                 </div>
 
@@ -216,7 +214,12 @@
 
             </div>
 
-
+            <div class="text-center">
+                {{/cliente}}
+                {{#viaje}}
+                <img src="/detalle/grafico?id={{id}}">
+                {{/viaje}}
+            </div>
 
 
         </div>
