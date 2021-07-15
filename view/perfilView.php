@@ -13,13 +13,13 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
+        ACA VA EL PËRFIL
 
 
         </div>
 
     </div>
 
-</div>
+
 
     {{> footer }}
