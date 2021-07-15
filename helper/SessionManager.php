@@ -19,6 +19,7 @@ class SessionManager {
             $nombre = ucfirst($usuario['nombre']);
             $apellido = ucfirst($usuario['apellido']);
             $_SESSION['nombreCompleto'] = "${nombre}, ${apellido}";
+            $_SESSION['idUsuarioActual'] = $usuario['id'];
         }
     }
 
