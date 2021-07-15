@@ -15,8 +15,11 @@ class PerfilController
 
     public function execute()
     {
+        $id= $_SESSION["idUsuarioActual"];
 
-        echo $this->render->render("view/perfilView.php");
+        $data["usuarioActual"] = $this->perfilModel->getUsuarioActual($id);
+
+        echo $this->render->render("view/perfilView.php" , $data);
 
     }
 
