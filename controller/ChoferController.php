@@ -34,18 +34,26 @@ class ChoferController
 	}
 
 	public function informacionViaje(){
-		$id = $_POST['id'];
-
-		$viajes = $this->model->getInformacionViaje($id);
+		$coleccionDeViajes = [];
+		foreach ($this->model->getInformacionViaje() as $viaje) {
+			array_push($coleccionDeViajes, [
+				'id' => $viaje[0],
+				'origen' => $viaje[1],
+				'destino' => $viaje[2],
+				'fecha_carga' => $viaje[3],
+				'estado' => $viaje[4]
+			]);
+		}
+		$viajes = $coleccionDeViajes;
 
 		echo json_encode($viajes);
 	}
 
 	public function procesarReporteDiario() {
 
-		$arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+		$valoresReporte = $_POST['datos'];
 
-		echo json_encode($arr);
+		echo json_encode($valoresReporte);
 	}
 
 }

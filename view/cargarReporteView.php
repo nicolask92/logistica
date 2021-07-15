@@ -13,36 +13,67 @@
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 
-			{{#reporteCargado}}
+			<div data-bind="visible: reporteCargado" style="display: none">
 				<div class="alert alert-primary" role="alert">
-					Se cargo su reporte correctamente.
+					Se reporte se cargo correctamente.
 				</div>
-			{{/reporteCargado}}
+            </div>
             <div class="row">
-                <select class="form-select" aria-label="Default select">
-                    <option selected>Seleccione viaje a cual reportar</option>
-                    {{# viajes}}
-                        <option value="{{id}}">{{descripcionViaje}}</option>
-                    {{/ viajes}}
-                </select>
+                <div class="col-lg-12">
+                    <form>
+                        <div class="form-group">
+                            <select class="form-control"
+                                    data-bind="
+                                        options: viajes,
+                                        value: viajeSeleccionado,
+                                        optionsText: 'descripcionCompleta',
+                                        optionsValue: 'estado',
+                                        optionsCaption: 'Seleccione Viaje'">
+                            </select>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6">
+            <div data-bind="visible: errorEstado" style="display: none">
+                <div class="alert alert-danger" role="alert">
+                    El Estado del viaje seleccionado es <span data-bind="text: viajeSeleccionado"></span> y no se puede editar.
+                </div>
+            </div>
+
+            <div class="row" data-bind="visible: habilitadoCargaDatos" style="display: none">
+                <div class="col-lg-4">
                     <div id="mapa" style="width:100%; height:400px;"></div>
                 </div>
-                <div class="col-lg-6">
-                    <h3>Coordenadas actuales:</h3>
-                    <h5>Latitud: <span data-bind="text: latitud"></span></h5>
-                    <h5>Longitud: <span data-bind="text: longitud"></span></h5>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <button data-bind="click: getLocation" type="button" class="btn btn-primary">Actualizar ubicación automaticamente</button>
-                        </div>
-                        <div class="col-md-12 mt-3">
-                            <button data-bind="click: enviarReporte" type="button" class="btn btn-secondary">Enviar reporte</button>
-                        </div>
+                <div class="col-lg-3">
+                    <div class="mb-1">
+                        <label class="form-label">Coordenadas actuales:</label>
+                        <h6>Latitud: <span data-bind="text: latitud"></span></h6>
+                        <h6>Longitud: <span data-bind="text: longitud"></span></h6>
                     </div>
+                    <button data-bind="click: getLocation" type="button" class="btn btn-primary btn-sm">Actualizar ubicación automaticamente</button>
+                </div>
+                <div class="col-lg-4">
+                    <form class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Combustible Cargado</label>
+                            <input type="text" class="form-control" id="cantidad" data-bind="value: litros">
+                            <div class="invalid-feedback" data-bind="text: errorTextoCantidad, visible: errorLitros, style: { display: errorLitros() ? 'block' : 'none' }"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="importe" class="form-label">Importe</label>
+                            <input type="text" class="form-control" id="importe" data-bind="value: importe">
+                            <div class="invalid-feedback" data-bind="text: errorTextoImporte, visible: errorImporte, style: { display: errorImporte() ? 'block' : 'none' }"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="km" class="form-label">Kilometro unidad</label>
+                            <input type="text" class="form-control" id="km" data-bind="value: km">
+                            <div class="invalid-feedback" data-bind="text: errorTextoKm, visible: errorKm, style: { display: errorKm() ? 'block' : 'none' }"></div>
+                        </div>
+                        <button data-bind="click: enviarReporte" type="button" class="btn btn-secondary btn-sm">Enviar reporte</button>
+                    </form>
+                </div>
+                <div class="col-lg-1">
                 </div>
             </div>
 		<!-- /.container-fluid -->
@@ -50,95 +81,6 @@
 	</div>
 	<!-- End of Main Content -->
 	{{> footer }}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-        <script>
-            function AppViewModel() {
-                self = this;
-                self.latitud = ko.observable(-34.6686986);
-                self.longitud = ko.observable(-58.5614947);
-                var map;
-                var mapOptions;
-                var infoWindow;
-
-                self.loadMap = function() {
-                    const myLatlng = { lat: self.latitud(), lng: self.longitud() };
-                    mapOptions = {
-                        center:new google.maps.LatLng(self.latitud(), self.longitud()),
-                        zoom:12,
-                        mapTypeId:google.maps.MapTypeId.ROADMAP
-                    };
-                    infoWindow = new google.maps.InfoWindow({
-                        content: "click para conseguir lat y long",
-                        position: myLatlng,
-                    });
-                    map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
-                    infoWindow.open(map);
-                    map.addListener("click", (mapsMouseEvent) => {
-                        // Close the current InfoWindow.
-                        infoWindow.close();
-                        self.latitud(mapsMouseEvent.latLng.lat());
-                        self.longitud(mapsMouseEvent.latLng.lng());
-                        // Create a new InfoWindow.
-                        infoWindow = new google.maps.InfoWindow({
-                            position: mapsMouseEvent.latLng,
-                        });
-                        infoWindow.setContent(
-                            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-                        );
-                        infoWindow.open(map);
-                    });
-                }
-
-                $(document).ready( function () {
-                    self.loadMap();
-                });
-
-                self.getLocation = function() {
-                    infoWindow.close();
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            self.latitud(position.coords.latitude);
-                            self.longitud(position.coords.longitude);
-                            map.setCenter(new google.maps.LatLng(self.latitud(), self.longitud()))
-                        });
-                        infoWindow = new google.maps.InfoWindow({
-                            content: "Aqui te encuentras",
-                            position: { lat: self.latitud(), lng: self.longitud() },
-                        });
-                        infoWindow.open(map);
-                    } else {
-                        console.log("Geolocation is not supported by this browser.");
-                    }
-                }
-
-                self.showPosition = function (position) {
-                    self.latitud(position.coords.latitude);
-                    self.longitud(position.coords.longitude);
-                }
-
-                self.informacionDeViajes = function () {
-                    $.ajax(
-                        '/chofer/informacionViaje',
-                    ).done(function(respuesta) {
-                        console.log(respuesta);
-                    })
-                }
-
-                self.informacionDeViajes();
-
-                self.enviarReporte = function() {
-                    var data = {
-                        latitud: self.latitud(),
-                        longitud: self.longitud()
-                    }
-
-                    $.ajax(
-                        '/chofer/procesarReporteDiario',
-                        data
-                    ).done(function(respuesta) {
-                        console.log(respuesta);
-                    })
-                }
-            }
-            ko.applyBindings(AppViewModel);
-        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+    <script src='./../view/js/cargarReporte.js'></script>
