@@ -16,11 +16,11 @@ CREATE TABLE usuario
 );
 
 INSERT into usuario(nombre, apellido, usuario, contrasenia , email, estado)
-values('admin', 'admin','admin', 'admin', 'admin@g7.com', true),
-	('supervisor', 'supervisor','supervisor', 'supervisor', 'supervisor@g7.com', true),
-	('mecanico', 'mecanico','mecanico', 'mecanico', 'mecanico@g7.com', true),
-	('chofer', 'chofer','chofer', 'chofer', 'chofer@g7.com', true),
-    ('facundo', 'marin','facundo', 'facundo', 'facundo@g7.com', true);
+values('admin', 'admin','admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@g7.com', true),
+	('supervisor', 'supervisor','supervisor', '09348c20a019be0318387c08df7a783d', 'supervisor@g7.com', true),
+	('mecanico', 'mecanico','mecanico', '9afb05161c835f1059a1e30b52fe40bf', 'mecanico@g7.com', true),
+	('chofer', 'chofer','chofer', '85b164d9c8eb210ae8a1a4679275b26a', 'chofer@g7.com', true),
+    ('facundo', 'marin','facundo', '242ac92bff7cc0bf1f52de2f254b27a8', 'facundo@g7.com', true);
     
 CREATE TABLE rol(
 id tinyint primary key,
