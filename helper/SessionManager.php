@@ -5,10 +5,10 @@ include_once("controller/AccessDeniedY404Controller.php");
 class SessionManager {
 
     private $accessControl = [
-        "admin" => ['login', 'registro', 'home', 'reportes', 'usuarios','editarUsuario','eliminarUsuario','cargarViaje'],
-        "supervisor" => ['login', 'registro', 'home', 'cargarViaje', 'detalle'],
-        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos', 'chofer', 'reporteDiario', 'procesarReporteDiario'],
-        "mecanico" => ['login', 'registro','home', 'service', 'mecanico'],
+        "admin" => ['login', 'registro', 'home', 'reportes', 'usuarios','editarUsuario','eliminarUsuario','cargarViaje', 'perfil'],
+        "supervisor" => ['login', 'registro', 'home', 'cargarViaje', 'detalle', 'perfil'],
+        "chofer" => ['login', 'registro', 'home', 'verViaje', 'subirDatos', 'chofer', 'reporteDiario', 'procesarReporteDiario', 'perfil'],
+        "mecanico" => ['login', 'registro','home', 'service', 'mecanico', 'perfil'],
         "sinRol" => ['login', 'registro', 'home']
     ];
 
@@ -19,6 +19,7 @@ class SessionManager {
             $nombre = ucfirst($usuario['nombre']);
             $apellido = ucfirst($usuario['apellido']);
             $_SESSION['nombreCompleto'] = "${nombre}, ${apellido}";
+            $_SESSION['idUsuarioActual'] = $usuario['id'];
         }
     }
 
