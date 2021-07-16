@@ -25,4 +25,17 @@ class PerfilController
 
     }
 
+    public function actualizarPerfil()
+    {
+        $id= $_SESSION["idUsuarioActual"];
+        $idChofer = $this->perfilModel->idChoferActual($id);
+        
+        $licencia = $_POST["licencia"];
+        $patente = $_POST["patente"];
+
+        $this->perfilModel->actualizarLicencia($idChofer["id"], $licencia, $patente);
+
+
+    }
+
 }

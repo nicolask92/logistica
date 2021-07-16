@@ -33,14 +33,39 @@ class PerfilModel
 
     public function getChoferActual($id){
 
-        $sql = "SELECT c.tipo_licencia, c.patente 
-                FROM usuario   
-                JOIN empleado ON empleado.usuario_id =".$id." 
-                JOIN chofer ON empleado.legajo = chofer.legajo";
+        $sql = "SELECT DISTINCT chofer.id, chofer.tipo_licencia, chofer.patente
+                FROM usuario 
+                INNER JOIN empleado ON empleado.usuario_id = ${id}
+                INNER JOIN chofer ON empleado.legajo = chofer.legajo";
 
         $resultado = $this->database->execute($sql);
 
         return $resultado;
+
+    }
+
+    public function idChoferActual($id){
+
+        $sql = "SELECT DISTINCT chofer.id
+                FROM usuario 
+                INNER JOIN empleado ON empleado.usuario_id = ${id}
+                INNER JOIN chofer ON empleado.legajo = chofer.legajo";
+
+        $resultado = $this->database->query($sql);
+
+        return $resultado;
+
+    }
+
+    public function actualizarLicencia($idChofer, $licencia, $patente){
+
+        $sql = "UPDATE chofer 
+                SET tipo_licencia='$licencia',patente ='$patente'
+                WHERE id = ${idChofer}";
+
+        $this->database->execute($sql);
+
+        HEADER ("Location: /perfil");
 
     }
 }

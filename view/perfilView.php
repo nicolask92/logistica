@@ -72,7 +72,7 @@
 
                     {{#chofer}}
                     {{#choferActual}}
-                    <form>
+                    <form method="post" id="perfil" enctype="multipart/form-data" action="perfil/actualizarPerfil">
                         <div>
                             <label>Tipo de Licencia</label>
                             <input type="text" class="form-control" id="licencia"
@@ -84,13 +84,15 @@
                             <input type="text" class="form-control" id="patente"
                                    name="patente" value="{{patente}}">
                         </div>
-                    </form>
+
                     {{/choferActual}}
                     {{/chofer}}
                     <div class="text-center mt-3">
                         {{#chofer}}
-                        <a href="/home" type="button" class="btn btn-primary">Actualizar</a>
+                        <button type="submit" class="btn btn-primary" id="actualizar">Actualizar</button>
                         {{/chofer}}
+
+                    </form>
                         <a href="/home" type="button" class="btn btn-dark">Volver</a>
                     </div>
 
