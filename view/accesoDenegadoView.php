@@ -12,13 +12,19 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+                <div class="text-center">
+                <img class="img-fluid" width="500" src="/view/img/403.png">
+                </div>
                 <div class="alert alert-danger" role="alert">
                     <h4 class="alert-heading">Acceso Denegado</h4>
+
+
                     <p>No tienes los privilegios necesarios para acceder a esta area.</p>
                     <hr>
                     <p class="mb-0">Si crees que es un error, por favor, contactá a soporte admin@g7.com</p>
                 </div>
+
+
             </div>
         </div>
 
