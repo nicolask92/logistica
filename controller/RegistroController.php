@@ -28,7 +28,7 @@ class RegistroController
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $email = $_POST['email'];
-        $contrasenia = $_POST['password'];
+        $contrasenia = md5($_POST['password']);
 
         $errores = array();
 
