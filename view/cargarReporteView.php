@@ -27,7 +27,7 @@
                                         options: viajes,
                                         value: viajeSeleccionado,
                                         optionsText: 'descripcionCompleta',
-                                        optionsValue: 'estado',
+                                        optionsValue: 'id',
                                         optionsCaption: 'Seleccione Viaje'">
                             </select>
                         </div>
@@ -70,6 +70,16 @@
                             <input type="text" class="form-control" id="km" data-bind="value: km">
                             <div class="invalid-feedback" data-bind="text: errorTextoKm, visible: errorKm, style: { display: errorKm() ? 'block' : 'none' }"></div>
                         </div>
+                        <div class="mb-3">
+                            <label for="extras" class="form-label">Extras</label>
+                            <input type="text" class="form-control" id="extras" data-bind="value: extras">
+                            <div class="invalid-feedback" data-bind="text: errorTextoExtras, visible: errorKm, style: { display: errorExtras() ? 'block' : 'none' }"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for=peaje" class="form-label">Peaje</label>
+                            <input type="text" class="form-control" id="peaje" data-bind="value: peaje">
+                            <div class="invalid-feedback" data-bind="text: errorTextoPeaje, visible: errorPeaje, style: { display: errorPeaje() ? 'block' : 'none' }"></div>
+                        </div>
                         <button data-bind="click: enviarReporte" type="button" class="btn btn-secondary btn-sm">Enviar reporte</button>
                     </form>
                 </div>
@@ -77,7 +87,7 @@
                 </div>
             </div>
 		<!-- /.container-fluid -->
-
+        </div>
 	</div>
 	<!-- End of Main Content -->
 	{{> footer }}

@@ -11,6 +11,7 @@ include_once("model/mecanicoModel.php");
 include_once("model/ViajesModel.php");
 include_once("model/DetalleModel.php");
 include_once("model/ChoferModel.php");
+include_once("model/CosteoModel.php");
 
 
 include_once("controller/IndexController.php");
@@ -81,6 +82,11 @@ class Configuration{
 		return new ChoferModel($database);
 	}
 
+	public function getCosteoModel(){
+		$database = $this->getDatabase();
+		return new CosteoModel($database);
+	}
+
     public function getRender(){
         return new Render('view/partial');
     }
@@ -118,7 +124,8 @@ class Configuration{
 
 	public function getChoferController(){
 		$choferModel = $this->getChoferModel();
-		return new ChoferController($choferModel, $this->getRender());
+		$costeoModel = $this->getCosteoModel();
+		return new ChoferController($choferModel, $costeoModel, $this->getRender());
 	}
 
      public function getUsuariosController()

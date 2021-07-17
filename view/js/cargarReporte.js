@@ -1,4 +1,5 @@
 'use strict';
+'global _, ko';
 
 function AppViewModel() {
     var self = this;
@@ -72,6 +73,8 @@ function AppViewModel() {
     self.km = ko.observable(0);
     self.litros = ko.observable(0);
     self.importe = ko.observable(0);
+    self.extras = ko.observable(0);
+    self.peaje = ko.observable(0);
 
     // guards
     self.reporteCargado = ko.observable(false);
@@ -79,7 +82,11 @@ function AppViewModel() {
 
     self.viajeSeleccionado.subscribe(function () {
         console.log(self.viajeSeleccionado());
-        if (self.viajeSeleccionado() === 'ACTIVO') {
+        var viajeSeleccionado = _.find(self.viajes(), function (viaje) {
+            return viaje.id === self.viajeSeleccionado();
+        });
+
+        if (viajeSeleccionado.estado === 'ACTIVO') {
             self.errorEstado(false);
             self.habilitadoCargaDatos(true);
         } else {
@@ -107,10 +114,14 @@ function AppViewModel() {
     self.errorKm = ko.observable(false);
     self.errorImporte = ko.observable(false);
     self.errorLitros = ko.observable(false);
+    self.errorExtras = ko.observable(false);
+    self.errorPeaje = ko.observable(false);
 
     self.errorTextoCantidad = ko.observable('');
     self.errorTextoImporte = ko.observable('');
     self.errorTextoKm = ko.observable('');
+    self.errorTextoExtras = ko.observable('');
+    self.errorTextoPeaje = ko.observable('');
 
     ko.computed(function () {
 
@@ -120,16 +131,26 @@ function AppViewModel() {
         self.errorKm(false);
         self.errorImporte(false);
         self.errorLitros(false);
+        self.errorPeaje(false);
+        self.errorExtras(false);
 
-        if (_.isNaN(parseFloat(self.km())) || !_.isNumber(parseFloat(self.km())) || parseFloat(self.km()) < 0) {
+        if (self.validarQueElCampoSeaNumerio(self.km())) {
             self.errorKm(true);
             self.errorTextoKm('Los km deben ser un valor numerico y mayor a cero.');
         }
-        if (_.isNaN(parseFloat(self.litros())) ||!_.isNumber(parseFloat(self.litros()))  || parseFloat(self.litros()) < 0) {
+        if (self.validarQueElCampoSeaNumerio(self.litros())) {
             self.errorLitros(true);
             self.errorTextoCantidad('Los litros deben ser un valor numerico y mayor o iguales a cero.');
         }
-        if (_.isNaN(parseFloat(self.importe())) || !_.isNumber(parseFloat(self.importe())) || parseFloat(self.importe()) < 0) {
+        if (self.validarQueElCampoSeaNumerio(self.extras())) {
+            self.errorExtras(true);
+            self.errorTextoExtras('Los extras deben ser un valor numerico y mayor o iguales a cero.');
+        }
+        if (self.validarQueElCampoSeaNumerio(self.peaje())) {
+            self.errorPeaje(true);
+            self.errorTextoPeaje('Los peajes deben ser un valor numerico y mayor o iguales a cero.');
+        }
+        if (self.validarQueElCampoSeaNumerio(self.importe())) {
             if (!self.errorLitros()) {
                 self.errorImporte(true);
                 self.errorTextoImporte('Si se cargo gasolina, el importe no puede ser nulo.')
@@ -141,16 +162,18 @@ function AppViewModel() {
 
         if (!self.errorLitros() && !self.errorKm() && !self.errorImporte()) {
             var datosAMandar = {
+                idViaje: self.viajeSeleccionado(),
                 litros: self.litros(),
                 km: self.km(),
-                importe: self.importe()
+                importe: self.importe(),
+                extras: self.extras(),
+                peaje: self.peaje()
             }
 
             $.ajax({
                 url: '/chofer/procesarReporteDiario',
                 data: { datos: datosAMandar },
-                method: 'POST',
-                dataType: 'json',
+                method: 'POST'
             }).done(function(respuesta) {
                 console.log(respuesta);
             })
@@ -158,8 +181,8 @@ function AppViewModel() {
     }
 
     // implementar
-    self.validarQueElCampoSeaNumerioYMayorACero = function (valorAEvaluar) {
-
+    self.validarQueElCampoSeaNumerio = function (valorAEvaluar) {
+        return (_.isNaN(parseFloat(valorAEvaluar)) || !_.isNumber(parseFloat(valorAEvaluar)) || parseFloat(valorAEvaluar) < 0)
     }
 }
 
