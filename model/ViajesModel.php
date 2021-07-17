@@ -26,4 +26,24 @@ class ViajesModel
         return $resultado;
     }
 
+	public function getInformacionViaje() {
+		$sql = "
+			SELECT id, origen, destino, fecha_carga, estado
+            FROM viaje
+    	";
+
+		return mysqli_fetch_all($this->database->execute($sql));
+	}
+
+	public function actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
+
+    	$sql = "
+			UPDATE viaje
+			SET fecha_, origen, destino, fecha_carga, estado
+            FROM viaje
+    	";
+
+		return $this->database->execute($sql);
+	}
+
 }

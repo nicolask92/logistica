@@ -2,13 +2,13 @@
 
 class ChoferController
 {
-	private $choferModel;
+	private $viajeModel;
 	private $render;
 	private $costeoModel;
 
-	public function __construct($choferModel, $costeoModel, $render)
+	public function __construct($viajeModel, $costeoModel, $render)
 	{
-		$this->choferModel = $choferModel;
+		$this->viajeModel = $viajeModel;
 		$this->render = $render;
 		$this->costeoModel = $costeoModel;
 	}
@@ -37,7 +37,7 @@ class ChoferController
 
 	public function informacionViaje(){
 		$coleccionDeViajes = [];
-		foreach ($this->choferModel->getInformacionViaje() as $viaje) {
+		foreach ($this->viajeModel->getInformacionViaje() as $viaje) {
 			array_push($coleccionDeViajes, [
 				'id' => $viaje[0],
 				'origen' => $viaje[1],
@@ -65,14 +65,9 @@ class ChoferController
 		$peaje = $valoresReporte['peaje'];
 		$latitud = $valoresReporte['latitud'];
 		$longitud = $valoresReporte['longitud'];
-		$kmRecorridosAnterioresEnArray = $this->costeoModel->getKmsTotalesByIdViaje();
+		$kmTotalesHastaElMomento = $this->costeoModel->getKmsTotalesByIdViaje($id);
 		$tipoReporte = $valoresReporte['tipoReporte'];
 		$viatico = $valoresReporte['viatico'];
-		$kmTotalesHastaElMomento = 0;
-
-		foreach ($kmRecorridosAnterioresEnArray as $kmIndividual) {
-			$kmTotalesHastaElMomento += $kmIndividual;
-		}
 
 		if (!isset($id) || !isset($litros) || !isset($km) || !isset($importe) || !isset($extras) || !isset($peaje) || !isset($latitud) || !isset($longitud) || !isset($tipoReporte) || !isset($viatico)) {
 			// nunca deberia entrar por aca.
@@ -97,16 +92,15 @@ class ChoferController
 			$valoresAEnviar = array('error' => true, 'errores' => $errores);
 			echo json_encode($valoresAEnviar);
 		} else {
-			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $kmTotalesHastaElMomento, $importe, $extras, $peaje, $viatico, $latitud, $longitud);
+			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $km, $importe, $extras, $peaje, $viatico, $latitud, $longitud);
 
-			if ($tipoReporte == 'FinalizarViaje') {
+			if ($tipoReporte == 'Finalizar Viaje') {
 				$fechaActual = new DateTime('NOW');
 				$costeosTotalesArray = $this->costeoModel->getCosteosTotal($id);
 
 				$extras = 0;
 				$peajes = 0;
 				$litros = 0;
-				$kmTotales = 0;
 				$viaticos = 0;
 				$importe = 0;
 
@@ -114,12 +108,11 @@ class ChoferController
 					$extras += $costeoIndividual['extras'];
 					$peajes += $costeoIndividual['peaje'];
 					$litros += $costeoIndividual['litros'];
-					$kmTotales += $costeoIndividual['km'];
 					$viaticos += $costeoIndividual['viatico'];
 					$importe += $costeoIndividual['importe'];
 				}
 
-				$actualizarViaje = $this->choferModel->actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $valoresReporte['fee']);
+				$actualizarViaje = $this->viajeModel->actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $km, $viaticos, $importe, $valoresReporte['fee']);
 
 				if ($actualizarViaje) {
 					$valoresAEnviar = array('error' => false);

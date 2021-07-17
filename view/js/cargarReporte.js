@@ -70,32 +70,89 @@ function AppViewModel() {
     self.viajes = ko.observableArray();
     self.viajeSeleccionado = ko.observable();
     self.opcionesDeReporte = ['Finalizar', 'Reporte Diario'];
+    self.reporteSeleccionado = ko.observable();
 
     self.km = ko.observable(0);
     self.litros = ko.observable(0);
     self.importe = ko.observable(0);
     self.extras = ko.observable(0);
     self.peaje = ko.observable(0);
+    self.viatico = ko.observable(0)
+    self.fee = ko.observable(0);
+
+    self.textoBoton = ko.observable('');
 
     // guards
     self.reporteCargado = ko.observable(false);
     self.habilitadoCargaDatos = ko.observable(false);
     self.seleccionTipoReporte = ko.observable(false);
+    self.habilitarFee = ko.observable(false);
+
+    // errores
+    self.errorKm = ko.observable(false);
+    self.errorImporte = ko.observable(false);
+    self.errorLitros = ko.observable(false);
+    self.errorExtras = ko.observable(false);
+    self.errorPeaje = ko.observable(false);
+    self.errorFee = ko.observable(false);
+    self.errorViatico = ko.observable(false);
+    self.errorSelectores = ko.observable(false);
+
+    self.errorTextoCantidad = ko.observable('');
+    self.errorTextoImporte = ko.observable('');
+    self.errorTextoKm = ko.observable('');
+    self.errorTextoExtras = ko.observable('');
+    self.errorTextoPeaje = ko.observable('');
+    self.errorTextoFee = ko.observable('');
+    self.errorTextoViatico = ko.observable('');
+    self.textoSelectores = ko.observable('');
 
     self.viajeSeleccionado.subscribe(function () {
+        self.errorSelectores(false);
+        self.seleccionTipoReporte(false);
         console.log(self.viajeSeleccionado());
         var viajeSeleccionado = _.find(self.viajes(), function (viaje) {
             return viaje.id === self.viajeSeleccionado();
         });
 
-        if (viajeSeleccionado !== undefined && viajeSeleccionado.estado === 'ACTIVO') {
-            self.errorEstado(false);
-            self.habilitadoCargaDatos(true);
+        if (viajeSeleccionado !== undefined && (viajeSeleccionado.estado === 'ACTIVO' || viajeSeleccionado.estado === 'PENDIENTE')) {
+            if (self.hayViajesActivos() && viajeSeleccionado.estado !== 'ACTIVO') {
+                self.errorSelectores(true);
+                self.seleccionTipoReporte(false);
+                self.textoSelectores('Tienes un viaje sin terminar, para comenzar uno pendiente debes terminar el anterior.');
+            } else {
+                self.errorSelectores(false);
+                self.seleccionTipoReporte(true);
+            }
         } else {
-            self.errorEstado(true);
-            self.habilitadoCargaDatos(false);
+            self.errorSelectores(true);
+            self.textoSelectores('Este viaje ya finalizo.');
+            self.seleccionTipoReporte(false);
         }
     });
+
+    ko.computed(function () {
+        self.habilitarFee(false);
+        if (self.errorSelectores()) {
+            self.habilitadoCargaDatos(false);
+            self.seleccionTipoReporte(false);
+        } else {
+            if (self.reporteSeleccionado() === 'Finalizar') {
+                self.habilitadoCargaDatos(true);
+                self.habilitarFee(true);
+                self.textoBoton('Finalizar Viaje');
+            } else if (self.reporteSeleccionado() === 'Reporte Diario') {
+                self.habilitadoCargaDatos(true);
+                self.textoBoton('Enviar Reporte');
+            }
+        }
+    })
+
+    self.hayViajesActivos = function () {
+        return _.size(_.filter(self.viajes(), function (viaje) {
+            return viaje.estado === 'ACTIVO';
+        })) > 0;
+    }
 
     self.informacionDeViajes = function () {
         $.ajax({
@@ -111,32 +168,13 @@ function AppViewModel() {
     }
     self.informacionDeViajes();
 
-    // errores
-    self.errorEstado = ko.observable(false);
-    self.errorKm = ko.observable(false);
-    self.errorImporte = ko.observable(false);
-    self.errorLitros = ko.observable(false);
-    self.errorExtras = ko.observable(false);
-    self.errorPeaje = ko.observable(false);
-    self.errorSelectores = ko.observable(false);
-
-    self.errorTextoCantidad = ko.observable('');
-    self.errorTextoImporte = ko.observable('');
-    self.errorTextoKm = ko.observable('');
-    self.errorTextoExtras = ko.observable('');
-    self.errorTextoPeaje = ko.observable('');
-    self.textSelectores = ko.observable('');
-
-    ko.computed(function () {
-
-    })
-
     self.enviarReporte = function () {
         self.errorKm(false);
         self.errorImporte(false);
         self.errorLitros(false);
         self.errorPeaje(false);
         self.errorExtras(false);
+        self.errorViatico(false);
 
         if (self.validarQueElCampoSeaNumerio(self.km())) {
             self.errorKm(true);
@@ -154,6 +192,10 @@ function AppViewModel() {
             self.errorPeaje(true);
             self.errorTextoPeaje('Los peajes deben ser un valor numerico y mayor o iguales a cero.');
         }
+        if (self.validarQueElCampoSeaNumerio(self.viatico())) {
+            self.errorViatico(true);
+            self.errorTextoViatico('Los peajes deben ser un valor numerico y mayor o iguales a cero.');
+        }
         if (self.validarQueElCampoSeaNumerio(self.importe())) {
             if (!self.errorLitros()) {
                 self.errorImporte(true);
@@ -164,15 +206,22 @@ function AppViewModel() {
             }
         }
 
-        if (!self.errorLitros() && !self.errorKm() && !self.errorImporte()) {
+        if (!self.errorLitros() && !self.errorKm() && !self.errorImporte() && !self.errorViatico() && !self.errorFee() && !self.errorExtras()) {
             var datosAMandar = {
                 idViaje: self.viajeSeleccionado(),
                 litros: self.litros(),
                 km: self.km(),
                 importe: self.importe(),
                 extras: self.extras(),
-                peaje: self.peaje()
+                peaje: self.peaje(),
+                fee: self.fee(),
+                viatico: self.viatico(),
+                latitud: self.latitud(),
+                longitud: self.longitud(),
+                tipoReporte: self.reporteSeleccionado()
             }
+
+            console.log('datos a enviar:', datosAMandar);
 
             $.ajax({
                 url: '/chofer/procesarReporteDiario',

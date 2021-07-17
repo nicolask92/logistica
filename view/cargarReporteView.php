@@ -40,15 +40,15 @@
                         <select class="form-control"
                                 data-bind="
                                     options: opcionesDeReporte,
-                                    optionsCaption: 'Seleccione si cargar Reporte o desea Finalizar Viaje'">
+                                    value: reporteSeleccionado,
+                                    optionsCaption: 'Cargar Reporte o Finalizar Viaje'">
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div data-bind="visible: errorEstado" style="display: none">
-                <div class="alert alert-danger" role="alert" data-bind="text: errorSelectores">
-                    El Estado del viaje seleccionado es Pendiente o Finalizado y no se puede editar.
+            <div data-bind="visible: errorSelectores" style="display: none">
+                <div class="alert alert-danger" role="alert" data-bind="text: textoSelectores">
                 </div>
             </div>
 
@@ -87,11 +87,21 @@
                             <div class="invalid-feedback" data-bind="text: errorTextoExtras, visible: errorKm, style: { display: errorExtras() ? 'block' : 'none' }"></div>
                         </div>
                         <div class="mb-3">
+                            <label for="viaticos" class="form-label">Viaticos</label>
+                            <input type="text" class="form-control" id="viaticos" data-bind="value: viatico">
+                            <div class="invalid-feedback" data-bind="text: errorTextoViatico, visible: errorViatico, style: { display: errorViatico() ? 'block' : 'none' }"></div>
+                        </div>
+                        <div class="mb-3">
                             <label for=peaje" class="form-label">Peaje</label>
                             <input type="text" class="form-control" id="peaje" data-bind="value: peaje">
                             <div class="invalid-feedback" data-bind="text: errorTextoPeaje, visible: errorPeaje, style: { display: errorPeaje() ? 'block' : 'none' }"></div>
                         </div>
-                        <button data-bind="click: enviarReporte" type="button" class="btn btn-secondary btn-sm">Enviar reporte</button>
+                        <div class="mb-3" data-bind="visible: habilitarFee">
+                            <label for=fee" class="form-label">Fee</label>
+                            <input type="text" class="form-control" id="fee" data-bind="value: fee">
+                            <div class="invalid-feedback" data-bind="text: errorTextoFee, visible: errorFee, style: { display: errorFee() ? 'block' : 'none' }"></div>
+                        </div>
+                        <button data-bind="click: enviarReporte, text: textoBoton" type="button" class="btn btn-secondary btn-sm"></button>
                     </form>
                 </div>
                 <div class="col-lg-1">
