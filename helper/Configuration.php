@@ -12,6 +12,7 @@ include_once("model/ViajesModel.php");
 include_once("model/DetalleModel.php");
 include_once("model/ChoferModel.php");
 include_once("model/CosteoModel.php");
+include_once("model/PerfilModel.php");
 
 
 include_once("controller/IndexController.php");
@@ -23,6 +24,7 @@ include_once("controller/RegistroController.php");
 include_once("controller/ChoferController.php");
 include_once("controller/AccessDeniedY404Controller.php");
 include_once("controller/DetalleController.php");
+include_once("controller/PerfilController.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -61,6 +63,12 @@ class Configuration{
         $database = $this->getDatabase();
         return new DetalleModel($database);
     }
+
+    public function getPerfilModel(){
+            $database = $this->getDatabase();
+            return new PerfilModel($database);
+        }
+
 
     public function getViajesModel(){
             $database = $this->getDatabase();
@@ -105,6 +113,11 @@ class Configuration{
             $detalleModel = $this->getDetalleModel();
             return new DetalleController($detalleModel, $this->getRender());
     }
+
+     public function getPerfilController(){
+                $perfilModel = $this->getPerfilModel();
+                return new PerfilController($perfilModel, $this->getRender());
+        }
 
     public function getLoginController(){
            $loginModel = $this->getLogearseModel();

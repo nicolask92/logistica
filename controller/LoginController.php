@@ -32,7 +32,8 @@ class LoginController
 
     public function procesarLogin(){
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $password = md5($_POST["password"]);
+
         $usuario = $this->loginModel->buscarUsuario($email , $password);
         
         if ($usuario->num_rows > 0) {
