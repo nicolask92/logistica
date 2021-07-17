@@ -15,9 +15,9 @@ class CosteoModel {
 		return mysqli_fetch_assoc($this->database->execute($sql));
 	}
 
-	public function insertarCosteo($id, $litros, $km, $importe, $extras, $peaje, $latitud, $longitud) {
-		$sql = "INSERT INTO costeo(id_viaje, litros, km, importe, extras, peaje, latitud, longitud)
-				values(${id}, ${litros}, ${km}, ${importe}, ${extras}, ${peaje}, ${latitud}, ${longitud})";
+	public function insertarCosteo($id, $litros, $km, $importe, $extras, $peaje, $viatico, $latitud, $longitud) {
+		$sql = "INSERT INTO costeo(id_viaje, litros, km, importe, extras, peaje, viatico, latitud, longitud)
+				values(${id}, ${litros}, ${km}, ${importe}, ${extras}, ${peaje}, ${viatico}, ${latitud}, ${longitud})";
 
 		return mysqli_fetch_assoc($this->database->execute($sql));
 	}

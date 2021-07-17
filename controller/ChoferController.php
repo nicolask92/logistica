@@ -66,13 +66,15 @@ class ChoferController
 		$latitud = $valoresReporte['latitud'];
 		$longitud = $valoresReporte['longitud'];
 		$kmRecorridosAnterioresEnArray = $this->costeoModel->getKmsTotalesByIdViaje();
+		$tipoReporte = $valoresReporte['tipoReporte'];
+		$viatico = $valoresReporte['viatico'];
 		$kmTotalesHastaElMomento = 0;
 
 		foreach ($kmRecorridosAnterioresEnArray as $kmIndividual) {
 			$kmTotalesHastaElMomento += $kmIndividual;
 		}
 
-		if (!isset($id) || !isset($litros) || !isset($km) || !isset($importe) || !isset($extras) || !isset($peaje) || !isset($latitud) || !isset($longitud)) {
+		if (!isset($id) || !isset($litros) || !isset($km) || !isset($importe) || !isset($extras) || !isset($peaje) || !isset($latitud) || !isset($longitud) || !isset($tipoReporte) || !isset($viatico)) {
 			// nunca deberia entrar por aca.
 			$error = true;
 			array_push($errores, 'Error en los datos enviados. Alguno de los campos es nulo.');
@@ -95,14 +97,45 @@ class ChoferController
 			$valoresAEnviar = array('error' => true, 'errores' => $errores);
 			echo json_encode($valoresAEnviar);
 		} else {
-			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $kmTotalesHastaElMomento, $importe, $extras, $peaje, $latitud, $longitud);
+			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $kmTotalesHastaElMomento, $importe, $extras, $peaje, $viatico, $latitud, $longitud);
 
-			if ($insertadoEnTabla) {
-				$valoresAEnviar = array('error' => false);
-				echo json_encode($valoresAEnviar);
+			if ($tipoReporte == 'FinalizarViaje') {
+				$fechaActual = new DateTime('NOW');
+				$costeosTotalesArray = $this->costeoModel->getCosteosTotal($id);
+
+				$extras = 0;
+				$peajes = 0;
+				$litros = 0;
+				$kmTotales = 0;
+				$viaticos = 0;
+				$importe = 0;
+
+				foreach ($costeosTotalesArray as $costeoIndividual) {
+					$extras += $costeoIndividual['extras'];
+					$peajes += $costeoIndividual['peaje'];
+					$litros += $costeoIndividual['litros'];
+					$kmTotales += $costeoIndividual['km'];
+					$viaticos += $costeoIndividual['viatico'];
+					$importe += $costeoIndividual['importe'];
+				}
+
+				$actualizarViaje = $this->choferModel->actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $valoresReporte['fee']);
+
+				if ($actualizarViaje) {
+					$valoresAEnviar = array('error' => false);
+					echo json_encode($valoresAEnviar);
+				} else {
+					$valoresAEnviar = array('error' => true, 'errores' => 'Problemas al insertar en la bd.');
+					echo json_encode($valoresAEnviar);
+				}
 			} else {
-				$valoresAEnviar = array('error' => true, 'errores' => 'Problemas al insertar en la bd.');
-				echo json_encode($valoresAEnviar);
+				if ($insertadoEnTabla) {
+					$valoresAEnviar = array('error' => false);
+					echo json_encode($valoresAEnviar);
+				} else {
+					$valoresAEnviar = array('error' => true, 'errores' => 'Problemas al insertar en la bd.');
+					echo json_encode($valoresAEnviar);
+				}
 			}
 		}
 	}

@@ -69,6 +69,7 @@ function AppViewModel() {
     // funciones de la pagina con respecto al viaje
     self.viajes = ko.observableArray();
     self.viajeSeleccionado = ko.observable();
+    self.opcionesDeReporte = ['Finalizar', 'Reporte Diario'];
 
     self.km = ko.observable(0);
     self.litros = ko.observable(0);
@@ -79,6 +80,7 @@ function AppViewModel() {
     // guards
     self.reporteCargado = ko.observable(false);
     self.habilitadoCargaDatos = ko.observable(false);
+    self.seleccionTipoReporte = ko.observable(false);
 
     self.viajeSeleccionado.subscribe(function () {
         console.log(self.viajeSeleccionado());
@@ -86,7 +88,7 @@ function AppViewModel() {
             return viaje.id === self.viajeSeleccionado();
         });
 
-        if (viajeSeleccionado.estado === 'ACTIVO') {
+        if (viajeSeleccionado !== undefined && viajeSeleccionado.estado === 'ACTIVO') {
             self.errorEstado(false);
             self.habilitadoCargaDatos(true);
         } else {
@@ -116,12 +118,14 @@ function AppViewModel() {
     self.errorLitros = ko.observable(false);
     self.errorExtras = ko.observable(false);
     self.errorPeaje = ko.observable(false);
+    self.errorSelectores = ko.observable(false);
 
     self.errorTextoCantidad = ko.observable('');
     self.errorTextoImporte = ko.observable('');
     self.errorTextoKm = ko.observable('');
     self.errorTextoExtras = ko.observable('');
     self.errorTextoPeaje = ko.observable('');
+    self.textSelectores = ko.observable('');
 
     ko.computed(function () {
 

@@ -9,8 +9,8 @@ class ChoferModel{
 
 	public function getInformacionViaje() {
     	$sql = "
-				SELECT id, origen, destino, fecha_carga, estado
-    	        FROM viaje
+			SELECT id, origen, destino, fecha_carga, estado
+            FROM viaje
     	";
 
 		return mysqli_fetch_all($this->database->execute($sql));

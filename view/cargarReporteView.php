@@ -34,10 +34,21 @@
                     </form>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12" data-bind="visible: seleccionTipoReporte" style="display: none;">
+                    <div class="form-group">
+                        <select class="form-control"
+                                data-bind="
+                                    options: opcionesDeReporte,
+                                    optionsCaption: 'Seleccione si cargar Reporte o desea Finalizar Viaje'">
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <div data-bind="visible: errorEstado" style="display: none">
-                <div class="alert alert-danger" role="alert">
-                    El Estado del viaje seleccionado es <span data-bind="text: viajeSeleccionado"></span> y no se puede editar.
+                <div class="alert alert-danger" role="alert" data-bind="text: errorSelectores">
+                    El Estado del viaje seleccionado es Pendiente o Finalizado y no se puede editar.
                 </div>
             </div>
 
