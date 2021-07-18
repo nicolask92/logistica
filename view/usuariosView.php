@@ -40,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{# users}}
+                                    {{# usuarioConRol}}
                                     <tr>
                                         <th>{{usuario}}</th>
                                         <th>{{email}}</th>
@@ -53,7 +53,7 @@
                                                 data-target="#delete{{usuario}}Modal" href="">Borrar</a>
                                         </th>
                                     </tr>
-                                    {{/ users}}
+                                    {{/ usuarioConRol}}
                                 </tbody>
                             </table>
                         </div>

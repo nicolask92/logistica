@@ -11,61 +11,74 @@ class AdminController
     }
 
     public function execute(){  
+        
         $usuarios_sin_rol = $this->database->getUsersWithOutRol();
         $usuarios_con_rol = $this->database->getUsersWithRol();
-
         
-        if(isset($_GET["editar"])){
-
-            $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
-        }
-        if(isset($_GET["borrar"])){
-
-            $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
-        }
-        if(isset($_GET["rol"])){
-
-            $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
-        }
-
         $data["usuarioSinRol"] = $usuarios_sin_rol;
         $data["usuarioConRol"] = $usuarios_con_rol;
+        $data["alert"] = $this->mostrarMensaje();      
+        
         echo $this->render->render("view/usuariosView.php",$data);                        
     }
     
-    private function mensajeEdicion($mensaje_edicion)
-    {
+    private function mostrarMensaje(){
         $alert = array();
-        if ($mensaje_edicion) {
+        if (isset($_GET['editar'])) {
             array_push($alert,[
                 "alerta" => 'alert alert-success',
                 "mensaje" =>'Se editó un usuario correctamente'
             ]);
-            return $alert;    
         }
-    }
-
-    private function mensajeBorrar($mensaje_borrado){
-        $alert = array();
-        if ($mensaje_borrado) {
+        if (isset($_GET['borrar'])) {
             array_push($alert,[
                 "alerta" => 'alert alert-success',
                 "mensaje" =>'Se borró un usuario correctamente'
             ]);
-            return $alert;    
         }
-    }
-
-    private function mensajeAsignar($mensaje_rol){
-        $alert = array();
-        if ($mensaje_rol) {
+        if (isset($_GET['rol'])) {
             array_push($alert,[
                 "alerta" => 'alert alert-success',
                 "mensaje" =>'Se asignó correctamente un rol'
             ]);
-            return $alert;    
         }
+        return $alert;
     }
+
+
+    // private function mensajeEdicion($mensaje_edicion)
+    // {
+    //     $alert = array();
+    //     if ($mensaje_edicion) {
+    //         array_push($alert,[
+    //             "alerta" => 'alert alert-success',
+    //             "mensaje" =>'Se editó un usuario correctamente'
+    //         ]);
+    //         return $alert;    
+    //     }
+    // }
+
+    // private function mensajeBorrar($mensaje_borrado){
+    //     $alert = array();
+    //     if ($mensaje_borrado) {
+    //         array_push($alert,[
+    //             "alerta" => 'alert alert-success',
+    //             "mensaje" =>'Se borró un usuario correctamente'
+    //         ]);
+    //         return $alert;    
+    //     }
+    // }
+
+    // private function mensajeAsignar($mensaje_rol){
+    //     $alert = array();
+    //     if ($mensaje_rol) {
+    //         array_push($alert,[
+    //             "alerta" => 'alert alert-success',
+    //             "mensaje" =>'Se asignó correctamente un rol'
+    //         ]);
+    //         return $alert;    
+    //     }
+    // }
 
     public function editarUsuario(){
         $usuario = $this->database->obtenerUsuarioPorId($_GET["id"]);

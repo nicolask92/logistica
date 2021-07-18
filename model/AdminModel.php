@@ -12,7 +12,7 @@ class AdminModel{
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
                 WHERE e.id_rol = 5";
-        return $this->obj_mysql->query($sql);
+        return $this->obj_mysql->execute($sql);
     }
 
     public function getUsersWithRol(){
@@ -20,38 +20,21 @@ class AdminModel{
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
                 WHERE NOT e.id_rol = 5";
-        return $this->obj_mysql->query($sql);
+        return $this->obj_mysql->execute($sql);
     }
 
     private function ejecutarConsulta($sql){
         return $this->obj_mysql->execute($sql);
     }
 
-    private function convertiraArrayAsociativo($result){
-        if ($this->validarQueTengaMasDeUnaFila($result)) {
-            $data = array();
-            while ($rows = $result->fetch_assoc()) {
-                $data[] = $rows;
-            }
-            return $data;
-        }
-    }
-
-    private function validarQueTengaMasDeUnaFila($result){
-        if ($result->num_rows > 0) {
-            return true;
-        }
-    }
-
-
+    
     public function obtenerUsuarioPorId($id_usuario){
         $sql = "SELECT * FROM usuario 
                 INNER JOIN empleado
                 ON usuario.id = empleado.usuario_id
                 INNER JOIN rol ON empleado.id_rol = rol.id
                 WHERE usuario.id =" . $id_usuario;
-        $result = $this->ejecutarConsulta($sql);
-        $result = $this->convertiraArrayAsociativo($result);
+        $result = $this->obj_mysql->execute($sql);
         return $result;
     }
 
