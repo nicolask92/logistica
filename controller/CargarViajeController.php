@@ -51,7 +51,6 @@ class CargarViajeController
         if(isset($_GET["errorIdArrastrador"])){
             $data["errorIdArrastrador"] = true;
         }
-
         if(isset($_GET["errorNombreCliente"])){
             $data["errorNombreCliente"] = true;
         }

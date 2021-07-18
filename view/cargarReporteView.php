@@ -108,6 +108,11 @@
                             <input type="text" class="form-control" id="fee" data-bind="value: fee">
                             <div class="invalid-feedback" data-bind="text: errorTextoFee, visible: errorFee, style: { display: errorFee() ? 'block' : 'none' }"></div>
                         </div>
+                        <div class="mb-3" data-bind="visible: habilitarPesaje">
+                            <label for=pesaje" class="form-label">Pesaje</label>
+                            <input type="text" class="form-control" id="pesaje" data-bind="value: pesaje">
+                            <div class="invalid-feedback" data-bind="text: errorTextoPesaje, visible: errorPesaje, style: { display: errorPesaje() ? 'block' : 'none' }"></div>
+                        </div>
                         <button data-bind="click: enviarReporte, text: textoBoton" type="button" class="btn btn-secondary btn-sm"></button>
                     </form>
                 </div>

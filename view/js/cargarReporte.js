@@ -73,6 +73,7 @@ function AppViewModel() {
     self.opcionesDeReporte = ['Finalizar', 'Reporte Diario'];
     self.reporteSeleccionado = ko.observable();
 
+    // variables de input
     self.km = ko.observable(0);
     self.litros = ko.observable(0);
     self.importe = ko.observable(0);
@@ -80,6 +81,7 @@ function AppViewModel() {
     self.peaje = ko.observable(0);
     self.viatico = ko.observable(0)
     self.fee = ko.observable(0);
+    self.pesaje = ko.observable(0);
 
     self.textoBoton = ko.observable('');
 
@@ -88,6 +90,7 @@ function AppViewModel() {
     self.habilitadoCargaDatos = ko.observable(false);
     self.seleccionTipoReporte = ko.observable(false);
     self.habilitarFee = ko.observable(false);
+    self.habilitarPesaje = ko.observable(false);
 
     // errores
     self.errorKm = ko.observable(false);
@@ -96,6 +99,7 @@ function AppViewModel() {
     self.errorExtras = ko.observable(false);
     self.errorPeaje = ko.observable(false);
     self.errorFee = ko.observable(false);
+    self.errorPesaje = ko.observable(false);
     self.errorViatico = ko.observable(false);
     self.errorSelectores = ko.observable(false);
     self.errorDeCreacionReporte = ko.observable(false);
@@ -107,6 +111,7 @@ function AppViewModel() {
     self.errorTextoPeaje = ko.observable('');
     self.errorTextoFee = ko.observable('');
     self.errorTextoViatico = ko.observable('');
+    self.errorTextoPesaje = ko.observable('');
     self.textoSelectores = ko.observable('');
     self.erroresAMostrar = ko.observableArray([]);
 
@@ -125,6 +130,7 @@ function AppViewModel() {
                 self.seleccionTipoReporte(false);
                 self.textoSelectores('Tienes un viaje sin terminar, para comenzar uno pendiente debes terminar el anterior.');
             } else if (viajeSeleccionado.estado === 'PENDIENTE') {
+                self.habilitarPesaje(true);
                 self.errorSelectores(false);
                 self.textoBoton('Comenzar Viaje');
                 self.habilitadoCargaDatos(true);
@@ -187,6 +193,7 @@ function AppViewModel() {
         self.errorExtras(false);
         self.errorViatico(false);
         self.reporteCargado(false);
+        self.errorPesaje(false);
         self.erroresAMostrar();
 
         if (self.validarQueElCampoSeaNumerio(self.km())) {
@@ -209,6 +216,10 @@ function AppViewModel() {
             self.errorViatico(true);
             self.errorTextoViatico('Los peajes deben ser un valor numerico y mayor o iguales a cero.');
         }
+        if (self.validarQueElCampoSeaNumerio(self.pesaje())) {
+            self.errorPesaje(true);
+            self.errorTextoPesaje('Los pesajes deben ser un valor numerico y mayor o iguales a cero.');
+        }
         if (self.validarQueElCampoSeaNumerio(self.importe())) {
             if (!self.errorLitros()) {
                 self.errorImporte(true);
@@ -219,7 +230,7 @@ function AppViewModel() {
             }
         }
 
-        if (!self.errorLitros() && !self.errorKm() && !self.errorImporte() && !self.errorViatico() && !self.errorFee() && !self.errorExtras()) {
+        if (!self.errorLitros() && !self.errorKm() && !self.errorImporte() && !self.errorViatico() && !self.errorFee() && !self.errorExtras() && !self.errorPesaje()) {
             var tipoReporte = null;
             if (self.hayViajesActivos()) {
                 tipoReporte = self.reporteSeleccionado();
@@ -237,6 +248,7 @@ function AppViewModel() {
                 viatico: self.viatico(),
                 latitud: self.latitud(),
                 longitud: self.longitud(),
+                pesaje: self.pesaje(),
                 tipoReporte: tipoReporte
             }
 
@@ -260,9 +272,12 @@ function AppViewModel() {
                     self.peaje(0);
                     self.fee(0);
                     self.viatico(0);
+                    self.pesaje(0);
                     self.reporteCargado(true);
                     self.errorDeCreacionReporte(false);
                     self.errorSelectores(false);
+                    self.habilitarPesaje(false);
+                    self.habilitarFee(false);
                     self.informacionDeViajes();
                 }
                 $(window).scrollTop(0);
