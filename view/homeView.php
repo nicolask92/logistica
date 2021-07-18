@@ -66,9 +66,14 @@
                                         <a href="/chofer?id={{id}}" type="button" class="btn btn-secondary">QR</a>
                                     {{/chofer}}
                                     {{#supervisor}}
+
                                         <a href="/detalle?id={{id}}" target=_blank type="button" class="btn btn-primary">Detalle</a>
                                         <a href="/detalle/PDF?id={{id}}" target=_blank type="button" class="btn btn-primary">PDF</a>
                                     {{/supervisor}}
+                                    {{#admin}}
+                                        <a href="/detalle?id={{id}}" target=_blank type="button" class="btn btn-primary">Detalle</a>
+                                        <a href="/detalle/PDF?id={{id}}" target=_blank type="button" class="btn btn-primary">PDF</a>
+                                    {{/admin}}
                                 </td>
                             </tr>
                             {{/viajes}}
