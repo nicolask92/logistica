@@ -9,7 +9,7 @@ class MecanicoModel{
         $this->database = $database;
     }
 
-    public function insertMantenimiento($idVehiculo, $fechaService, $costoVehiculo, $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico){   
+    public function insertMantenimiento($fechaService, $costoVehiculo, $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico){
 
 
         $sql= "INSERT INTO mantenimiento (fecha, costo, tipo, repuesto_cam, id_camion, id_mecanico)
@@ -28,7 +28,17 @@ class MecanicoModel{
 
         $resultado = $this->database->execute($sql);
 
-        return mysqli_fetch_assoc($resultado);
+        return $resultado;
+    }
+
+    public function buscarVehiculos(){
+
+        $sql = "SELECT id, marca, modelo FROM camiones";
+
+        $resultado = $this->database->execute($sql);
+
+        return $resultado;
+
     }
 
 }

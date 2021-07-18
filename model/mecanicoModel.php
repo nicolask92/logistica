@@ -9,7 +9,7 @@ class MecanicoModel{
         $this->database = $database;
     }
 
-    public function insertMantenimiento($idVehiculo, $fechaService, $costoVehiculo, $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico){   
+    public function insertMantenimiento($fechaService, $costoVehiculo, $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico){
 
 
         $sql= "INSERT INTO mantenimiento (fecha, costo, tipo, repuesto_cam, id_camion, id_mecanico)
@@ -26,19 +26,19 @@ class MecanicoModel{
                 JOIN empleado ON empleado.usuario_id = usuario.id
                 JOIN mecanico ON empleado.legajo = mecanico.legajo";
 
-        $resultado = $this->database->query($sql);
+        $resultado = $this->database->execute($sql);
 
         return $resultado;
     }
-    
-     public function buscarVehiculos(){
-    
+
+    public function buscarVehiculos(){
+
         $sql = "SELECT id, marca, modelo FROM camiones";
-        
-        $resultado = $this->database->query($sql);
-        var_dump($resultado);
-        
+
+        $resultado = $this->database->execute($sql);
+
         return $resultado;
-        
-        }
+
+    }
+
 }
