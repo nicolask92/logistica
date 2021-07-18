@@ -98,8 +98,8 @@ class MecanicoController
         } else {
 
 
-        $this->mecanicoModel->insertMantenimiento($idVehiculo, $fechaService, $costoVehiculo, 
-                        $serviceInternoExterno, $repuestoCambiado, $idMecanico);
+        $this->mecanicoModel->insertMantenimiento($fechaService, $costoVehiculo,
+                        $serviceInternoExterno, $repuestoCambiado, $idVehiculo, $idMecanico);
 
          header("location:/mecanico?mensaje=true");  
         }
