@@ -26,19 +26,19 @@ class MecanicoModel{
                 JOIN empleado ON empleado.usuario_id = usuario.id
                 JOIN mecanico ON empleado.legajo = mecanico.legajo";
 
-        $resultado = $this->database->query($sql);
+        $resultado = $this->database->execute($sql);
 
         return $resultado;
     }
-    
-     public function buscarVehiculos(){
-    
+
+    public function buscarVehiculos(){
+
         $sql = "SELECT id, marca, modelo FROM camiones";
-        
+
         $resultado = $this->database->query($sql);
-        var_dump($resultado);
         
         return $resultado;
-        
-        }
+
+    }
+
 }

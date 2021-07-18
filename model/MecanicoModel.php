@@ -28,7 +28,17 @@ class MecanicoModel{
 
         $resultado = $this->database->execute($sql);
 
-        return mysqli_fetch_assoc($resultado);
+        return $resultado;
+    }
+
+    public function buscarVehiculos(){
+
+        $sql = "SELECT id, marca, modelo FROM camiones";
+
+        $resultado = $this->database->query($sql);
+        
+        return $resultado;
+
     }
 
 }

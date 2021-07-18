@@ -86,12 +86,12 @@ class MecanicoController
         if (empty($repuestoCambiado)) {
             $errores = $errores. "errorRepuestoCambiado=true&";
         } else {
-            $campos= $campos. 'repuestoCambiado=' . $destino . '&';
+            $campos= $campos. 'repuestoCambiado=' . $repuestoCambiado . '&';
         }
         if (empty($costoVehiculo)) {
             $errores = $errores. "errorCostoVehiculo=true&";
         } else {
-            $campos= $campos. "costoVehiculo=".$fecha_carga."&";
+            $campos= $campos. "costoVehiculo=".$costoVehiculo."&";
         }
         if (!empty($errores)) {
             header("Location: /mecanico?".$errores.$campos);
@@ -99,7 +99,7 @@ class MecanicoController
 
 
         $this->mecanicoModel->insertMantenimiento($idVehiculo, $fechaService, $costoVehiculo, 
-                        $serviceInternoExterno, $repuestoCambiado, $IDvehiculo, $idMecanico);
+                        $serviceInternoExterno, $repuestoCambiado, $idMecanico);
 
          header("location:/mecanico?mensaje=true");  
         }
