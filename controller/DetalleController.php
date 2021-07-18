@@ -3,6 +3,7 @@ require_once 'third-party/dompdf/autoload.inc.php';
 require_once('third-party/jpgraph/src/jpgraph.php');
 require_once('third-party/jpgraph/src/jpgraph_bar.php');
 use Dompdf\Dompdf;
+
 class DetalleController
 {
     private $detalleModel;
@@ -16,17 +17,13 @@ class DetalleController
 
     public function execute()
     {
-
        $data= $this->getDatos();
 
         echo $this->render->render("view/detalleView.php", $data);
-
     }
 
     public function PDF()
     {
-
-
         $dompdf = new Dompdf();
 
         ob_start();
@@ -48,7 +45,7 @@ class DetalleController
     {
         $id = $_GET["id"];
 
-        $costeo= $this->detalleModel->getCosteo($id );
+        $costeo= $this->detalleModel->getCosteo($id);
 
         $data1y = array($costeo["kilometros_previsto"],$costeo["combustible_previsto"], $costeo["viaticos_previsto"],
                   $costeo["peajes_previsto"],$costeo["pesajes_previsto"], $costeo["extras_previsto"],
@@ -56,8 +53,6 @@ class DetalleController
         $data2y = array($costeo["kilometros_real"],$costeo["combustible_real"],$costeo["viaticos_real"],
                   $costeo["peajes_real"],$costeo["pesajes_real"], $costeo["extras_real"],
                   $costeo["fee_real"],$costeo["hazard_precio"],$costeo["reefer_precio"]);
-
-
 
         // Create the graph. These two calls are always required
         $graph = new Graph(700, 500, 'auto');
@@ -84,7 +79,6 @@ class DetalleController
         // ...and add it to the graPH
         $graph->Add($gbplot);
 
-
         $b1plot->SetColor("white");
         $b1plot->SetFillColor("#575966");
         $b1plot->SetLegend("Previsto");
@@ -102,8 +96,6 @@ class DetalleController
 
         // Display the graph
         $graph->Stroke();
-
-
     }
 
     public function getDatos(){

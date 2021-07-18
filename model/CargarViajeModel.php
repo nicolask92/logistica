@@ -58,14 +58,32 @@ class CargarViajeModel
 
     }
 
+    public function insertViaje(
+    	$origen,
+	    $destino,
+	    $fecha_carga,
+	    $estado,
+	    $id_supervisor,
+	    $id_chofer,
+	    $id_camion,
+	    $id_arrastrador,
+	    $eta,
+	    $etd,
+	    $combustible_p,
+	    $km_p,
+	    $viaticos_p,
+	    $peajes_p,
+	    $pesajes_p,
+	    $extras_p,
+	    $fee_p,
+	    $hazard_precio,
+	    $reefer_precio,
+	    $gastoCombustiblePreviso) {
 
-    public function insertViaje($origen, $destino, $fecha_carga, $estado, $id_supervisor, $id_chofer,$id_camion,$id_arrastrador){
-
-        $sql = "INSERT INTO viaje (origen, destino, fecha_carga, estado, id_supervisor, id_chofer,id_camion, id_arrastrador) 
-                VALUES ('$origen', '$destino', '$fecha_carga','$estado','$id_supervisor', '$id_chofer','$id_camion','$id_arrastrador')";
+        $sql = "INSERT INTO viaje 	(origen, destino, fecha_carga, estado, id_supervisor, id_chofer,id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto,kilometros_previsto, viaticos_previsto, peajes_previsto, pesajes_previsto, extras_previsto, fee_previsto, hazard_precio, reefer_precio, importe_combustible_previsto)
+                VALUES 				('$origen', '$destino', '$fecha_carga','$estado','$id_supervisor', '$id_chofer','$id_camion','$id_arrastrador','$eta','$etd','$combustible_p','$km_p','$viaticos_p','$peajes_p', '$pesajes_p','$extras_p','$fee_p', '$hazard_precio','$reefer_precio', '$gastoCombustiblePreviso')";
 
        $this->database->execute($sql);
-
     }
 
     public function ultimoId(){
@@ -87,21 +105,6 @@ class CargarViajeModel
 
         $this->database->execute($sql);
 
-    }
-
-    public function insertCosteoPrevisto($id_viaje,$eta, $etd, $combustible_p, $km_p,$viaticos_p,$peajes_p,
-                                         $pesajes_p, $extras_p, $fee_p, $hazard_precio, $reefer_precio){
-
-
-        $sql = "INSERT INTO `costeo`(`id_viaje`, `fecha_llegada_previsto`, `fecha_salida_previsto`, 
-                     `combustible_previsto`,`kilometros_previsto`, `viaticos_previsto`, `peajes_previsto`,
-                     `pesajes_previsto`, `extras_previsto`, `fee_previsto`,`hazard_precio`,`reefer_precio`) 
-                     
-                VALUES ('$id_viaje','$eta','$etd',
-                        '$combustible_p','$km_p','$viaticos_p','$peajes_p',
-                        '$pesajes_p','$extras_p','$fee_p', '$hazard_precio','$reefer_precio')";
-
-        $this->database->execute($sql);
     }
 
     public function getTipoCarga($id_arrastrador){

@@ -162,6 +162,11 @@
                         </div>
                         {{#errorFeePrevisto}}<p class="text-danger">Ingresar fee previstos</p>{{/errorFeePrevisto}}
 
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="gastosCombustiblePrevistos"
+                            name="gastosCombustiblePrevistos" placeholder="Gastos Combustible Previsto" value={{gastosCombustiblePrevistos}}>
+                        </div>
+                        {{#errorGastosCombustiblePrevisto}}<p class="text-danger">Ingresar gastos previstos de combustible</p>{{/errorGastosCombustiblePrevisto}}
 
                         <div>
 

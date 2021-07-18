@@ -163,6 +163,11 @@
             <td>{{combustible_real}}</td>
         </tr>
         <tr>
+            <td>Importe Litros Totales</td>
+            <td>{{importe_combustible_previsto}}</td>
+            <td>{{importe_combustible_real}}</td>
+        </tr>
+        <tr>
             <td>ETD</td>
             <td>{{fecha_salida_previsto}}</td>
             <td>{{fecha_salida_real}}</td>
@@ -212,9 +217,8 @@
             <td>{{peajes_real}}</td>
         </tr>
 
-        <td>Total</td>
-        <td>Larry</td>
-        <td>Larry</td>
+        <td>Total Gastos Real</td>
+        <td><strong>{{gasto_total}}</strong></td>
         </tbody>
     </table>
     {{/costeo}}

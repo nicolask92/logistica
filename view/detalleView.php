@@ -153,9 +153,14 @@
                             <td>{{kilometros_real}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Combustible</th>
+                            <th scope="row">Combustible (Litros)</th>
                             <td>{{combustible_previsto}}</td>
                             <td>{{combustible_real}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Importe Litros Totales</th>
+                            <td>{{importe_combustible_previsto}}</td>
+                            <td>{{importe_combustible_real}}</td>
                         </tr>
                         <tr>
                             <th scope="row">ETD</th>
@@ -203,9 +208,9 @@
                             <td>{{fee_real}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Total</th>
-                            <td>Larry</td>
-                            <td>Larry</td>
+                            <th scope="row">Gasto Total</th>
+                            <td><strong>{{gasto_total}}</strong></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>

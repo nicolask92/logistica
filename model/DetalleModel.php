@@ -49,8 +49,8 @@ class DetalleModel
 
     public function getCosteo($id){
 
-        $sql ="SELECT * FROM costeo 
-               WHERE id_viaje =".$id;
+        $sql ="SELECT * FROM viaje 
+               WHERE id =".$id;
 
         $resultado = $this->database->query($sql);
 

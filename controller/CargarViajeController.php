@@ -142,6 +142,12 @@ class CargarViajeController
         if(isset($_GET["feePrevisto"])) {
             $data["feePrevisto"] = $_GET["feePrevisto"];
         }
+	    if(isset($_GET["errorGastosCombustiblePrevisto"])){
+		    $data["errorGastosCombustiblePrevisto"] = true;
+	    }
+	    if(isset($_GET["gastosCombustiblePrevistos"])) {
+		    $data["gastosCombustiblePrevistos"] = $_GET["gastosCombustiblePrevistos"];
+	    }
         if(isset($_GET["errorHazardCarga"])){
             $data["errorHazardCarga"] = true;
         }
@@ -204,7 +210,7 @@ class CargarViajeController
         $pesajes_p = $_POST["pesajesPrevisto"];
         $extras_p = $_POST["extrasPrevisto"];
         $fee_p = $_POST["feePrevisto"];
-
+        $gastosCombustibles_p = $_POST["gastosCombustiblePrevistos"];
 
         $hazard = $_POST["hazardCarga"];
         $imo = $_POST["imoCarga"];
@@ -321,6 +327,11 @@ class CargarViajeController
         }else{
             $campos = $campos . "feePrevisto=". $fee_p. "&";
         }
+        if (empty($gastosCombustibles_p)) {
+            $errores = $errores. "errorGastosCombustiblePrevisto=true&";
+        }else{
+            $campos = $campos . "feePrevisto=". $fee_p. "&";
+        }
         if (!isset($hazard)) {
             $errores = $errores. "errorHazardCarga=true&";
         }else{
@@ -365,22 +376,16 @@ class CargarViajeController
             header("Location: /cargarViaje?".$errores.$campos);
         } else {
 
-
             $this->cargarViajeModel->insertViaje($origen, $destino, $fecha_carga, $estado, $id_supervisor,
-                $id_chofer, $id_camion, $id_arrastrador);
+                $id_chofer, $id_camion, $id_arrastrador, $eta, $etd, $combustible_p, $km_p, $viaticos_p, $peajes_p,
+	            $pesajes_p, $extras_p, $fee_p, $hazard_precio, $reefer_precio, $gastosCombustibles_p);
 
-
-            $id_viaje = $this->cargarViajeModel->ultimoId();
+	        $id_viaje = $this->cargarViajeModel->ultimoId();
 
             $this->cargarViajeModel->insertCliente($nombre_cliente, $apellido_cliente, $cuit_cliente, $domicilio_cliente,
                 $tel_cliente, $email_cliente, $id_viaje["id"]);
 
-            $this->cargarViajeModel->insertCosteoPrevisto($id_viaje["id"], $eta, $etd, $combustible_p, $km_p, $viaticos_p, $peajes_p,
-                $pesajes_p, $extras_p, $fee_p, $hazard_precio, $reefer_precio);
-
-
             $tipo_carga = $this->cargarViajeModel->getTipoCarga($id_arrastrador);
-
 
             $this->cargarViajeModel->insertCarga($tipo_carga["tipo"], $hazard, $imo, $reefer, $temperatura, $peso_neto, $id_viaje["id"]);
 
