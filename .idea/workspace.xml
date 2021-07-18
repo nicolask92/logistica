@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_2021_22_16__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/MecanicoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/MecanicoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/MysqlDatabase.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/MysqlDatabase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/mecanicoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/MecanicoModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/mecanicoView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/mecanicoView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ChoferController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ChoferController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/cargarReporteView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/cargarReporteView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/verQrView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/verQrView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +74,7 @@
       <workItem from="1626027635325" duration="2790000" />
       <workItem from="1625942219913" duration="6208000" />
       <workItem from="1626022022601" duration="8858000" />
+      <workItem from="1626648726387" duration="7000" />
     </task>
     <servers />
   </component>
