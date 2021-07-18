@@ -16,14 +16,20 @@ class ChoferController
 	public function execute()
 	{
 		include("third-party/phpqrcode/qrlib.php");
+
+		/*  VERSION VIEJA DE RESPALDO POR SI NO FUNCA LO QUE QUIERO HACER
 		$fecha = new DateTime();
 		$momentoActual = $fecha->getTimestamp();
 		$rutaImagenAGuardar = "view/img/qrs/" . $momentoActual . ".png";
+		*/
 
+		$rutaImagenAGuardar = "view/img/qrs/" . $_GET['id'] . ".png";
 		$rutaRelativa = "/chofer/reporteDiario?viaje=" . $_GET['id'];
 		$rutaTotal = $_SERVER['HTTP_HOST'] . "/chofer/reporteDiario?viaje=" . $_GET['id'];
 
-		QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L, 8);
+		if (!file_exists($rutaImagenAGuardar)) {
+			QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L, 8);
+		}
 
 		$data['urlQr'] = $rutaImagenAGuardar;
 		$data['urlViaje'] = $rutaTotal;
