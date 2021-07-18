@@ -29,9 +29,8 @@ class AdminController
         }
 
         $data["usuarioSinRol"] = $usuarios_sin_rol;
-        $data["users"] = $usuarios_con_rol;
+        $data["usuarioConRol"] = $usuarios_con_rol;
         echo $this->render->render("view/usuariosView.php",$data);                        
-        
     }
     
     private function mensajeEdicion($mensaje_edicion)
