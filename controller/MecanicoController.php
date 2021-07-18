@@ -13,9 +13,9 @@ class MecanicoController
 
     public function execute()
     {
-        $data=[];
+
         $data["datosMecanico"] = $this->mecanicoModel->buscarMecanico();
-        //$data["seleccionarVehiculo"] = $this->mecanicoModel->buscarVehiculos();
+        $data["seleccionarVehiculo"] = $this->mecanicoModel->buscarVehiculos();
         
         if(isset($_GET["mensaje"])){
             $array["alerta"]= "alert alert-success";

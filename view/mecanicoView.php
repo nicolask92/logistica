@@ -26,7 +26,7 @@
 
                             <form method="POST" enctype="multipart/form-data" action="mecanico/procesarMantenimiento">
                             <div class="form-group">
-                                <select class="form-control" id="datosMecanico" name="datosMecanico" value="{{datosMecanico}}">
+                                <select class="form-control" id="datosMecanico" name="datosMecanico">
                                     <option selected value="0" >Seleccionar Mecánico</option>
                                     {{#datosMecanico}}
                                     <option value="{{id}}">{{nombre}} {{apellido}} </option>
@@ -40,7 +40,7 @@
                                     <h3>Vehículo</h3>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" id="seleccionarVehiculo" name="seleccionarVehiculo" value="{{seleccionarVehiculo}}">
+                                    <select class="form-control" id="seleccionarVehiculo" name="seleccionarVehiculo">
                                         <option selected value="0" >Seleccionar Vehículo</option>
                                         {{#seleccionarVehiculo}}
                                         <option value="{{id}}">{{marca}}-{{modelo}} </option>

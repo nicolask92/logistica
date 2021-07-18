@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70fe3210-b1dd-48c5-a51e-0b894264e73d" name="Default Changelist" comment="">
+    <list default="true" id="00455bdf-ffc4-43e8-bfab-a8ecfe042fdb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/MecanicoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/MecanicoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/mecanicoView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/mecanicoView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
