@@ -57,17 +57,20 @@ class RegistroController
         } else {
         	// genero el codigo
         	$codigo = rand(0,9).rand(0,9).rand(0,9).rand(0,9);
-
-        	// guardo en la bd
-			$this->model->crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo);
+        	$urlActivacion = $_SERVER['HTTP_HOST'] . "/registro/procesarCodigo?codigo=" . $codigo . "&email=" . $email;
+	        $headers  = 'MIME-Version: 1.0' . "\r\n";
+	        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
 			// cuerpo del msj
-	        $textoConElCodigo = "El codigo es " . $codigo;
+	        $textoConElCodigo = "El codigo es ${codigo}. Si quiere activarlo directamente haga click <a href='" . $urlActivacion . "' target=" . "'" . _blank . "'" . ">aquì</a>";
 
 	        // envio el correo.
-	        $correo = mail($email,"Codigo de activacion - Logistica", $textoConElCodigo);
+	        $correo = mail($email,"Codigo de activacion - Logistica", $textoConElCodigo, $headers);
 
 	        if ($correo) {
+		        // guardo en la bd
+		        $this->model->crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo);
+
 		        $errores['seEnvioCorrectamente'] = true;
 		        header('location: /registro/codigo?seEnvioCorrectamente=true');
 	        } else {
@@ -87,8 +90,15 @@ class RegistroController
     }
 
     public function procesarCodigo() {
-        $email = $_POST['email'];
-        $codigo = $_POST['codigo'];
+    	$email = null;
+    	$codigo = null;
+	    if (isset($_GET['codigo']) && isset($_GET['email'])) {
+		    $email = $_GET['email'];
+		    $codigo = $_GET['codigo'];
+	    } else if (isset($_POST['codigo']) && isset($_POST['email'])) {
+		    $email = $_POST['email'];
+		    $codigo = $_POST['codigo'];
+	    }
 
         $errores = array();
 
@@ -106,7 +116,7 @@ class RegistroController
             $errores['codigo'] = $codigo;
             echo $this->render->render("view/registroSegundoPasoView.php", $errores);
         } else {
-	        $seActivo = $this->model->activarCuenta($email, $codigo);
+	        $seActivo = $this->model->activarCuenta($email, intval($codigo));
 	        if ($seActivo) {
 				header('location: /login?cuentaActivada=true');
 	        } else {
