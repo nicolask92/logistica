@@ -1,7 +1,7 @@
 <?php
 require_once 'third-party/dompdf/autoload.inc.php';
-require_once('third-party/jpgraph/src/jpgraph.php');
-require_once('third-party/jpgraph/src/jpgraph_bar.php');
+//require_once('third-party/jpgraph/src/jpgraph.php');
+//require_once('third-party/jpgraph/src/jpgraph_bar.php');
 use Dompdf\Dompdf;
 
 class DetalleController
