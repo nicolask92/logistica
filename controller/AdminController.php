@@ -3,29 +3,18 @@
 class AdminController
 {
     private $render;
-    private $obj_adminModel;
+    private $database;
 
     public function __construct($adminModel, $render){
         $this->render = $render;
-        $this->obj_adminModel = $adminModel;
+        $this->database = $adminModel;
     }
 
     public function execute(){  
-        $result = $this->obj_adminModel->obtenerTodosLosUsuarios();    
-        $array_users_sinRol = array();
-        for ($i=0; $i < count($result); $i++) { 
-            if ($result[$i]['id_rol'] == 5) {
-                array_push($array_users_sinRol,
-                ['usuario_id' => $result[$i]["usuario_id"],
-                 'usuario' => $result[$i]["usuario"],
-                 'email' => $result[$i]["email"],
-                 'legajo' => $result[$i]["legajo"]]);
-            }
-            if ($result[$i]['id_rol'] != 5) {
-                $data["users"][$i] = $result[$i];
-            }
-        }
+        $usuarios_sin_rol = $this->database->getUsersWithOutRol();
+        $usuarios_con_rol = $this->database->getUsersWithRol();
 
+        
         if(isset($_GET["editar"])){
 
             $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
@@ -39,11 +28,12 @@ class AdminController
             $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
         }
 
-        $data["usuarioSinRol"] = $array_users_sinRol;
+        $data["usuarioSinRol"] = $usuarios_sin_rol;
+        $data["users"] = $usuarios_con_rol;
         echo $this->render->render("view/usuariosView.php",$data);                        
         
     }
-
+    
     private function mensajeEdicion($mensaje_edicion)
     {
         $alert = array();
@@ -79,7 +69,7 @@ class AdminController
     }
 
     public function editarUsuario(){
-        $usuario = $this->obj_adminModel->obtenerUsuarioPorId($_GET["id"]);
+        $usuario = $this->database->obtenerUsuarioPorId($_GET["id"]);
         $data["user"] = $usuario;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
@@ -94,19 +84,19 @@ class AdminController
             "id_usuario" => $_POST["id_usuario"]
 
         );
-        $this->obj_adminModel->userEdit($data);
+        $this->database->userEdit($data);
         header("location: /usuarios?editar=true");
     }
 
     public function eliminarUsuario(){
-        $this->obj_adminModel->eliminarUsuario($_GET["id"]);
+        $this->database->eliminarUsuario($_GET["id"]);
         header("location: /usuarios?borrar=true");
     }
 
 
     public function asignarRol(){
         if (isset($_POST["btn-aceptar"])) {
-            $this->obj_adminModel->actualizarRol($_POST);
+            $this->database->actualizarRol($_POST);
             header("location: /usuarios?rol=true");
         }
     }

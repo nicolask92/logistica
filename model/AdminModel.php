@@ -8,14 +8,27 @@ class AdminModel{
     }
 
     public function obtenerTodosLosUsuarios(){
-        $sql = "SELECT * FROM usuario u INNER JOIN empleado e ON u.id = e.usuario_id
+        $sql = "SELECT * FROM usuario u 
+                INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id";
-
-        $result = $this->ejecutarConsulta($sql);
-        $result = $this->convertiraArrayAsociativo($result);
-        
-        return $result;
+        return $this->obj_mysql->query($result);
     }       
+
+    public function getUsersWithOutRol(){
+        $sql = "SELECT * FROM usuario u 
+                INNER JOIN empleado e ON u.id = e.usuario_id
+                INNER JOIN rol ON e.id_rol = rol.id
+                WHERE e.id_rol = 5";
+        return $this->obj_mysql->query($result);
+    }
+
+    public function getUsersWithRol(){
+        $sql = "SELECT * FROM usuario u 
+                INNER JOIN empleado e ON u.id = e.usuario_id
+                INNER JOIN rol ON e.id_rol = rol.id
+                WHERE NOT e.id_rol = 5";
+        return $this->obj_mysql->query($result);
+    }
 
     private function ejecutarConsulta($sql){
         return $this->obj_mysql->execute($sql);
