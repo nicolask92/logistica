@@ -25,7 +25,6 @@
                             <H3>Mecánico</H3>
 
                             <form method="POST" enctype="multipart/form-data" action="mecanico/procesarMantenimiento">
-<<<<<<< HEAD
                             <div class="form-group">
                                 <select class="form-control" id="datosMecanico" name="datosMecanico" value="{{datosMecanico}}">
                                     <option selected value="0" >Seleccionar Mecánico</option>
@@ -35,18 +34,6 @@
                                 </select>
                             </div>  
                             {{#errorDatosMecanico}}<p class="text-danger">Debe Seleccionar un mecanico</p>{{/errorDatosMecanico}}
-=======
-                                <div class="form-group row">
-                                  <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <select class="form-control" id="mecanico" name="mecanico">
-                                        <option selected value="0" >Seleccionar Mecánico</option>
-                                            {{# datosMecanico}}
-                                                <option value="{{id}}">{{nombre}} {{apellido}} </option>
-                                            {{/ datosMecanico}}
-                                    </select>
-                                  </div>
-                                </div>    
->>>>>>> 1969bdbdb3ac5172c4fafb23fe962d2bc695e386
 
                                 <div>
                                     <hr class="sidebar-divider mt-4">
