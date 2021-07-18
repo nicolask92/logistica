@@ -210,9 +210,12 @@ CREATE TABLE viaje
     combustible_real int(10),
     kilometros_real int(10),
     kilometros_previsto int(10),
-    importe_combustible_total int(10),
+    importe_combustible_real int(10),
+	importe_combustible_previsto int(10),
     peajes_previsto int(10),
     peajes_real int(10),
+    pesajes_previsto int(10),
+    pesajes_real int(10),
     viaticos_previsto int(10),
     viaticos_real int(10),
     extras_previsto int(10),
@@ -221,6 +224,7 @@ CREATE TABLE viaje
     fee_real int(10),
     hazard_precio int(10),
     reefer_precio int(10),
+    gasto_total int(10),
 	foreign key(id_supervisor) references supervisor(id) on delete cascade on update cascade,
 	id_chofer tinyint,
 	foreign key(id_chofer) references chofer(id) on delete cascade on update cascade,
@@ -244,12 +248,70 @@ CREATE TABLE costeo(
     foreign key(id_viaje) references viaje(id) 
 );
 
-insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto)
-values('Buenos Aires', 'Cordoba', '2021-07-20 19:00:00', 'PENDIENTE', 1, 1, 1, 1, '2021-07-22 20:00:00', '2021-07-20 00:20:00', 200, 1200, 2000, 4000, 1000, 4500);
-insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto)
-values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 1, 1, 1, 1,  '2021-06-26 00:00:00', '2021-06-25 00:03:00', 120, 800, 763, 400, 600, 4000);
-insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto)
-values('Cordoba', 'Buenos Aires', '2021-05-22 14:00:00', 'FINALIZADO', 1, 1, 1, 1,  '2021-05-24 00:00:00', '2021-05-23 00:03:00', 130, 850, 1000, 5000, 400, 7000);
+insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto, pesajes_previsto,importe_combustible_previsto)
+values('Buenos Aires', 'Cordoba', '2021-07-20 19:00:00', 'PENDIENTE', 1, 1, 1, 1, '2021-07-22 20:00:00', '2021-07-20 00:20:00', 200, 1200, 2000, 4000, 1000, 4500, 19000, 25000);
+insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto, pesajes_previsto, importe_combustible_previsto)
+values('Cordoba', 'Buenos Aires', '2021-05-24 14:00:00', 'ACTIVO', 1, 1, 1, 1,  '2021-06-26 00:00:00', '2021-06-25 00:03:00', 120, 800, 763, 400, 600, 4000, 39000, 30000);
+insert into viaje(
+	origen,
+    destino, 
+    fecha_carga, 
+    estado, 
+    id_supervisor, 
+    id_chofer, 
+    id_camion, 
+    id_arrastrador, 
+    fecha_llegada_previsto, 
+    fecha_salida_previsto, 
+    combustible_previsto, 
+    kilometros_previsto, 
+    peajes_previsto, 
+    viaticos_previsto, 
+    extras_previsto, 
+    fee_previsto, 
+    pesajes_previsto, 
+    pesajes_real,
+	fecha_salida_real, 
+    fecha_llegada_real,
+    combustible_real,
+    kilometros_real,
+    peajes_real,
+    viaticos_real,
+    extras_real,
+    fee_real,
+    importe_combustible_real,
+    importe_combustible_previsto,
+    gasto_total
+    )
+values('Cordoba', 
+	'Buenos Aires', 
+	'2021-05-22 14:00:00', 
+    'FINALIZADO',
+    1,
+    1,
+    1,
+    1,
+    '2021-05-24 00:00:00', 
+    '2021-05-23 00:03:00', 
+    130, 
+    850,
+    1000,
+    5000,
+    400,
+    7000,
+    28000,
+    29000,
+    '2021-05-24 02:03:00',
+    '2021-06-26 00:00:00',
+    140,
+    1200,
+    1000,
+    4001,
+    7500,
+    28500,
+    40000,
+    37500,
+    177501);
 
 CREATE TABLE carga
 (id tinyint primary key auto_increment,
