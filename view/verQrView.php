@@ -25,7 +25,7 @@
                             <img class="img-fluid" src="{{urlQr}}" alt="qr viaje"/>
                         </div>
                         <h5>
-                            URL del viaje: {{urlViaje}}
+                            URL del viaje: <a target=_blank href="{{urlViajeRelativa}}">{{urlViaje}}</a>
                         </h5>
                     </div>
                 </div>

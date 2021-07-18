@@ -15,8 +15,15 @@
 
 			<div data-bind="visible: reporteCargado" style="display: none">
 				<div class="alert alert-primary" role="alert">
-					Se reporte se cargo correctamente.
+					Su reporte se cargo correctamente.
 				</div>
+            </div>
+            <div data-bind="visible: errorDeCreacionReporte" id="errores" style="display: none">
+                <div class="alert alert-danger" role="alert">
+                    <ul data-bind="foreach: { data: erroresAMostrar, as: 'error' }">
+                        <li data-bind="text: error"></li>
+                    </ul>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">

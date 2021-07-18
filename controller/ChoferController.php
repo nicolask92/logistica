@@ -20,12 +20,14 @@ class ChoferController
 		$momentoActual = $fecha->getTimestamp();
 		$rutaImagenAGuardar = "view/img/qrs/" . $momentoActual . ".png";
 
-		$rutaTotal = $_SERVER['HTTP_HOST'] . "/reporteDiario/" . $_GET['id'];
+		$rutaRelativa = "/chofer/reporteDiario?viaje=" . $_GET['id'];
+		$rutaTotal = $_SERVER['HTTP_HOST'] . "/chofer/reporteDiario?viaje=" . $_GET['id'];
 
 		QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L, 8);
 
 		$data['urlQr'] = $rutaImagenAGuardar;
 		$data['urlViaje'] = $rutaTotal;
+		$data['urlViajeRelativa'] = $rutaRelativa;
 
 		echo $this->render->render("view/verQrView.php", $data);
 	}
@@ -57,17 +59,17 @@ class ChoferController
 		$error = false;
 		$errores = [];
 
-		$id = $valoresReporte['idViaje'];
-		$litros = $valoresReporte['litros'];
-		$km = $valoresReporte['km'];
-		$importe = $valoresReporte['importe'];
-		$extras = $valoresReporte['extras'];
-		$peaje = $valoresReporte['peaje'];
+		$id = intval($valoresReporte['idViaje']);
+		$litros = intval($valoresReporte['litros']);
+		$km = intval($valoresReporte['km']);
+		$importe = intval($valoresReporte['importe']);
+		$extras = intval($valoresReporte['extras']);
+		$peaje = intval($valoresReporte['peaje']);
 		$latitud = $valoresReporte['latitud'];
 		$longitud = $valoresReporte['longitud'];
-		$kmTotalesHastaElMomento = $this->costeoModel->getKmsTotalesByIdViaje($id);
+		$kmTotalesHastaElMomento = intval($this->costeoModel->getKmsTotalesByIdViaje($id));
 		$tipoReporte = $valoresReporte['tipoReporte'];
-		$viatico = $valoresReporte['viatico'];
+		$viatico = intval($valoresReporte['viatico']);
 
 		if (!isset($id) || !isset($litros) || !isset($km) || !isset($importe) || !isset($extras) || !isset($peaje) || !isset($latitud) || !isset($longitud) || !isset($tipoReporte) || !isset($viatico)) {
 			// nunca deberia entrar por aca.
@@ -84,7 +86,7 @@ class ChoferController
 			}
 			if ($kmTotalesHastaElMomento > $km) {
 				$error = true;
-				array_push($errores, 'Los km recorridos actuales son mayores a los que ingresaste.');
+				array_push($errores, 'Los km recorridos anteriores son mayores a los que ingresaste.');
 			}
 		}
 
@@ -94,8 +96,11 @@ class ChoferController
 		} else {
 			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $km, $importe, $extras, $peaje, $viatico, $latitud, $longitud);
 
-			if ($tipoReporte == 'Finalizar Viaje') {
-				$fechaActual = new DateTime('NOW');
+			if ($tipoReporte == 'Comienzo') {
+				$this->viajeModel->empezarViajeYActualizarEstado($id);
+			}
+
+			if ($tipoReporte == 'Finalizar') {
 				$costeosTotalesArray = $this->costeoModel->getCosteosTotal($id);
 
 				$extras = 0;
@@ -105,14 +110,14 @@ class ChoferController
 				$importe = 0;
 
 				foreach ($costeosTotalesArray as $costeoIndividual) {
-					$extras += $costeoIndividual['extras'];
-					$peajes += $costeoIndividual['peaje'];
-					$litros += $costeoIndividual['litros'];
-					$viaticos += $costeoIndividual['viatico'];
-					$importe += $costeoIndividual['importe'];
+					$extras += $costeoIndividual[5];
+					$peajes += $costeoIndividual[4];
+					$litros += $costeoIndividual[1];
+					$viaticos += $costeoIndividual[3];
+					$importe += $costeoIndividual[2];
 				}
 
-				$actualizarViaje = $this->viajeModel->actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $km, $viaticos, $importe, $valoresReporte['fee']);
+				$actualizarViaje = $this->viajeModel->actualizarViaje($id, $extras, $peajes, $litros, $km, $viaticos, $importe, $valoresReporte['fee']);
 
 				if ($actualizarViaje) {
 					$valoresAEnviar = array('error' => false);
@@ -132,5 +137,4 @@ class ChoferController
 			}
 		}
 	}
-
 }

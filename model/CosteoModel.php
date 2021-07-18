@@ -23,7 +23,7 @@ class CosteoModel {
 	}
 
 	public function getCosteosTotal($idViaje) {
-		$sql = "SELECT * FROM costeo WHERE id_viaje = ${idViaje}";
+		$sql = "SELECT km, litros, importe, viatico, peaje, extras FROM costeo WHERE id_viaje = ${idViaje}";
 
 		return mysqli_fetch_all($this->database->execute($sql));
 	}

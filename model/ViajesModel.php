@@ -3,7 +3,7 @@
 
 class ViajesModel
 {
-    private $database;
+    public $database;
 
     public function __construct($database){
 
@@ -35,12 +35,22 @@ class ViajesModel
 		return mysqli_fetch_all($this->database->execute($sql));
 	}
 
-	public function actualizarViaje($id, $fechaActual, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
+	public function actualizarViaje($id, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
 
     	$sql = "
 			UPDATE viaje
-			SET fecha_, origen, destino, fecha_carga, estado
-            FROM viaje
+			SET kilometros_real = ${kmTotales}, fecha_llegada_real = now(), combustible_real = ${litros}, importe_combustible_total = ${importe}, peajes_real = ${peajes}, viaticos_real = ${viaticos} , extras_real = ${extras}, fee_real = ${fee}, estado = 'FINALIZADO'
+			WHERE id = ${id}
+    	";
+
+		return $this->database->execute($sql);
+	}
+
+	public function empezarViajeYActualizarEstado($idViaje) {
+    	$sql = "
+    	    UPDATE viaje
+    	    SET estado = 'ACTIVO', fecha_salida_real = now()
+			WHERE id = ${idViaje}
     	";
 
 		return $this->database->execute($sql);

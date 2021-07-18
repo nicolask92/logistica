@@ -6,6 +6,7 @@ function AppViewModel() {
 
     self.latitud = ko.observable(-34.6686986);
     self.longitud = ko.observable(-58.5614947);
+    self.urlQR = getParameterByName('viaje');
     var map;
     var mapOptions;
     var infoWindow;
@@ -97,6 +98,7 @@ function AppViewModel() {
     self.errorFee = ko.observable(false);
     self.errorViatico = ko.observable(false);
     self.errorSelectores = ko.observable(false);
+    self.errorDeCreacionReporte = ko.observable(false);
 
     self.errorTextoCantidad = ko.observable('');
     self.errorTextoImporte = ko.observable('');
@@ -106,10 +108,12 @@ function AppViewModel() {
     self.errorTextoFee = ko.observable('');
     self.errorTextoViatico = ko.observable('');
     self.textoSelectores = ko.observable('');
+    self.erroresAMostrar = ko.observableArray([]);
 
     self.viajeSeleccionado.subscribe(function () {
         self.errorSelectores(false);
         self.seleccionTipoReporte(false);
+        self.errorDeCreacionReporte(false);
         console.log(self.viajeSeleccionado());
         var viajeSeleccionado = _.find(self.viajes(), function (viaje) {
             return viaje.id === self.viajeSeleccionado();
@@ -120,14 +124,20 @@ function AppViewModel() {
                 self.errorSelectores(true);
                 self.seleccionTipoReporte(false);
                 self.textoSelectores('Tienes un viaje sin terminar, para comenzar uno pendiente debes terminar el anterior.');
+            } else if (viajeSeleccionado.estado === 'PENDIENTE') {
+                self.errorSelectores(false);
+                self.textoBoton('Comenzar Viaje');
+                self.habilitadoCargaDatos(true);
             } else {
                 self.errorSelectores(false);
                 self.seleccionTipoReporte(true);
             }
         } else {
-            self.errorSelectores(true);
-            self.textoSelectores('Este viaje ya finalizo.');
-            self.seleccionTipoReporte(false);
+            if (self.viajeSeleccionado() !== undefined) {
+                self.errorSelectores(true);
+                self.textoSelectores('Este viaje ya finalizo.');
+                self.seleccionTipoReporte(false);
+            }
         }
     });
 
@@ -159,6 +169,7 @@ function AppViewModel() {
             url: '/chofer/informacionViaje',
             method: 'POST'
         }).done(function(respuesta) {
+            self.viajes([]);
             var jsonViajes = JSON.parse(respuesta);
             _.each(JSON.parse(respuesta), function (viaje) {
                 self.viajes.push(new ViajeViewModel(viaje));
@@ -175,6 +186,8 @@ function AppViewModel() {
         self.errorPeaje(false);
         self.errorExtras(false);
         self.errorViatico(false);
+        self.reporteCargado(false);
+        self.erroresAMostrar();
 
         if (self.validarQueElCampoSeaNumerio(self.km())) {
             self.errorKm(true);
@@ -207,6 +220,12 @@ function AppViewModel() {
         }
 
         if (!self.errorLitros() && !self.errorKm() && !self.errorImporte() && !self.errorViatico() && !self.errorFee() && !self.errorExtras()) {
+            var tipoReporte = null;
+            if (self.hayViajesActivos()) {
+                tipoReporte = self.reporteSeleccionado();
+            } else {
+                tipoReporte = 'Comienzo';
+            }
             var datosAMandar = {
                 idViaje: self.viajeSeleccionado(),
                 litros: self.litros(),
@@ -218,7 +237,7 @@ function AppViewModel() {
                 viatico: self.viatico(),
                 latitud: self.latitud(),
                 longitud: self.longitud(),
-                tipoReporte: self.reporteSeleccionado()
+                tipoReporte: tipoReporte
             }
 
             console.log('datos a enviar:', datosAMandar);
@@ -228,15 +247,38 @@ function AppViewModel() {
                 data: { datos: datosAMandar },
                 method: 'POST'
             }).done(function(respuesta) {
-                console.log(respuesta);
+                var respuestaParseada = JSON.parse(respuesta);
+                if (respuestaParseada.error) {
+                    self.erroresAMostrar(respuestaParseada.errores);
+                    self.errorDeCreacionReporte(true);
+                } else {
+                    self.habilitadoCargaDatos(false);
+                    self.litros(0);
+                    self.km(0);
+                    self.importe(0);
+                    self.extras(0);
+                    self.peaje(0);
+                    self.fee(0);
+                    self.viatico(0);
+                    self.reporteCargado(true);
+                    self.errorDeCreacionReporte(false);
+                    self.errorSelectores(false);
+                    self.informacionDeViajes();
+                }
+                $(window).scrollTop(0);
+                console.log(respuestaParseada);
             })
         }
     }
 
-    // implementar
     self.validarQueElCampoSeaNumerio = function (valorAEvaluar) {
         return (_.isNaN(parseFloat(valorAEvaluar)) || !_.isNumber(parseFloat(valorAEvaluar)) || parseFloat(valorAEvaluar) < 0)
     }
+    $(document).ready(function() {
+        if (self.urlQR != null) {
+            self.viajeSeleccionado(parseInt(self.urlQR));
+        }
+    });
 }
 
 function ViajeViewModel(options) {
@@ -252,3 +294,12 @@ function ViajeViewModel(options) {
 }
 
 ko.applyBindings(new AppViewModel());
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
