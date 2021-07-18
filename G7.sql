@@ -280,6 +280,10 @@ id_viaje tinyint,
 foreign key(id_viaje) references viaje(id) 
 );
 
+INSERT INTO `g7`.`cliente` (`nombre`, `apellido`, `telefono`, `cuit`, `direccion`, `email`, `id_viaje`) VALUES ('Juan', 'Roman', '1120252411', '20365545689', 'Bv Finca 6244', 'alguienMuyGroso@gmail.com', '1');
+INSERT INTO `g7`.`cliente` (`nombre`, `apellido`, `telefono`, `cuit`, `direccion`, `email`, `id_viaje`) VALUES ('Raul', 'Tijuano', '1154865852', '20458589588', 'Los Cerros 2020', 'otroMuyGroso@suEmpresa.com', '2');
+INSERT INTO `g7`.`cliente` (`nombre`, `apellido`, `telefono`, `cuit`, `direccion`, `email`, `id_viaje`) VALUES ('Homero', 'Simpson', '1142565289', '20254569879', 'Calle Siempre Viva 724', 'homero@simpson.com', '3');
+
 
 CREATE TABLE mantenimiento
 (id tinyint primary key auto_increment,
