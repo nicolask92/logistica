@@ -14,6 +14,7 @@ class MecanicoController
     public function execute()
     {
         $data["datosMecanico"] = $this->mecanicoModel->buscarMecanico();
+<<<<<<< HEAD
         $data["seleccionarVehiculo"] = $this->mecanicoModel->buscarVehiculos();
 
         if(isset($_GET["mensaje"])){
@@ -53,6 +54,15 @@ class MecanicoController
         if(isset($_GET["costoVehiculo"])){
             $data["costoVehiculo"] = $_GET["costoVehiculo"];
         }
+=======
+
+         if(isset($_GET["mensaje"])){
+            $array["alerta"]= "alert alert-success";
+            $array["mensaje"]= "Los datos se cargaron correctamente"; 
+        }
+
+        echo $this->render->render("view/mecanicoView.php", $data);
+>>>>>>> 1969bdbdb3ac5172c4fafb23fe962d2bc695e386
     }
     
 
