@@ -62,7 +62,7 @@ class RegistroController
 	        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
 			// cuerpo del msj
-	        $textoConElCodigo = "El codigo es ${codigo}. Si quiere activarlo directamente haga click <a href='" . $urlActivacion . "' target=" . "'" . _blank . "'" . ">aquì</a>";
+	        $textoConElCodigo = "El codigo es ${codigo}. Si quiere activarlo directamente haga click <a href='" . $urlActivacion . "' target=_blank" .">aquì</a>";
 
 	        // envio el correo.
 	        $correo = mail($email,"Codigo de activacion - Logistica", $textoConElCodigo, $headers);

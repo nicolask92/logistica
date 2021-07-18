@@ -155,7 +155,7 @@ class CargarViajeController
                 $data["errorImoCarga"] = true;
             }
 
-            if(isset($_GET["hazarPrecio"])){
+            if(isset($_GET["errorHazardPrecio"])){
                 $data["errorHazardPrecio"] = true;
             }
         }
@@ -168,7 +168,7 @@ class CargarViajeController
             if(isset($_GET["errorTemperaturaCarga"])){
                 $data["errorTemperaturaCarga"] = true;
             }
-            if(isset($_GET["reeferPrecio"])){
+            if(isset($_GET["errorReeferPrecio"])){
                 $data["errorReeferPrecio"] = true;
             }
         }
