@@ -155,10 +155,12 @@ class CargarViajeController
             if(isset($_GET["errorImoCarga"])){
                 $data["errorImoCarga"] = true;
             }
+
+            if(isset($_GET["hazarPrecio"])){
+                $data["errorHazardPrecio"] = true;
+            }
         }
-        if(isset($_GET["hazarPrecio"])){
-            $data["errorHazardPrecio"] = true;
-        }
+
 
         if(isset($_GET["errorReeferCarga"])){
             $data["errorReeferCarga"] = true;
@@ -337,33 +339,43 @@ class CargarViajeController
         }else{
             $campos = $campos . "hazardCarga=". $hazard. "&";
         }
-        if (empty($imo)) {
-            $errores = $errores. "errorImoCarga=true&";
-        }else{
-            $campos = $campos . "imoCarga=". $imo. "&";
+
+        if ($hazard == "Si"){
+
+            if (empty($imo)) {
+                $errores = $errores. "errorImoCarga=true&";
+            }else{
+                $campos = $campos . "imoCarga=". $imo. "&";
+            }
+
+            if (empty($hazard_precio)){
+                $errores = $errores ."errorHazardPrecio=true&";
+            }else{
+                $campos = $campos . "hazardPrecio=" . $hazard_precio . "&";
+            }
+
         }
 
-        if (empty($hazard_precio)){
-            $errores = $errores ."errorHazardPrecio=true&";
-        }else{
-            $campos = $campos . "hazardPrecio=" . $hazard_precio . "&";
-        }
 
         if (!isset($reefer)) {
             $errores = $errores. "errorReeferCarga=true&";
         }else{
             $campos = $campos . "reeferCarga=". $reefer. "&";
         }
-        if (empty($temperatura)) {
-            $errores = $errores. "errorTemperaturaCarga=true&";
-        }else{
-            $campos = $campos . "temperaturaCarga=". $temperatura. "&";
-        }
 
-        if (empty($reefer_precio)){
-            $errores = $errores ."errorReeferPrecio=true&";
-        }else{
-            $campos = $campos . "reeferPrecio=" . $reefer_precio . "&";
+        if ($reefer == "Si"){
+
+            if (empty($temperatura)) {
+                $errores = $errores. "errorTemperaturaCarga=true&";
+            }else{
+                $campos = $campos . "temperaturaCarga=". $temperatura. "&";
+            }
+
+            if (empty($reefer_precio)){
+                $errores = $errores ."errorReeferPrecio=true&";
+            }else{
+                $campos = $campos . "reeferPrecio=" . $reefer_precio . "&";
+            }
         }
 
         if (empty($peso_neto)) {
