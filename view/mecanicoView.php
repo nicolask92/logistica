@@ -25,49 +25,56 @@
                             <H3>Mecánico</H3>
 
                             <form method="POST" enctype="multipart/form-data" action="mecanico/procesarMantenimiento">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control" name="idMecanico"
-                                            id="idMecanico" placeholder="Legajo">
-                                    </div>
-                                </div>    
+                            <div class="form-group">
+                                <select class="form-control" id="datosMecanico" name="datosMecanico" value="{{datosMecanico}}">
+                                    <option selected value="0" >Seleccionar Mecánico</option>
+                                    {{#datosMecanico}}
+                                    <option value="{{id}}">{{nombre}} {{apellido}} </option>
+                                    {{/datosMecanico}}
+                                </select>
+                            </div>  
+                            {{#errorDatosMecanico}}<p class="text-danger">Debe Seleccionar un mecanico</p>{{/errorDatosMecanico}}
 
                                 <div>
                                     <hr class="sidebar-divider mt-4">
                                     <h3>Vehículo</h3>
                                 </div>
-
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="idVehiculo"
-                                        name="idVehiculo"    placeholder="ID">
+                                    <select class="form-control" id="seleccionarVehiculo" name="seleccionarVehiculo" value="{{seleccionarVehiculo}}">
+                                        <option selected value="0" >Seleccionar Vehículo</option>
+                                        {{#seleccionarVehiculo}}
+                                        <option value="{{id}}">{{marca}}-{{modelo}} </option>
+                                        {{/seleccionarVehiculo}}
+                                    </select>
+                                {{#errorSeleccionarVehiculo}}<p class="text-danger">Debe Seleccionar un Vehículo</p>{{/errorSeleccionarVehiculo}}                        
                                 </div>
                                 
                                 <div class="form-group">
-                                <label for="select">Service</label>
-                                <select id="serviceInternoExterno" name="serviceInternoExterno" class="form-control">
-                                    <option value="interno">Interno</option>
-                                    <option value="externo" selected>Externo</option>
-                                </select>    
+                                    <label for="select">Service</label>
+                                    <select id="tipoService" name="tipoService" class="form-control" value="{{tipoService}}">
+                                        <option value="interno">Interno</option>
+                                        <option value="externo" selected>Externo</option>
+                                    </select> 
+                                {{#errorTipoService}}<p class="text-danger">Debe Seleccionar un tipo de service</p>{{/errorTipoService}}   
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="date" class="form-control" id="fechaService"
-                                        name="fechaService" aria-describedby="fecha">
+                                    <input type="date" class="form-control" id="fechaService" name="fechaService" value="{{fechaService}}" aria-describedby="fecha">
                                     <small id="fechaService" class="text-muted">
                                         Fecha de service
                                     </small>
+                                {{#errorFechaService}}<p class="text-danger">Debe Seleccionar una fecha</p>{{/errorFechaService}}
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="repuestoCambiado"
-                                        name="repuestoCambiado"    placeholder="Repuesto cambiado">
+                                    <input type="text" class="form-control" id="repuestoCambiado" name="repuestoCambiado" value="{{repuestoCambiado}}"   placeholder="Repuesto cambiado">
+                                {{#errorRepuestoCambiado}}<p class="text-danger">Debe rellenar este campo</p>{{/errorRepuestoCambiado}}        
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="costoVehiculo"
-                                        name="costoVehiculo"    placeholder="Costo">
+                                    <input type="text" class="form-control" id="costoVehiculo"  name="costoVehiculo" value="{{costoVehiculo}}"   placeholder="Costo">
+                                {{#errorCostoVehiculo}}<p class="text-danger">Debe rellenar este campo</p>{{/errorCostoVehiculo}}                
                                 </div>
-
 
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-dark">Enviar</button>
