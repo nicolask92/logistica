@@ -67,9 +67,10 @@ class ChoferController
 		$peaje = intval($valoresReporte['peaje']);
 		$latitud = $valoresReporte['latitud'];
 		$longitud = $valoresReporte['longitud'];
-		$kmTotalesHastaElMomento = intval($this->costeoModel->getKmsTotalesByIdViaje($id));
+		$kmTotalesHastaElMomento = intval($this->costeoModel->getKmsTotalesByIdViaje($id)['km']);
 		$tipoReporte = $valoresReporte['tipoReporte'];
 		$viatico = intval($valoresReporte['viatico']);
+		$pesaje = intval($valoresReporte['pesaje']);
 
 		if (!isset($id) || !isset($litros) || !isset($km) || !isset($importe) || !isset($extras) || !isset($peaje) || !isset($latitud) || !isset($longitud) || !isset($tipoReporte) || !isset($viatico)) {
 			// nunca deberia entrar por aca.
@@ -79,6 +80,10 @@ class ChoferController
 			if ($litros > 0 && $importe == 0) {
 				$error = true;
 				array_push($errores, 'El importe no puede ser cero si hay litros cargados.');
+			}
+			if ($litros == 0 && $importe > 0) {
+				$error = true;
+				array_push($errores, 'El importe no puede ser mayor a cero si no hay litros cargados.');
 			}
 			if ($km <= 0) {
 				$error = true;
@@ -97,7 +102,7 @@ class ChoferController
 			$insertadoEnTabla = $this->costeoModel->insertarCosteo($id, $litros, $km, $importe, $extras, $peaje, $viatico, $latitud, $longitud);
 
 			if ($tipoReporte == 'Comienzo') {
-				$this->viajeModel->empezarViajeYActualizarEstado($id);
+				$this->viajeModel->empezarViajeYActualizarEstado($id, $pesaje);
 			}
 
 			if ($tipoReporte == 'Finalizar') {

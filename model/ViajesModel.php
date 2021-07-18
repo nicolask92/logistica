@@ -46,10 +46,10 @@ class ViajesModel
 		return $this->database->execute($sql);
 	}
 
-	public function empezarViajeYActualizarEstado($idViaje) {
+	public function empezarViajeYActualizarEstado($idViaje, $pesaje) {
     	$sql = "
     	    UPDATE viaje
-    	    SET estado = 'ACTIVO', fecha_salida_real = now()
+    	    SET estado = 'ACTIVO', fecha_salida_real = now(), pesajes_real = ${pesaje}
 			WHERE id = ${idViaje}
     	";
 
