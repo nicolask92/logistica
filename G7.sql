@@ -263,6 +263,10 @@ CREATE TABLE carga
  foreign key(id_viaje) references viaje(id) 
 );
 
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Plastico', '0', '', '0', '20000', '1');
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Ganado', '0', '', '0', '40000', '2');
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `reefer`, `temperatura`, `peso_neto`, `id_viaje`) VALUES ('Pescados', '0', '1', '-20', '29000', '3');
+
 
 CREATE TABLE cliente
 (id tinyint primary key auto_increment,
