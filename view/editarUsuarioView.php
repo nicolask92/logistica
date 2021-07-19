@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" id="rol" name="rol">
+                        <select class="form-control" id="rol" name="id_rol">
                             <option value="{{id_rol}}"selected>Rol Actual: {{rol}}</option>
                             <option value="1">Administrativo</option>
                             <option value="2">Supervisor</option>
