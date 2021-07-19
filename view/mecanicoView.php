@@ -51,10 +51,10 @@
 
                     <div class="form-group">
                         <label for="select">Service</label>
-                        <select id="tipoService" name="tipoService" class="form-control" value="{{tipoService}}">
+                        <select id="tipoService" name="tipoService" class="form-control">
                             <option selected value="0" >Seleccionar service</option>
-                            <option value="interno">Interno</option>
-                            <option value="externo" selected>Externo</option>
+                            <option value="INTERNO">Interno</option>
+                            <option value="EXTERNO" selected>Externo</option>
                         </select>
                         {{#errorTipoService}}<p class="text-danger">Debe Seleccionar un tipo de service</p>{{/errorTipoService}}
                     </div>
