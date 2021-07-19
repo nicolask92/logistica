@@ -1,13 +1,16 @@
 <?php
-class AdminModel{
-    
+class AdminModel
+{
+
     private $obj_mysql;
 
-    public function __construct($obj_mysql){
+    public function __construct($obj_mysql)
+    {
         $this->obj_mysql = $obj_mysql;
     }
 
-    public function getUsersWithOutRol(){
+    public function getUsersWithOutRol()
+    {
         $sql = "SELECT * FROM usuario u 
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
@@ -16,7 +19,8 @@ class AdminModel{
         return $this->obj_mysql->execute($sql);
     }
 
-    public function getUsersWithRol(){
+    public function getUsersWithRol()
+    {
         $sql = "SELECT * FROM usuario u 
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
@@ -25,8 +29,9 @@ class AdminModel{
         return $this->obj_mysql->execute($sql);
     }
 
-    
-    public function getUserForId($id_usuario){
+
+    public function getUserForId($id_usuario)
+    {
         $sql = "SELECT * FROM usuario 
                 INNER JOIN empleado
                 ON usuario.id = empleado.usuario_id
@@ -36,7 +41,8 @@ class AdminModel{
         return $this->obj_mysql->execute($sql);
     }
 
-    public function userEdit($data){
+    public function userEdit($data)
+    {
         foreach ($data as $key => $value) {
             $$key = $value;
         }
@@ -47,20 +53,22 @@ class AdminModel{
                     id_rol = '$rol'
                 WHERE usuario_id = $id_usuario";
         $this->obj_mysql->execute($sql);
-        
+
         $sql = "UPDATE usuario
                 SET email = '$email'
                 WHERE id = $id_usuario";
         $this->obj_mysql->execute($sql);
     }
-    
-    public function eliminarUsuario($id_user){
+
+    public function eliminarUsuario($id_user)
+    {
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
         $this->obj_mysql->execute($sql);
     }
 
-    public function actualizarRol($array){
+    public function actualizarRol($array)
+    {
         foreach ($array as $key => $value) {
             $$key = $value;
         }
@@ -73,7 +81,8 @@ class AdminModel{
         $result = $this->obj_mysql->execute($sql);
     }
 
-    private function tipoDeRol($num_rol){
+    private function tipoDeRol($num_rol)
+    {
         if ($num_rol == 1) {
             return "administrador";
         }
