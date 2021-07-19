@@ -70,11 +70,14 @@ class AdminController
             $this->database->userEdit($data_form_post);
             header("location: /usuarios?editar=true");
         }
+        if (isset($_POST["btn-borrar"]) && isset($_GET["id"])) {
+            $this->eliminarUsuario($_GET["id"]);
+        }
     }
 
-    public function eliminarUsuario()
+    private function eliminarUsuario($id_user)
     {
-        $this->database->eliminarUsuario($_GET["id"]);
+        $this->database->eliminarUsuario($id_user);
         header("location: /usuarios?borrar=true");
     }
 
