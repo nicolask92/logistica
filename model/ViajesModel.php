@@ -6,7 +6,6 @@ class ViajesModel
     public $database;
 
     public function __construct($database){
-
         $this->database = $database;
     }
 
@@ -14,7 +13,7 @@ class ViajesModel
 	    $idChofer = $this->getIdChoferByIdUsuario();
 
     	$filtrarPorChofer = "";
-	    if (isset($idChofer)) {
+	    if (!empty($idChofer)) {
 	    	$filtrarPorChofer = " WHERE viaje.id_chofer = ${idChofer}";
 	    }
 
@@ -43,7 +42,7 @@ class ViajesModel
 		return mysqli_fetch_all($this->database->execute($sql));
 	}
 
-	private function getIdChoferByIdUsuario() {
+	public function getIdChoferByIdUsuario() {
 		$idUsuario = intval($_SESSION['idUsuarioActual']);
 
 		$getChoferById = "
@@ -53,7 +52,7 @@ class ViajesModel
 		WHERE us.id = ${idUsuario}
     	";
 
-		return intval($this->database->query($getChoferById)['id']);
+		return isset($this->database->query($getChoferById)['id']) ? intval($this->database->query($getChoferById)['id']) : null;
 	}
 
 	public function actualizarViaje($id, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
@@ -77,4 +76,27 @@ class ViajesModel
 		return $this->database->execute($sql);
 	}
 
+	public function getViajePorChoferId($idChofer) {
+		$sql = "
+			SELECT *
+			FROM viaje
+			WHERE id_chofer = ${idChofer}
+		";
+
+		$resultado = $this->database->query($sql);
+
+		return (isset($resultado) ? $this->database->query($sql) : null);
+	}
+
+	public function getViajeById($id) {
+		$sql = "
+			SELECT *
+			FROM viaje
+			WHERE id = ${id}
+		";
+
+		$resultado = $this->database->query($sql);
+
+		return (isset($resultado) ? $this->database->query($sql) : null);
+	}
 }

@@ -23,19 +23,28 @@ class ChoferController
 		$rutaImagenAGuardar = "view/img/qrs/" . $momentoActual . ".png";
 		*/
 
-		$rutaImagenAGuardar = "view/img/qrs/" . $_GET['id'] . ".png";
-		$rutaRelativa = "/chofer/reporteDiario?viaje=" . $_GET['id'];
-		$rutaTotal = $_SERVER['HTTP_HOST'] . "/chofer/reporteDiario?viaje=" . $_GET['id'];
+		$idChofer = $this->viajeModel->getIdChoferByIdUsuario();
 
-		if (!file_exists($rutaImagenAGuardar)) {
-			QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L, 8);
+		$viaje = $this->viajeModel->getViajeById($_GET['id']);
+		$informacionDeViaje = $this->viajeModel->getViajePorChoferId($idChofer);
+
+		if (empty($informacionDeViaje) || empty($viaje)) {
+			header('location: /paginaNoExiste');
+		} else {
+			$rutaImagenAGuardar = "view/img/qrs/" . $_GET['id'] . ".png";
+			$rutaRelativa = "/chofer/reporteDiario?viaje=" . $_GET['id'];
+			$rutaTotal = $_SERVER['HTTP_HOST'] . "/chofer/reporteDiario?viaje=" . $_GET['id'];
+
+			if (!file_exists($rutaImagenAGuardar)) {
+				QRcode::png($rutaTotal, $rutaImagenAGuardar, QR_ECLEVEL_L, 8);
+			}
+
+			$data['urlQr'] = $rutaImagenAGuardar;
+			$data['urlViaje'] = $rutaTotal;
+			$data['urlViajeRelativa'] = $rutaRelativa;
+
+			echo $this->render->render("view/verQrView.php", $data);
 		}
-
-		$data['urlQr'] = $rutaImagenAGuardar;
-		$data['urlViaje'] = $rutaTotal;
-		$data['urlViajeRelativa'] = $rutaRelativa;
-
-		echo $this->render->render("view/verQrView.php", $data);
 	}
 
 	public function reporteDiario() {
