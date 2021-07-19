@@ -47,22 +47,24 @@ class AdminController
     }
 
     public function editarUsuario(){
-        $todos_los_datos_usuario = $this->database->obtenerUsuarioPorId($_GET["id"]);
+        $todos_los_datos_usuario = $this->database->getUserForId($_GET["id"]);
         $data["user"] = $todos_los_datos_usuario;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 
     public function procesarFormulario(){
-        $data_form_post = array(
-            "legajo" => $_POST["legajo"],
-            "dni" => $_POST["dni"],
-            "nacimiento" => $_POST["nacimiento"],
-            "email" => $_POST["email"],
-            "rol" => $_POST["rol"],
-            "id_usuario" => $_POST["id_usuario"]
-        );
-        $this->database->userEdit($data_form_post);
-        header("location: /usuarios?editar=true");
+        if (isset($_POST["btn-editar"])) {
+            $data_form_post = array(
+                "legajo" => $_POST["legajo"],
+                "dni" => $_POST["dni"],
+                "nacimiento" => $_POST["nacimiento"],
+                "email" => $_POST["email"],
+                "rol" => $_POST["rol"],
+                "id_usuario" => $_POST["id_usuario"]
+            );
+            $this->database->userEdit($data_form_post);
+            header("location: /usuarios?editar=true");   
+        }
     }
 
     public function eliminarUsuario(){
