@@ -19,165 +19,8 @@ class CargarViajeController
         $data["arrastradores"] = $this->cargarViajeModel->buscarArrastradores();
         $data["supervisores"] = $this->cargarViajeModel->buscarSupervisores();
 
-        if(isset($_GET["errorOrigen"])){
-            $data["errorOrigen"] = true;
-        }
-        if(isset($_GET["origen"])){
-            $data["origen"] = $_GET["origen"];
-        }
-        if(isset($_GET["errorDestino"])){
-            $data["errorDestino"] = true;
-        }
-        if(isset($_GET["destino"])){
-            $data["destino"] = $_GET["destino"];
-        }
+        $data= $this->capturarErrores($data);
 
-        if(isset($_GET["errorFechaCarga"])){
-            $data["errorFechaCarga"] = true;
-        }
-        if(isset($_GET["fechaCarga"])){
-            $data["fechaCarga"] = $_GET["fechaCarga"];
-        }
-
-        if(isset($_GET["errorIdSupervisor"])){
-            $data["errorIdSupervisor"] = true;
-        }
-        if(isset($_GET["errorIdChofer"])){
-            $data["errorIdChofer"] = true;
-        }
-        if(isset($_GET["errorIdCamion"])){
-            $data["errorIdCamion"] = true;
-        }
-        if(isset($_GET["errorIdArrastrador"])){
-            $data["errorIdArrastrador"] = true;
-        }
-        if(isset($_GET["errorNombreCliente"])){
-            $data["errorNombreCliente"] = true;
-        }
-        if(isset($_GET["nombreCliente"])){
-            $data["nombreCliente"] = $_GET["nombreCliente"];
-        }
-        if(isset($_GET["errorApellidoCliente"])){
-            $data["errorApellidoCliente"] = true;
-        }
-        if(isset($_GET["apellidoCliente"])){
-            $data["apellidoCliente"] = $_GET["apellidoCliente"];
-        }
-        if(isset($_GET["errorCuitCliente"])){
-            $data["errorCuitCliente"] = true;
-        }
-        if(isset($_GET["cuitCliente"])) {
-            $data["cuitCliente"] = $_GET["cuitCliente"];
-        }
-        if(isset($_GET["errorDomicilioCliente"])){
-            $data["errorDomicilioCliente"] = true;
-        }
-        if(isset($_GET["domicilioCliente"])) {
-            $data["domicilioCliente"] = $_GET["domicilioCliente"];
-        }
-        if(isset($_GET["errorTelCliente"])){
-            $data["errorTelCliente"] = true;
-        }
-        if(isset($_GET["telCliente"])) {
-            $data["telCliente"] = $_GET["telCliente"];
-        }
-        if(isset($_GET["errorEmailCliente"])){
-            $data["errorEmailCliente"] = true;
-        }
-        if(isset($_GET["emailCliente"])) {
-            $data["emailCliente"] = $_GET["emailCliente"];
-        }
-        if(isset($_GET["errorETA"])){
-            $data["errorETA"] = true;
-        }
-        if(isset($_GET["eta"])) {
-            $data["eta"] = $_GET["eta"];
-        }
-        if(isset($_GET["errorETD"])){
-            $data["errorETD"] = true;
-        }
-        if(isset($_GET["etd"])) {
-            $data["etd"] = $_GET["etd"];
-        }
-        if(isset($_GET["errorKmPrevisto"])){
-            $data["errorKmPrevisto"] = true;
-        }
-        if(isset($_GET["kmPrevisto"])) {
-            $data["kmPrevisto"] = $_GET["kmPrevisto"];
-        }
-        if(isset($_GET["errorCombustiblePrevisto"])){
-            $data["errorCombustiblePrevisto"] = true;
-        }
-        if(isset($_GET["combustiblePrevisto"])) {
-            $data["combustiblePrevisto"] = $_GET["combustiblePrevisto"];
-        }
-        if(isset($_GET["errorViaticosPrevisto"])){
-            $data["errorViaticosPrevisto"] = true;
-        }
-        if(isset($_GET["viaticosPrevisto"])) {
-            $data["viaticosPrevisto"] = $_GET["viaticosPrevisto"];
-        }
-        if(isset($_GET["errorPeajesPrevisto"])){
-            $data["errorPeajesPrevisto"] = true;
-        }
-        if(isset($_GET["peajesPrevisto"])) {
-            $data["peajesPrevisto"] = $_GET["peajesPrevisto"];
-        }
-        if(isset($_GET["errorPesajesPrevisto"])){
-            $data["errorPesajesPrevisto"] = true;
-        }
-        if(isset($_GET["pesajesPrevisto"])) {
-            $data["pesajesPrevisto"] = $_GET["pesajesPrevisto"];
-        }
-        if(isset($_GET["errorExtrasPrevisto"])){
-            $data["errorExtrasPrevisto"] = true;
-        }
-        if(isset($_GET["extrasPrevisto"])) {
-            $data["extrasPrevisto"] = $_GET["extrasPrevisto"];
-        }
-        if(isset($_GET["errorFeePrevisto"])){
-            $data["errorFeePrevisto"] = true;
-        }
-        if(isset($_GET["feePrevisto"])) {
-            $data["feePrevisto"] = $_GET["feePrevisto"];
-        }
-	    if(isset($_GET["errorGastosCombustiblePrevisto"])){
-		    $data["errorGastosCombustiblePrevisto"] = true;
-	    }
-	    if(isset($_GET["gastosCombustiblePrevistos"])) {
-		    $data["gastosCombustiblePrevistos"] = $_GET["gastosCombustiblePrevistos"];
-	    }
-        if(isset($_GET["errorHazardCarga"])){
-            $data["errorHazardCarga"] = true;
-        }
-        if(isset($_GET["hazardCarga"])&&$_GET["hazardCarga"]=="Si") {
-            if(isset($_GET["errorImoCarga"])){
-                $data["errorImoCarga"] = true;
-            }
-
-            if(isset($_GET["errorHazardPrecio"])){
-                $data["errorHazardPrecio"] = true;
-            }
-        }
-
-
-        if(isset($_GET["errorReeferCarga"])){
-            $data["errorReeferCarga"] = true;
-        }
-        if(isset($_GET["reeferCarga"])&&$_GET["reeferCarga"]=="Si") {
-            if(isset($_GET["errorTemperaturaCarga"])){
-                $data["errorTemperaturaCarga"] = true;
-            }
-            if(isset($_GET["errorReeferPrecio"])){
-                $data["errorReeferPrecio"] = true;
-            }
-        }
-        if(isset($_GET["errorPesoCarga"])){
-            $data["errorPesoCarga"] = true;
-        }
-        if(isset($_GET["pesoCarga"])) {
-            $data["pesoCarga"] = $_GET["pesoCarga"];
-        }
         echo $this->render->render("view/cargarViajeView.php", $data);
     }
 
@@ -402,6 +245,171 @@ class CargarViajeController
 
             header('Location: /home?cargado=true');
         }
+    }
+
+    private function capturarErrores($data){
+
+        if(isset($_GET["errorOrigen"])){
+            $data["errorOrigen"] = true;
+        }
+        if(isset($_GET["origen"])){
+            $data["origen"] = $_GET["origen"];
+        }
+        if(isset($_GET["errorDestino"])){
+            $data["errorDestino"] = true;
+        }
+        if(isset($_GET["destino"])){
+            $data["destino"] = $_GET["destino"];
+        }
+
+        if(isset($_GET["errorFechaCarga"])){
+            $data["errorFechaCarga"] = true;
+        }
+        if(isset($_GET["fechaCarga"])){
+            $data["fechaCarga"] = $_GET["fechaCarga"];
+        }
+
+        if(isset($_GET["errorIdSupervisor"])){
+            $data["errorIdSupervisor"] = true;
+        }
+        if(isset($_GET["errorIdChofer"])){
+            $data["errorIdChofer"] = true;
+        }
+        if(isset($_GET["errorIdCamion"])){
+            $data["errorIdCamion"] = true;
+        }
+        if(isset($_GET["errorIdArrastrador"])){
+            $data["errorIdArrastrador"] = true;
+        }
+        if(isset($_GET["errorNombreCliente"])){
+            $data["errorNombreCliente"] = true;
+        }
+        if(isset($_GET["nombreCliente"])){
+            $data["nombreCliente"] = $_GET["nombreCliente"];
+        }
+        if(isset($_GET["errorApellidoCliente"])){
+            $data["errorApellidoCliente"] = true;
+        }
+        if(isset($_GET["apellidoCliente"])){
+            $data["apellidoCliente"] = $_GET["apellidoCliente"];
+        }
+        if(isset($_GET["errorCuitCliente"])){
+            $data["errorCuitCliente"] = true;
+        }
+        if(isset($_GET["cuitCliente"])) {
+            $data["cuitCliente"] = $_GET["cuitCliente"];
+        }
+        if(isset($_GET["errorDomicilioCliente"])){
+            $data["errorDomicilioCliente"] = true;
+        }
+        if(isset($_GET["domicilioCliente"])) {
+            $data["domicilioCliente"] = $_GET["domicilioCliente"];
+        }
+        if(isset($_GET["errorTelCliente"])){
+            $data["errorTelCliente"] = true;
+        }
+        if(isset($_GET["telCliente"])) {
+            $data["telCliente"] = $_GET["telCliente"];
+        }
+        if(isset($_GET["errorEmailCliente"])){
+            $data["errorEmailCliente"] = true;
+        }
+        if(isset($_GET["emailCliente"])) {
+            $data["emailCliente"] = $_GET["emailCliente"];
+        }
+        if(isset($_GET["errorETA"])){
+            $data["errorETA"] = true;
+        }
+        if(isset($_GET["eta"])) {
+            $data["eta"] = $_GET["eta"];
+        }
+        if(isset($_GET["errorETD"])){
+            $data["errorETD"] = true;
+        }
+        if(isset($_GET["etd"])) {
+            $data["etd"] = $_GET["etd"];
+        }
+        if(isset($_GET["errorKmPrevisto"])){
+            $data["errorKmPrevisto"] = true;
+        }
+        if(isset($_GET["kmPrevisto"])) {
+            $data["kmPrevisto"] = $_GET["kmPrevisto"];
+        }
+        if(isset($_GET["errorCombustiblePrevisto"])){
+            $data["errorCombustiblePrevisto"] = true;
+        }
+        if(isset($_GET["combustiblePrevisto"])) {
+            $data["combustiblePrevisto"] = $_GET["combustiblePrevisto"];
+        }
+        if(isset($_GET["errorViaticosPrevisto"])){
+            $data["errorViaticosPrevisto"] = true;
+        }
+        if(isset($_GET["viaticosPrevisto"])) {
+            $data["viaticosPrevisto"] = $_GET["viaticosPrevisto"];
+        }
+        if(isset($_GET["errorPeajesPrevisto"])){
+            $data["errorPeajesPrevisto"] = true;
+        }
+        if(isset($_GET["peajesPrevisto"])) {
+            $data["peajesPrevisto"] = $_GET["peajesPrevisto"];
+        }
+        if(isset($_GET["errorPesajesPrevisto"])){
+            $data["errorPesajesPrevisto"] = true;
+        }
+        if(isset($_GET["pesajesPrevisto"])) {
+            $data["pesajesPrevisto"] = $_GET["pesajesPrevisto"];
+        }
+        if(isset($_GET["errorExtrasPrevisto"])){
+            $data["errorExtrasPrevisto"] = true;
+        }
+        if(isset($_GET["extrasPrevisto"])) {
+            $data["extrasPrevisto"] = $_GET["extrasPrevisto"];
+        }
+        if(isset($_GET["errorFeePrevisto"])){
+            $data["errorFeePrevisto"] = true;
+        }
+        if(isset($_GET["feePrevisto"])) {
+            $data["feePrevisto"] = $_GET["feePrevisto"];
+        }
+        if(isset($_GET["errorGastosCombustiblePrevisto"])){
+            $data["errorGastosCombustiblePrevisto"] = true;
+        }
+        if(isset($_GET["gastosCombustiblePrevistos"])) {
+            $data["gastosCombustiblePrevistos"] = $_GET["gastosCombustiblePrevistos"];
+        }
+        if(isset($_GET["errorHazardCarga"])){
+            $data["errorHazardCarga"] = true;
+        }
+        if(isset($_GET["hazardCarga"])&&$_GET["hazardCarga"]=="Si") {
+            if(isset($_GET["errorImoCarga"])){
+                $data["errorImoCarga"] = true;
+            }
+
+            if(isset($_GET["errorHazardPrecio"])){
+                $data["errorHazardPrecio"] = true;
+            }
+        }
+
+
+        if(isset($_GET["errorReeferCarga"])){
+            $data["errorReeferCarga"] = true;
+        }
+        if(isset($_GET["reeferCarga"])&&$_GET["reeferCarga"]=="Si") {
+            if(isset($_GET["errorTemperaturaCarga"])){
+                $data["errorTemperaturaCarga"] = true;
+            }
+            if(isset($_GET["errorReeferPrecio"])){
+                $data["errorReeferPrecio"] = true;
+            }
+        }
+        if(isset($_GET["errorPesoCarga"])){
+            $data["errorPesoCarga"] = true;
+        }
+        if(isset($_GET["pesoCarga"])) {
+            $data["pesoCarga"] = $_GET["pesoCarga"];
+        }
+
+        return $data;
     }
 
 }
