@@ -33,11 +33,38 @@ class AdminModel{
                 INNER JOIN rol ON empleado.id_rol = rol.id
                 WHERE usuario.id =" . $id_usuario;
 
-        return $this->obj_mysql->execute($sql);
+        return $this->obj_mysql->query($sql);
     }
+    //original
+    // { ["id"]=> string(1) "4" 
+    // ["nombre"]=> string(6) "chofer" 
+    // ["apellido"]=> string(6) "chofer" 
+    // ["usuario"]=> string(6) "chofer" 
+    // ["contrasenia"]=> string(32) "85b164d9c8eb210ae8a1a4679275b26a" 
+    // ["email"]=> string(13) "chofer@g7.com" 
+    // ["estado"]=> string(1) "1" ["codigo"]=> NULL 
+    // ["legajo"]=> string(1) "8" ["dni"]=> string(8) "23053568" 
+    // ["fecha_nacimiento"]=> string(19) "2016-03-07 00:00:00" 
+    // ["usuario_id"]=> string(1) "4" 
+    // ["id_rol"]=> string(1) "4" 
+    // ["rol"]=> string(6) "Chofer" }
+    //editado
+    // { ["legajo"]=> string(1) "9" 
+    //     ["dni"]=> string(8) "23053569" 
+    //     ["nacimiento"]=> string(10) "2016-03-07" 
+    //     ["email"]=> string(13) "chofer@g7.com" 
+    //     ["rol"]=> string(1) "2" 
+    //     ["id_usuario"]=> string(1) "4" }
+    public function userEdit($data){    
+       $usuario_original_sin_editar = $this->getUserForId($data["id_usuario"]);
+       $usuario_editado = $data;
+    
+       if ($usuario_original_sin_editar['id_rol'] !== $usuario_editado['id_rol']) {
+            
+       }
+       echo "lo hiciste mal boludon";
+       die();
 
-    public function userEdit($data){
-       
         foreach ($data as $key => $value) {
             $$key = $value;
         }
