@@ -124,7 +124,7 @@
                                 <td>{{costo}}</td>
                                 <td>{{tipo}}</td>
                                 <td>{{repuesto_cam}}</td>
-                                <td>{{id_camion}</td>
+                                <td>{{id_camion}}</td>
                                 <td>{{id_mecanico}}</td>
                             </tr>
                             {{/mantenimiento}}

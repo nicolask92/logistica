@@ -33,7 +33,7 @@ class ViajesModel
     public function getMantenimiento(){
         $sql= "SELECT * From mantenimiento";
 
-        $resultado = $this->database->execute($sql);
+        $resultado = $this->database->query($sql);
 
         return $resultado;
     }
