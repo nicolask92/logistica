@@ -14,7 +14,7 @@ class ViajesModel
 	    $idChofer = $this->getIdChoferByIdUsuario();
 
     	$filtrarPorChofer = "";
-	    if (isset($idChofer)) {
+	    if (!empty($idChofer)) {
 	    	$filtrarPorChofer = " WHERE viaje.id_chofer = ${idChofer}";
 	    }
 
@@ -29,6 +29,16 @@ class ViajesModel
 	    $sql = $sql . $filtrarPorChofer;
 
 	    return $this->database->execute($sql);
+    }
+
+    public function getMantenimiento(){
+
+        $sql= "SELECT * From mantenimiento";
+
+        $resultado = $this->database->execute($sql);
+
+        return $resultado;
+
     }
 
 	public function getInformacionViaje() {
@@ -53,7 +63,7 @@ class ViajesModel
 		WHERE us.id = ${idUsuario}
     	";
 
-		return intval($this->database->query($getChoferById)['id']);
+        return isset($this->database->query($getChoferById)['id']) ? intval($this->database->query($getChoferById)['id']) : null;
 	}
 
 	public function actualizarViaje($id, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
