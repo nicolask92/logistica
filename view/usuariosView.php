@@ -73,7 +73,7 @@
                                 </tr>
                             </thead>
                             {{#usuarioSinRol}}
-                                <form action="usuarios/asignarRol" method="post" enctype="multipart/form-data">
+                                <form action="usuarios/procesarFormulario" method="post" enctype="multipart/form-data">
                                     <tbody>
                                         <tr>
                                             <th>{{usuario}}</th>

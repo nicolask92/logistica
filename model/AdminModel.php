@@ -41,6 +41,7 @@ class AdminModel{
        $usuario_editado = $data;
     
        if ($usuario_original_sin_editar['id_rol'] !== $usuario_editado['id_rol']) {
+
             $usuario_editado = $this->replaceDataUsers($usuario_original_sin_editar,$usuario_editado);
             $tabla_a_insertar_new_rol = $this->getRolName($usuario_editado['id_rol']);
             $es_borrado = $this->deleteUser($usuario_original_sin_editar['usuario_id']);
@@ -82,8 +83,6 @@ class AdminModel{
         }
         return $original_user;
     }
-
-
 
     public function deleteUser($id_user){
         $sql = "DELETE FROM usuario
