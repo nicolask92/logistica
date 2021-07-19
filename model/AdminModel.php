@@ -37,27 +37,28 @@ class AdminModel{
     }
 
     public function userEdit($data){
+       
         foreach ($data as $key => $value) {
             $$key = $value;
         }
-        $sql = "UPDATE empleado
-                SET legajo = $legacy,
+        $sql_empleado = "UPDATE empleado
+                SET legajo = $legajo,
                     dni = $dni,
                     fecha_nacimiento = '$nacimiento',
                     id_rol = '$rol'
                 WHERE usuario_id = $id_usuario";
-        $this->obj_mysql->execute($sql);
         
-        $sql = "UPDATE usuario
+        $sql_usuario = "UPDATE usuario
                 SET email = '$email'
                 WHERE id = $id_usuario";
-        $this->obj_mysql->execute($sql);
+        
+        return $this->obj_mysql->execute($sql_empleado) && $this->obj_mysql->execute($sql_usuario);
     }
     
     public function eliminarUsuario($id_user){
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
-        $this->obj_mysql->execute($sql);
+       return $this->obj_mysql->execute($sql);
     }
 
     public function actualizarRol($array){
