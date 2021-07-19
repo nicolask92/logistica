@@ -26,13 +26,13 @@ class AdminModel{
     }
 
     
-    public function obtenerUsuarioPorId($id_usuario){
+    public function getUserForId($id_usuario){
         $sql = "SELECT * FROM usuario 
                 INNER JOIN empleado
                 ON usuario.id = empleado.usuario_id
                 INNER JOIN rol ON empleado.id_rol = rol.id
                 WHERE usuario.id =" . $id_usuario;
-                
+
         return $this->obj_mysql->execute($sql);
     }
 
