@@ -137,7 +137,9 @@ class ChoferController
 					$importe += $costeoIndividual[2];
 				}
 
-				$actualizarViaje = $this->viajeModel->actualizarViaje($id, $extras, $peajes, $litros, $km, $viaticos, $importe, $valoresReporte['fee']);
+				$totalGastos = $extras + $peajes + $litros + $viaticos + $importe;
+
+				$actualizarViaje = $this->viajeModel->actualizarViaje($id, $extras, $peajes, $litros, $km, $viaticos, $importe, $valoresReporte['fee'], $totalGastos);
 
 				if ($actualizarViaje) {
 					$valoresAEnviar = array('error' => false);

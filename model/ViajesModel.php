@@ -68,11 +68,11 @@ class ViajesModel
 		return isset($this->database->query($getChoferById)['id']) ? intval($this->database->query($getChoferById)['id']) : null;
 	}
 
-	public function actualizarViaje($id, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee) {
+	public function actualizarViaje($id, $extras, $peajes, $litros, $kmTotales, $viaticos, $importe, $fee, $gastoTotal) {
 
     	$sql = "
 			UPDATE viaje
-			SET kilometros_real = ${kmTotales}, fecha_llegada_real = now(), combustible_real = ${litros}, importe_combustible_real = ${importe}, peajes_real = ${peajes}, viaticos_real = ${viaticos} , extras_real = ${extras}, fee_real = ${fee}, estado = 'FINALIZADO'
+			SET kilometros_real = ${kmTotales}, fecha_llegada_real = now(), combustible_real = ${litros}, importe_combustible_real = ${importe}, peajes_real = ${peajes}, viaticos_real = ${viaticos} , extras_real = ${extras}, fee_real = ${fee}, estado = 'FINALIZADO', gasto_total = ${gastoTotal}
 			WHERE id = ${id}
     	";
 
