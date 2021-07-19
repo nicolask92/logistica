@@ -60,6 +60,28 @@
             </div>
         </div>
         {{/ usuarioConRol }}
+        {{# usuarioSinRol}}
+            <div class="modal fade" id="rechazar{{usuario}}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar al usuario {{usuario}}?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Si desea borrarlo, haga clic en Borrar.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                      <form action="/usuarios/procesarFormulario/id={{usuario_id}}" enctype="multipart/form-data" method="post">
+                        <input type="submit" value="Rechazar" class="btn btn-danger" name="btn-rechazar">
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/ usuarioSinRol }}
         <!-- Bootstrap core JavaScript-->
         <script type="text/javascript" src="/view/vendor/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

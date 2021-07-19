@@ -46,6 +46,12 @@ class AdminController
                 "mensaje" => 'Se asignó correctamente un rol'
             ]);
         }
+        if (isset($_GET['rechazar'])) {
+            array_push($alert, [
+                "alerta" => 'alert alert-danger',
+                "mensaje" => 'Se rechazo un usuario correctamente'
+            ]);
+        }
         return $alert;
     }
 
@@ -66,6 +72,9 @@ class AdminController
         }
         if (isset($_POST["btn-aceptar"])) {
             $this->asignarRol();
+        }
+        if (isset( $_POST['btn-rechazar'])) {
+            $this->rechazarUsuario($_POST["id_user"]);
         }
     }
 
@@ -97,5 +106,11 @@ class AdminController
         if ($this->database->addRol($_POST)) {
             header("location: /usuarios?rol=true");
         }
+    }
+
+    private function rechazarUsuario($id_user){
+        if ($this->database->deleteUser($id_user)) {
+            header("location: /usuarios?rechazar=true");
+        }           
     }
 }

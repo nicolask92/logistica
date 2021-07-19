@@ -73,9 +73,9 @@
                                 </tr>
                             </thead>
                             {{#usuarioSinRol}}
-                                <form action="usuarios/procesarFormulario" method="post" enctype="multipart/form-data">
-                                    <tbody>
-                                        <tr>
+                                <tbody>
+                                    <tr>
+                                        <form action="usuarios/procesarFormulario" method="post" enctype="multipart/form-data">
                                             <th>{{usuario}}</th>
                                             <th>{{email}}</th>
                                             <th>{{legajo}}</th>
@@ -89,11 +89,11 @@
                                                 <input type="hidden" name="id_user" value="{{usuario_id}}">
                                                 <input type="hidden" name="legajo" value="{{legajo}}">
                                                 <input type="submit" name="btn-aceptar" class="btn btn-success" value="Aceptar"></input>
-                                                <input type="submit" name="btn-rechazar" class="btn btn-danger" value="Rechazar"></input>
-                                            </th>
-                                        </tr>
-                                    </tbody>
-                                </form>
+                                        </form>
+                                        <a class="btn btn-danger" data-toggle="modal" data-target="#rechazar{{usuario}}Modal" href="">Rechazar</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
                             {{/usuarioSinRol}}
                         </table>
                     </div>
