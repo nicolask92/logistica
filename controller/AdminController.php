@@ -56,13 +56,15 @@ class AdminController
         echo $this->render->render("view/editarUsuarioView.php", $data);
     }
 
-    public function procesarFormulario()
-    {
+    public function procesarFormulario(){
         if (isset($_POST["btn-editar"])) {
             $this->editar();
         }
         if (isset($_POST["btn-borrar"]) && isset($_GET["id"])) {
             $this->eliminarUsuario($_GET["id"]);
+        }
+        if (isset($_POST["btn-aceptar"])){
+            $this->asignarRol();
         }
     }
 
@@ -81,18 +83,14 @@ class AdminController
         }
     }
 
-    private function eliminarUsuario($id_user)
-    {
-       if($this->database->eliminarUsuario($id_user)){
+    private function eliminarUsuario($id_user){
+       if($this->database->deleteUser($id_user)){
            header("location: /usuarios?borrar=true");
        } 
     }
 
-
-    public function asignarRol()
-    {
-        if (isset($_POST["btn-aceptar"])) {
-            $this->database->actualizarRol($_POST);
+    private function asignarRol(){
+        if ($this->database->addRol($_POST)) {
             header("location: /usuarios?rol=true");
         }
     }

@@ -55,26 +55,29 @@ class AdminModel{
         return $this->obj_mysql->execute($sql_empleado) && $this->obj_mysql->execute($sql_usuario);
     }
     
-    public function eliminarUsuario($id_user){
+    public function deleteUser($id_user){
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
        return $this->obj_mysql->execute($sql);
     }
 
-    public function actualizarRol($array){
+    public function addRol($array){
         foreach ($array as $key => $value) {
             $$key = $value;
         }
-        $sql = "UPDATE empleado
-                SET id_rol = $idRol
-                WHERE usuario_id = $id_user";
-        $this->obj_mysql->execute($sql);
-        $rol = $this->tipoDeRol($array["idRol"]);
-        $sql = "INSERT INTO ${rol} (legajo,id_rol) VALUES($legajo,$idRol)";
-        $result = $this->obj_mysql->execute($sql);
+
+        $sql_update_rol = "UPDATE empleado
+                         SET id_rol = $idRol
+                         WHERE usuario_id = $id_user";
+
+        $nombre_de_tabla_a_insertar = $this->getRolName($array["idRol"]);
+
+        $sql_insert_new_rol= "INSERT INTO ${nombre_de_tabla_a_insertar} (legajo,id_rol) VALUES($legajo,$idRol)";
+        
+        return $this->obj_mysql->execute($sql_update_rol) && $this->obj_mysql->execute($sql_insert_new_rol);
     }
 
-    private function tipoDeRol($num_rol){
+    private function getRolName($num_rol){
         if ($num_rol == 1) {
             return "administrador";
         }
