@@ -202,7 +202,7 @@
 
                                     <option selected value="0" >Seleccionar Camión</option>
                                     {{#camiones}}
-                                    <option value="{{id}}">{{marca}}-{{modelo}} </option>
+                                    <option value="{{id}}">{{marca}}-{{modelo}} | {{patente}} </option>
                                     {{/camiones}}
                                 </select>
                                 {{#errorIdCamion}}<p class="text-danger">Debe Seleccionar un Camión</p>{{/errorIdCamion}}

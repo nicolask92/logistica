@@ -43,7 +43,7 @@
                         <select class="form-control" id="seleccionarVehiculo" name="seleccionarVehiculo">
                             <option selected value="0" >Seleccionar Vehículo</option>
                             {{#seleccionarVehiculo}}
-                            <option value="{{id}}">{{marca}}-{{modelo}} </option>
+                            <option value="{{id}}">{{marca}}-{{modelo}} | {{patente}} </option>
                             {{/seleccionarVehiculo}}
                         </select>
                         {{#errorSeleccionarVehiculo}}<p class="text-danger">Debe Seleccionar un Vehículo</p>{{/errorSeleccionarVehiculo}}
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="costoVehiculo"  name="costoVehiculo" value="{{costoVehiculo}}"   placeholder="Costo">
+                        <input type="number" class="form-control" id="costoVehiculo"  name="costoVehiculo" value="{{costoVehiculo}}"   placeholder="Costo">
                         {{#errorCostoVehiculo}}<p class="text-danger">Debe rellenar este campo</p>{{/errorCostoVehiculo}}
                     </div>
 

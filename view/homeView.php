@@ -121,7 +121,7 @@
                             <tr class="text-center">
                                 <td>{{id}}</td>
                                 <td>{{fecha}}</td>
-                                <td>{{costo}}</td>
+                                <td>${{costo}}</td>
                                 <td>{{tipo}}</td>
                                 <td>{{repuesto_cam}}</td>
                                 <td>{{patente}}</td>

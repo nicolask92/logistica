@@ -33,7 +33,7 @@ class MecanicoModel{
 
     public function buscarVehiculos(){
 
-        $sql = "SELECT id, marca, modelo FROM camiones";
+        $sql = "SELECT id, marca, modelo, patente FROM camiones";
 
         $resultado = $this->database->execute($sql);
 
