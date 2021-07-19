@@ -53,15 +53,15 @@ class AdminController
     }
 
     public function procesarFormulario(){
-        $data = array(
-            "legacy" => $_POST["legacy"],
+        $data_form_post = array(
+            "legajo" => $_POST["legajo"],
             "dni" => $_POST["dni"],
             "nacimiento" => $_POST["nacimiento"],
             "email" => $_POST["email"],
             "rol" => $_POST["rol"],
             "id_usuario" => $_POST["id_usuario"]
         );
-        $this->database->userEdit($data);
+        $this->database->userEdit($data_form_post);
         header("location: /usuarios?editar=true");
     }
 
