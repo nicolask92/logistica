@@ -23,6 +23,7 @@ class AdminController
     }
     
     private function mostrarMensaje(){
+        
         $alert = array();
         if (isset($_GET['editar'])) {
             array_push($alert,[
@@ -45,44 +46,9 @@ class AdminController
         return $alert;
     }
 
-
-    // private function mensajeEdicion($mensaje_edicion)
-    // {
-    //     $alert = array();
-    //     if ($mensaje_edicion) {
-    //         array_push($alert,[
-    //             "alerta" => 'alert alert-success',
-    //             "mensaje" =>'Se editó un usuario correctamente'
-    //         ]);
-    //         return $alert;    
-    //     }
-    // }
-
-    // private function mensajeBorrar($mensaje_borrado){
-    //     $alert = array();
-    //     if ($mensaje_borrado) {
-    //         array_push($alert,[
-    //             "alerta" => 'alert alert-success',
-    //             "mensaje" =>'Se borró un usuario correctamente'
-    //         ]);
-    //         return $alert;    
-    //     }
-    // }
-
-    // private function mensajeAsignar($mensaje_rol){
-    //     $alert = array();
-    //     if ($mensaje_rol) {
-    //         array_push($alert,[
-    //             "alerta" => 'alert alert-success',
-    //             "mensaje" =>'Se asignó correctamente un rol'
-    //         ]);
-    //         return $alert;    
-    //     }
-    // }
-
     public function editarUsuario(){
-        $usuario = $this->database->obtenerUsuarioPorId($_GET["id"]);
-        $data["user"] = $usuario;
+        $todos_los_datos_usuario = $this->database->obtenerUsuarioPorId($_GET["id"]);
+        $data["user"] = $todos_los_datos_usuario;
         echo $this->render->render("view/editarUsuarioView.php",$data);
     }
 
@@ -94,7 +60,6 @@ class AdminController
             "email" => $_POST["email"],
             "rol" => $_POST["rol"],
             "id_usuario" => $_POST["id_usuario"]
-
         );
         $this->database->userEdit($data);
         header("location: /usuarios?editar=true");
