@@ -245,7 +245,7 @@ CREATE TABLE costeo(
     extras float,
 	latitud float,
     longitud float,
-    foreign key(id_viaje) references viaje(id) 
+    foreign key(id_viaje) references viaje(id) on update cascade on delete cascade
 );
 
 insert into viaje(origen, destino, fecha_carga, estado, id_supervisor, id_chofer, id_camion, id_arrastrador, fecha_llegada_previsto, fecha_salida_previsto, combustible_previsto, kilometros_previsto, peajes_previsto, viaticos_previsto, extras_previsto, fee_previsto, pesajes_previsto,importe_combustible_previsto)
@@ -322,7 +322,7 @@ CREATE TABLE carga
  temperatura int(10),
  peso_neto varchar(15),
  id_viaje tinyint,
- foreign key(id_viaje) references viaje(id) 
+ foreign key(id_viaje) references viaje(id) on delete cascade on update cascade
 );
 
 INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Plastico', '0', '', '0', '20000', '1');
@@ -339,7 +339,7 @@ cuit bigint,
 direccion varchar(15),
 email varchar(150) not null,
 id_viaje tinyint,
-foreign key(id_viaje) references viaje(id) 
+foreign key(id_viaje) references viaje(id) on delete cascade on update cascade
 );
 
 INSERT INTO `g7`.`cliente` (`nombre`, `apellido`, `telefono`, `cuit`, `direccion`, `email`, `id_viaje`) VALUES ('Juan', 'Roman', '1120252411', '20365545689', 'Bv Finca 6244', 'alguienMuyGroso@gmail.com', '1');
@@ -354,7 +354,7 @@ costo int(15),
 tipo enum('INTERNO', 'EXTERNO'),
 repuesto_cam varchar(150),
 id_camion tinyint,
-foreign key(id_camion) references camiones(id) ,
+foreign key(id_camion) references camiones(id) on delete cascade on update cascade,
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id) on delete cascade on update cascade
 );
