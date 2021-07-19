@@ -68,6 +68,8 @@
                                 <input name="registrarse" id="registrarse" class="btn btn-block login-btn mb-4" type="submit" value="Registrarse">
                             </form>
 
+                            <p class="login-card-footer-text">¿Tienes una cuenta? <a href="/login" class="text-reset">INICIAR SESIÓN</a></p>
+
                             <nav class="login-card-footer-nav">
                                 <a href="#!">Condiciones de uso.</a>
                                 <a href="#!">Política de privacidad</a>
