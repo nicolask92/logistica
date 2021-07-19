@@ -35,32 +35,22 @@ class AdminModel{
 
         return $this->obj_mysql->query($sql);
     }
-    //original
-    // { ["id"]=> string(1) "4" 
-    // ["nombre"]=> string(6) "chofer" 
-    // ["apellido"]=> string(6) "chofer" 
-    // ["usuario"]=> string(6) "chofer" 
-    // ["contrasenia"]=> string(32) "85b164d9c8eb210ae8a1a4679275b26a" 
-    // ["email"]=> string(13) "chofer@g7.com" 
-    // ["estado"]=> string(1) "1" ["codigo"]=> NULL 
-    // ["legajo"]=> string(1) "8" ["dni"]=> string(8) "23053568" 
-    // ["fecha_nacimiento"]=> string(19) "2016-03-07 00:00:00" 
-    // ["usuario_id"]=> string(1) "4" 
-    // ["id_rol"]=> string(1) "4" 
-    // ["rol"]=> string(6) "Chofer" }
-    //editado
-    // { ["legajo"]=> string(1) "9" 
-    //     ["dni"]=> string(8) "23053569" 
-    //     ["nacimiento"]=> string(10) "2016-03-07" 
-    //     ["email"]=> string(13) "chofer@g7.com" 
-    //     ["rol"]=> string(1) "2" 
-    //     ["id_usuario"]=> string(1) "4" }
+ 
     public function userEdit($data){    
        $usuario_original_sin_editar = $this->getUserForId($data["id_usuario"]);
        $usuario_editado = $data;
     
        if ($usuario_original_sin_editar['id_rol'] !== $usuario_editado['id_rol']) {
-            
+            $usuario_editado = $this->replaceDataUsers($usuario_original_sin_editar,$usuario_editado);
+            $tabla_a_insertar_new_rol = $this->getRolName($usuario_editado['id_rol']);
+            $es_borrado = $this->deleteUser($usuario_original_sin_editar['usuario_id']);
+            $es_insertado = $this->insertUser($usuario_editado,$tabla_a_insertar_new_rol);
+           
+            if ($es_borrado && $es_insertado) {
+                return true;
+            }
+            echo "no se borro boludon ni se inserto ";
+            die();
        }
        echo "lo hiciste mal boludon";
        die();
@@ -82,10 +72,42 @@ class AdminModel{
         return $this->obj_mysql->execute($sql_empleado) && $this->obj_mysql->execute($sql_usuario);
     }
     
+    private function replaceDataUsers($original_user,$edit_user){
+        foreach ($original_user as $key => $value) {
+            foreach ($edit_user as $key_edit => $value_edit) {
+                if($key == $key_edit && $value !== $value_edit){
+                    $original_user[$key] = $edit_user[$key_edit];
+                }
+            }
+        }
+        return $original_user;
+    }
+
+
+
     public function deleteUser($id_user){
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
        return $this->obj_mysql->execute($sql);
+    }
+
+    private function insertUser($user,$newRol){
+        foreach ($user as $key => $value) {
+            $$key = $value;
+        }
+        $codigo = ($codigo == null)?"NULL":$codigo;
+        $dni = ($dni == null)?"NULL":$dni;
+        $fecha_nacimiento = ($fecha_nacimiento == null)?"NULL":$fecha_nacimiento;
+
+        $sql_insert_usuario = "INSERT INTO usuario(id,nombre,apellido,usuario,contrasenia,email,estado,codigo) 
+                               VALUES($usuario_id,'$nombre','$apellido','$usuario','$contrasenia','$email',$estado,$codigo)";
+    
+        $sql_insert_empleado = "INSERT INTO empleado(legajo,dni,fecha_nacimiento,usuario_id,id_rol)
+                                VALUES($legajo,$dni,'$fecha_nacimiento',$usuario_id,$id_rol)";
+    
+        $sql_insert_new_rol = "INSERT INTO ${newRol}(legajo,id_rol) VALUES($legajo,$id_rol)";
+        
+        return $this->obj_mysql->execute($sql_insert_usuario) && $this->obj_mysql->execute($sql_insert_empleado) && $this->obj_mysql->execute($sql_insert_new_rol);
     }
 
     public function addRol($array){
