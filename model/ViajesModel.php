@@ -31,7 +31,12 @@ class ViajesModel
     }
 
     public function getMantenimiento(){
-        $sql= "SELECT * From mantenimiento";
+        $sql= "SELECT usuario.nombre as 'nombreMecanico', usuario.apellido as 'apellidoMecanico', mantenimiento.id, mantenimiento.fecha, mantenimiento.costo, mantenimiento.tipo, mantenimiento.repuesto_cam, camiones.patente
+                FROM mantenimiento
+                join mecanico on mantenimiento.id_mecanico = mecanico.id 
+                join empleado on mecanico.legajo = empleado.legajo 
+                join usuario on empleado.usuario_id = usuario.id
+                join camiones on mantenimiento.id_camion = camiones.id";
 
         $resultado = $this->database->query($sql);
 
