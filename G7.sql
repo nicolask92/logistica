@@ -89,7 +89,7 @@ INSERT into chofer(tipo_licencia, legajo, patente,id_rol)
           ('A', 005, 'FAC123',4);
 
 CREATE TABLE mecanico
-	(id tinyint primary key,
+	(id tinyint primary key auto_increment,
 	legajo tinyint,
     id_rol tinyint,
     foreign key(id_rol) references rol(id) ON UPDATE CASCADE ON DELETE CASCADE ,

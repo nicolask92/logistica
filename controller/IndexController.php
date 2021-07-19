@@ -21,6 +21,7 @@ class IndexController
         }
 
         $data["viajes"] = $this->viajesModel->getViajes();
+        $data["mantenimiento"] = $this->viajesModel->getMantenimiento();
 
         echo $this->render->render("view/homeView.php", $data);
     }

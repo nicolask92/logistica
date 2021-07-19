@@ -30,6 +30,14 @@ class ViajesModel
 	    return $this->database->execute($sql);
     }
 
+    public function getMantenimiento(){
+        $sql= "SELECT * From mantenimiento";
+
+        $resultado = $this->database->execute($sql);
+
+        return $resultado;
+    }
+
 	public function getInformacionViaje() {
     	$idChofer = $this->getIdChoferByIdUsuario();
 

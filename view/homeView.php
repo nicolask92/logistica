@@ -80,6 +80,59 @@
                             </tbody>
                         </table>
                     </div>
+
+
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Mantenimiento</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Costo</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Repuesto cambiado</th>
+                                <th class="text-center">Camion</th>
+                                <th class="text-center">Mecanico</th>
+
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Costo</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Repuesto cambiado</th>
+                                <th class="text-center">Camion</th>
+                                <th class="text-center">Mecanico</th>
+
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {{#mantenimiento}}
+                            <tr class="text-center">
+                                <td>{{id}}</td>
+                                <td>{{fecha}}</td>
+                                <td>{{costo}}</td>
+                                <td>{{tipo}}</td>
+                                <td>{{repuesto_cam}}</td>
+                                <td>{{id_camion}</td>
+                                <td>{{id_mecanico}}</td>
+                            </tr>
+                            {{/mantenimiento}}
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
             </div>
 
