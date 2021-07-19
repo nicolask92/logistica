@@ -1,5 +1,4 @@
-'use strict';
-'global _, ko';
+'use strict'
 
 function AppViewModel() {
     var self = this;
@@ -42,9 +41,12 @@ function AppViewModel() {
 
     $(document).ready( function () {
         self.loadMap();
+        if (self.urlQR != null) {
+            self.viajeSeleccionado(parseInt(self.urlQR));
+        }
     });
 
-    self.getLocation = function() {
+    self.getLocation = function() {1
         infoWindow.close();
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -177,7 +179,7 @@ function AppViewModel() {
         }).done(function(respuesta) {
             self.viajes([]);
             var jsonViajes = JSON.parse(respuesta);
-            _.each(JSON.parse(respuesta), function (viaje) {
+            _.each(jsonViajes, function (viaje) {
                 self.viajes.push(new ViajeViewModel(viaje));
             })
             console.log(jsonViajes);
@@ -289,11 +291,6 @@ function AppViewModel() {
     self.validarQueElCampoSeaNumerio = function (valorAEvaluar) {
         return (_.isNaN(parseFloat(valorAEvaluar)) || !_.isNumber(parseFloat(valorAEvaluar)) || parseFloat(valorAEvaluar) < 0)
     }
-    $(document).ready(function() {
-        if (self.urlQR != null) {
-            self.viajeSeleccionado(parseInt(self.urlQR));
-        }
-    });
 }
 
 function ViajeViewModel(options) {
