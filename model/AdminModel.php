@@ -12,6 +12,7 @@ class AdminModel{
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
                 WHERE e.id_rol = 5";
+
         return $this->obj_mysql->execute($sql);
     }
 
@@ -20,10 +21,7 @@ class AdminModel{
                 INNER JOIN empleado e ON u.id = e.usuario_id
                 INNER JOIN rol ON e.id_rol = rol.id
                 WHERE NOT e.id_rol = 5";
-        return $this->obj_mysql->execute($sql);
-    }
 
-    private function ejecutarConsulta($sql){
         return $this->obj_mysql->execute($sql);
     }
 
@@ -34,8 +32,8 @@ class AdminModel{
                 ON usuario.id = empleado.usuario_id
                 INNER JOIN rol ON empleado.id_rol = rol.id
                 WHERE usuario.id =" . $id_usuario;
-        $result = $this->obj_mysql->execute($sql);
-        return $result;
+                
+        return $this->obj_mysql->execute($sql);
     }
 
     public function userEdit($data){
@@ -48,18 +46,18 @@ class AdminModel{
                     fecha_nacimiento = '$nacimiento',
                     id_rol = '$rol'
                 WHERE usuario_id = $id_usuario";
-        $this->ejecutarConsulta($sql);
+        $this->obj_mysql->execute($sql);
         
         $sql = "UPDATE usuario
                 SET email = '$email'
                 WHERE id = $id_usuario";
-        $this->ejecutarConsulta($sql);
+        $this->obj_mysql->execute($sql);
     }
     
     public function eliminarUsuario($id_user){
         $sql = "DELETE FROM usuario
                 WHERE id = " . $id_user;
-        $this->ejecutarConsulta($sql);
+        $this->obj_mysql->execute($sql);
     }
 
     public function actualizarRol($array){
@@ -69,7 +67,7 @@ class AdminModel{
         $sql = "UPDATE empleado
                 SET id_rol = $idRol
                 WHERE usuario_id = $id_user";
-        $this->ejecutarConsulta($sql);
+        $this->obj_mysql->execute($sql);
         $rol = $this->tipoDeRol($array["idRol"]);
         $sql = "INSERT INTO ${rol} (legajo,id_rol) VALUES($legajo,$idRol)";
         $result = $this->obj_mysql->execute($sql);
