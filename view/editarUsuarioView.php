@@ -20,7 +20,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             LEGAJO:
-                            <input type="text" class="form-control" id="legajo" name="legacy" placeholder="{{legajo}}"
+                            <input type="text" class="form-control" id="legajo" name="legajo" placeholder="{{legajo}}"
                                 value={{legajo}}>
                         </div>
 
