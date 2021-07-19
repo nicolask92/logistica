@@ -59,26 +59,33 @@ class AdminController
     public function procesarFormulario()
     {
         if (isset($_POST["btn-editar"])) {
-            $data_form_post = array(
-                "legajo" => $_POST["legajo"],
-                "dni" => $_POST["dni"],
-                "nacimiento" => $_POST["nacimiento"],
-                "email" => $_POST["email"],
-                "rol" => $_POST["rol"],
-                "id_usuario" => $_POST["id_usuario"]
-            );
-            $this->database->userEdit($data_form_post);
-            header("location: /usuarios?editar=true");
+            $this->editar();
         }
         if (isset($_POST["btn-borrar"]) && isset($_GET["id"])) {
             $this->eliminarUsuario($_GET["id"]);
         }
     }
 
+
+    private function editar(){
+        $data_form_post = array(
+            "legajo" => $_POST["legajo"],
+            "dni" => $_POST["dni"],
+            "nacimiento" => $_POST["nacimiento"],
+            "email" => $_POST["email"],
+            "rol" => $_POST["rol"],
+            "id_usuario" => $_POST["id_usuario"]
+        );
+        if($this->database->userEdit($data_form_post)){
+            header("location: /usuarios?editar=true");
+        }
+    }
+
     private function eliminarUsuario($id_user)
     {
-        $this->database->eliminarUsuario($id_user);
-        header("location: /usuarios?borrar=true");
+       if($this->database->eliminarUsuario($id_user)){
+           header("location: /usuarios?borrar=true");
+       } 
     }
 
 
