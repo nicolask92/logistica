@@ -42,7 +42,9 @@ function AppViewModel() {
     $(document).ready( function () {
         self.loadMap();
         if (self.urlQR != null) {
-            self.viajeSeleccionado(parseInt(self.urlQR));
+            setTimeout(function() {
+                self.viajeSeleccionado(parseInt(self.urlQR));
+            }, 500);
         }
     });
 
@@ -182,6 +184,9 @@ function AppViewModel() {
             _.each(jsonViajes, function (viaje) {
                 self.viajes.push(new ViajeViewModel(viaje));
             })
+            if (self.urlQR != null) {
+                self.viajeSeleccionado(parseInt(self.urlQR));
+            }
             console.log(jsonViajes);
         })
     }
