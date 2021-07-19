@@ -38,7 +38,7 @@ class ViajesModel
                 join usuario on empleado.usuario_id = usuario.id
                 join camiones on mantenimiento.id_camion = camiones.id";
 
-        $resultado = $this->database->query($sql);
+        $resultado = $this->database->execute($sql);
 
         return $resultado;
     }
