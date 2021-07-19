@@ -358,3 +358,8 @@ foreign key(id_camion) references camiones(id) ,
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id) on delete cascade on update cascade
 );
+
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-14 11:00:00', '20000', 'INTERNO', 'Neumatico', 4, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-15 12:00:00', '3000', 'EXTERNO', 'Luz Optica', 10, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-16 13:00:00', '15000', 'EXTERNO', 'Paragolpe', 20, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-17 15:00:00', '25000', 'INTERNO', 'Neumatico', 12, 1);
