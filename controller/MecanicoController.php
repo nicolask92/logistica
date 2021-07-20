@@ -18,8 +18,8 @@ class MecanicoController
         $data["seleccionarVehiculo"] = $this->mecanicoModel->buscarVehiculos();
 
         if(isset($_GET["mensaje"])){
-            $array["alerta"]= "alert alert-success";
-            $array["mensaje"]= "Los datos se cargaron correctamente";
+            $data["alerta"]= "alert alert-success";
+            $data["mensaje"]= "Los datos se cargaron correctamente";
         }
 
 
