@@ -3,111 +3,114 @@
 class AdminController
 {
     private $render;
-    private $obj_adminModel;
+    private $database;
 
-    public function __construct($adminModel, $render){
-        $this->render = $render;
-        $this->obj_adminModel = $adminModel;
-    }
-
-    public function execute(){  
-        $result = $this->obj_adminModel->obtenerTodosLosUsuarios();    
-        $array_users_sinRol = array();
-        for ($i=0; $i < count($result); $i++) { 
-            if ($result[$i]['id_rol'] == 5) {
-                array_push($array_users_sinRol,
-                ['usuario_id' => $result[$i]["usuario_id"],
-                 'usuario' => $result[$i]["usuario"],
-                 'email' => $result[$i]["email"],
-                 'legajo' => $result[$i]["legajo"]]);
-            }
-            if ($result[$i]['id_rol'] != 5) {
-                $data["users"][$i] = $result[$i];
-            }
-        }
-
-        if(isset($_GET["editar"])){
-
-            $data["alert"] = $this->mensajeEdicion($_GET["editar"]);
-        }
-        if(isset($_GET["borrar"])){
-
-            $data["alert"] = $this->mensajeBorrar($_GET["borrar"]);
-        }
-        if(isset($_GET["rol"])){
-
-            $data["alert"] = $this->mensajeAsignar($_GET["rol"]);
-        }
-
-        $data["usuarioSinRol"] = $array_users_sinRol;
-        echo $this->render->render("view/usuariosView.php",$data);                        
-        
-    }
-
-    private function mensajeEdicion($mensaje_edicion)
+    public function __construct($adminModel, $render)
     {
+        $this->render = $render;
+        $this->database = $adminModel;
+    }
+
+    public function execute()
+    {
+
+        $usuarios_sin_rol = $this->database->getUsersWithOutRol();
+        $usuarios_con_rol = $this->database->getUsersWithRol();
+
+        $data["usuarioSinRol"] = $usuarios_sin_rol;
+        $data["usuarioConRol"] = $usuarios_con_rol;
+        $data["alert"] = $this->mostrarMensaje();
+
+        echo $this->render->render("view/usuariosView.php", $data);
+    }
+
+    private function mostrarMensaje()
+    {
+
         $alert = array();
-        if ($mensaje_edicion) {
-            array_push($alert,[
+        if (isset($_GET['editar'])) {
+            array_push($alert, [
                 "alerta" => 'alert alert-success',
-                "mensaje" =>'Se editó un usuario correctamente'
+                "mensaje" => 'Se editó un usuario correctamente'
             ]);
-            return $alert;    
+        }
+        if (isset($_GET['borrar'])) {
+            array_push($alert, [
+                "alerta" => 'alert alert-success',
+                "mensaje" => 'Se borró un usuario correctamente'
+            ]);
+        }
+        if (isset($_GET['rol'])) {
+            array_push($alert, [
+                "alerta" => 'alert alert-success',
+                "mensaje" => 'Se asignó correctamente un rol'
+            ]);
+        }
+        if (isset($_GET['rechazar'])) {
+            array_push($alert, [
+                "alerta" => 'alert alert-danger',
+                "mensaje" => 'Se rechazo un usuario correctamente'
+            ]);
+        }
+        return $alert;
+    }
+
+    public function editarUsuario()
+    {
+        $todos_los_datos_usuario = $this->database->getUserForId($_GET["id"]);
+        $data["user"] = $todos_los_datos_usuario;
+        echo $this->render->render("view/editarUsuarioView.php", $data);
+    }
+
+    public function procesarFormulario()
+    {
+        if (isset($_POST["btn-editar"])) {
+            $this->editar();
+        }
+        if (isset($_POST["btn-borrar"]) && isset($_GET["id"])) {
+            $this->eliminarUsuario($_GET["id"]);
+        }
+        if (isset($_POST["btn-aceptar"])) {
+            $this->asignarRol();
+        }
+        if (isset( $_POST['btn-rechazar'])) {
+            $this->rechazarUsuario($_POST["id_user"]);
         }
     }
 
-    private function mensajeBorrar($mensaje_borrado){
-        $alert = array();
-        if ($mensaje_borrado) {
-            array_push($alert,[
-                "alerta" => 'alert alert-success',
-                "mensaje" =>'Se borró un usuario correctamente'
-            ]);
-            return $alert;    
-        }
-    }
 
-    private function mensajeAsignar($mensaje_rol){
-        $alert = array();
-        if ($mensaje_rol) {
-            array_push($alert,[
-                "alerta" => 'alert alert-success',
-                "mensaje" =>'Se asignó correctamente un rol'
-            ]);
-            return $alert;    
-        }
-    }
-
-    public function editarUsuario(){
-        $usuario = $this->obj_adminModel->obtenerUsuarioPorId($_GET["id"]);
-        $data["user"] = $usuario;
-        echo $this->render->render("view/editarUsuarioView.php",$data);
-    }
-
-    public function procesarFormulario(){
-        $data = array(
-            "legacy" => $_POST["legacy"],
+    private function editar()
+    {
+        $data_form_post = array(
+            "legajo" => $_POST["legajo"],
             "dni" => $_POST["dni"],
             "nacimiento" => $_POST["nacimiento"],
             "email" => $_POST["email"],
-            "rol" => $_POST["rol"],
+            "id_rol" => $_POST["id_rol"],
             "id_usuario" => $_POST["id_usuario"]
-
         );
-        $this->obj_adminModel->userEdit($data);
-        header("location: /usuarios?editar=true");
+        if ($this->database->userEdit($data_form_post)) {
+            header("location: /usuarios?editar=true");
+        }
     }
 
-    public function eliminarUsuario(){
-        $this->obj_adminModel->eliminarUsuario($_GET["id"]);
-        header("location: /usuarios?borrar=true");
+    private function eliminarUsuario($id_user)
+    {
+        if ($this->database->deleteUser($id_user)) {
+            header("location: /usuarios?borrar=true");
+        }
     }
 
-
-    public function asignarRol(){
-        if (isset($_POST["btn-aceptar"])) {
-            $this->obj_adminModel->actualizarRol($_POST);
+    private function asignarRol()
+    {
+        if ($this->database->addRol($_POST)) {
             header("location: /usuarios?rol=true");
         }
+    }
+
+    private function rechazarUsuario($id_user){
+        if ($this->database->deleteUser($id_user)) {
+            header("location: /usuarios?rechazar=true");
+        }           
     }
 }

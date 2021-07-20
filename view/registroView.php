@@ -33,12 +33,17 @@
                                     <label for="apellido" class="sr-only">Apellido</label>
                                     <input type="text" name="apellido" id="apellido" value="{{apellido}}" class="form-control" placeholder="Apellido">
                                 </div>
-                                <!-- TODO Ver si lo habilitamos
-                                <div class="form-group date">
-                                    <label for="datepicker" class="sr-only">Fecha de nacimiento</label>
-                                    <input data-provide="datepicker" id="datepicker" value="{{fechaDeNacimiento}}" type="text" name="fechaNac" class="form-control" placeholder="Fecha Nacimiento">
+                                
+                                <div class="form-group">
+                                    <label for="dni" class="sr-only">DNI</label>
+                                    <input type="number" name="dni" id="dni" value="{{dni}}" class="form-control" placeholder="DNI">
                                 </div>
-                                -->
+
+                                <div class="form-group date">
+                                    <input type="date" class="form-control" id="fechaNac"
+                                            name="fechaNac" aria-describedby="fecha" value="{{fechaNac}}">
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
                                     <input type="email" name="email" id="email" value="{{email}}" class="form-control" placeholder="Email">
@@ -53,9 +58,10 @@
                                         <ul>
                                             {{#errorNombre}}<li>Nombre invalido</li>{{/errorNombre}}
                                             {{#errorApellido}}<li>Apellido invalido</li>{{/errorApellido}}
+                                            {{#errorDni}}<li>DNI invalido</li>{{/errorDni}}
                                             {{#errorEmail}}<li>Email invalido</li>{{/errorEmail}}
-                                            {{#errorFechaNac}}<li>Fecha invalido</li>{{/errorFechaNac}}
-                                            {{#errorContrasenia}}<li>Constraseña invalido</li>{{/errorContrasenia}}
+                                            {{#errorFechaNac}}<li>Fecha invalida</li>{{/errorFechaNac}}
+                                            {{#errorContrasenia}}<li>Constraseña invalida</li>{{/errorContrasenia}}
                                         </ul>
                                     </div>
                                 {{/error}}

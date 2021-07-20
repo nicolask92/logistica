@@ -1,6 +1,5 @@
 <?php
 
-
 class RegistroModel
 {
 	private $database;
@@ -9,18 +8,18 @@ class RegistroModel
 		$this->database = $database;
 	}
 
-	public function crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo) {
+	public function crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo,$dni,$nacimiento) {
 		$usuario = $nombre.$apellido;
-		$sql = "INSERT INTO usuario(nombre, apellido, usuario, contrasenia, email, estado, codigo) 
+		$sql_usuario = "INSERT INTO usuario(nombre, apellido, usuario, contrasenia, email, estado, codigo) 
 				VALUES('${nombre}','${apellido}', '${usuario}','${contrasenia}', '${email}', false, ${codigo})";
-		$resultado = $this->database->execute($sql);
-
+		
 		$usuario_id = $this->obtenerIdDelUsuarioRecienCreado(); 
-		$sql = "INSERT INTO empleado (usuario_id,id_rol) VALUES ('${usuario_id}',5)";
+		
+		$sql_empleado = "INSERT INTO empleado (usuario_id,id_rol,dni,fecha_nacimiento) 
+				VALUES ('${usuario_id}',5,${dni},'${nacimiento}')";
 		//por defecto 5 es sinRol ya que cuando se crea un usuario nuevo este no tiene rol hasta
 		//que el administrador le asigne uno
-		$resultado = $this->database->execute($sql);
-		return $resultado;
+		return $this->database->execute($sql_usuario) && $this->database->execute($sql_empleado);
 	}
 
 	private function obtenerIdDelUsuarioRecienCreado(){

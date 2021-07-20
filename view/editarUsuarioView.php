@@ -20,7 +20,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             LEGAJO:
-                            <input type="text" class="form-control" id="legajo" name="legacy" placeholder="{{legajo}}"
+                            <input type="text" class="form-control" id="legajo" name="legajo" placeholder="{{legajo}}"
                                 value={{legajo}}>
                         </div>
 
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" id="rol" name="rol">
+                        <select class="form-control" id="rol" name="id_rol">
                             <option value="{{id_rol}}"selected>Rol Actual: {{rol}}</option>
                             <option value="1">Administrativo</option>
                             <option value="2">Supervisor</option>

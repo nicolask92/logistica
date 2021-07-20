@@ -29,7 +29,8 @@ class RegistroController
         $apellido = $_POST['apellido'];
         $email = $_POST['email'];
         $contrasenia = md5($_POST['password']);
-
+        $nacimiento = $_POST["fechaNac"];
+        $dni = $_POST["dni"];
         $errores = array();
 
         if (empty($nombre)) {
@@ -47,12 +48,19 @@ class RegistroController
         if (empty($contrasenia)) {
             $errores['errorContrasenia'] = true;
         }
-
+        if (empty($nacimiento)) {
+            $errores['errorFechaNac'] = true;
+        }
+        if (empty($dni)) {
+            $errores['errorDni'] = true;
+        }
         if (!empty($errores)) {
             $errores['error'] = true;
             $errores['nombre'] = $nombre;
             $errores['apellido'] = $apellido;
             $errores['email'] = $email;
+            $errores['dni'] = $dni;
+            $errores['fechaDeNacimiento'] = $nacimiento;
             echo $this->render->render("view/registroView.php", $errores);
         } else {
         	// genero el codigo
@@ -69,7 +77,7 @@ class RegistroController
 
 	        if ($correo) {
 		        // guardo en la bd
-		        $this->model->crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo);
+		        $this->model->crearUsuario($nombre, $apellido, $email, $contrasenia, $codigo,$dni,$nacimiento);
 
 		        $errores['seEnvioCorrectamente'] = true;
 		        header('location: /registro/codigo?seEnvioCorrectamente=true');
