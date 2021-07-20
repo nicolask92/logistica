@@ -36,12 +36,12 @@
                                 
                                 <div class="form-group">
                                     <label for="dni" class="sr-only">DNI</label>
-                                    <input type="num" name="dni" id="apellido" value="{{dni}}" class="form-control" placeholder="Apellido">
+                                    <input type="number" name="dni" id="dni" value="{{dni}}" class="form-control" placeholder="DNI">
                                 </div>
 
                                 <div class="form-group date">
-                                    <label for="datepicker" class="sr-only">Fecha de nacimiento</label>
-                                    <input data-provide="datepicker" id="datepicker" value="{{fechaDeNacimiento}}" type="text" name="fechaNac" class="form-control" placeholder="Fecha Nacimiento">
+                                    <input type="date" class="form-control" id="fechaNac"
+                                            name="fechaNac" aria-describedby="fecha" value="{{fechaNac}}">
                                 </div>
                                 
                                 <div class="form-group">
@@ -60,8 +60,8 @@
                                             {{#errorApellido}}<li>Apellido invalido</li>{{/errorApellido}}
                                             {{#errorDni}}<li>DNI invalido</li>{{/errorDni}}
                                             {{#errorEmail}}<li>Email invalido</li>{{/errorEmail}}
-                                            {{#errorFechaNac}}<li>Fecha invalido</li>{{/errorFechaNac}}
-                                            {{#errorContrasenia}}<li>Constraseña invalido</li>{{/errorContrasenia}}
+                                            {{#errorFechaNac}}<li>Fecha invalida</li>{{/errorFechaNac}}
+                                            {{#errorContrasenia}}<li>Constraseña invalida</li>{{/errorContrasenia}}
                                         </ul>
                                     </div>
                                 {{/error}}
