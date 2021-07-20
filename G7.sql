@@ -325,9 +325,9 @@ CREATE TABLE carga
  foreign key(id_viaje) references viaje(id) on delete cascade on update cascade
 );
 
-INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Plastico', '0', '', '0', '20000', '1');
-INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Ganado', '0', '', '0', '40000', '2');
-INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `reefer`, `temperatura`, `peso_neto`, `id_viaje`) VALUES ('Pescados', '0', '1', '-20', '29000', '3');
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Tanque', '0', '', '0', '20000', '1');
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `imo_class`, `reefer`, `peso_neto`, `id_viaje`) VALUES ('Jaula', '0', '', '0', '30000', '2');
+INSERT INTO `g7`.`carga` (`tipo_carga`, `hazard`, `reefer`, `temperatura`, `peso_neto`, `id_viaje`) VALUES ('Granel', '0', '1', '-20', '25000', '3');
 
 
 CREATE TABLE cliente
@@ -358,3 +358,8 @@ foreign key(id_camion) references camiones(id) on delete cascade on update casca
 id_mecanico tinyint,
 foreign key(id_mecanico) references mecanico(id) on delete cascade on update cascade
 );
+
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-14 11:00:00', '20000', 'INTERNO', 'Neumatico', 4, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-15 12:00:00', '3000', 'EXTERNO', 'Luz Optica', 10, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-16 13:00:00', '15000', 'EXTERNO', 'Paragolpe', 20, 1);
+INSERT INTO `g7`.`mantenimiento` (`fecha`, `costo`, `tipo`, `repuesto_cam`, `id_camion`, `id_mecanico`) VALUES ('2021-07-17 15:00:00', '25000', 'INTERNO', 'Neumatico', 12, 1);

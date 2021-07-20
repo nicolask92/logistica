@@ -57,11 +57,11 @@ class DetalleController
         // Create the graph. These two calls are always required
         $graph = new Graph(700, 500, 'auto');
         $graph->SetMargin(50,50,50,50);
-        $graph->SetScale("textint", 0, 100000);
+        $graph->SetScale("textint", 0, 30000);
 
         $theme_class = new UniversalTheme;
         $graph->SetTheme($theme_class);
-        $graph->yaxis->SetTickPositions(array(0, 5000, 10000, 50000, 100000), array(2500, 7500, 25000, 75000));
+        $graph->yaxis->SetTickPositions(array(0, 5000, 10000, 20000, 30000), array(2500, 7500, 15000, 25000));
         $graph->SetBox(false);
 
         $graph->ygrid->SetFill(false);

@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="date" class="form-control" id="fechaService" name="fechaService" value="{{fechaService}}" aria-describedby="fecha">
+                        <input type="datetime-local" class="form-control" id="fechaService" name="fechaService" value="{{fechaService}}" aria-describedby="fecha">
                         <small id="fechaService" class="text-muted">
                             Fecha de service
                         </small>
